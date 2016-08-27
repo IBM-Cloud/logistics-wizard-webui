@@ -1,5 +1,6 @@
-const CONTROLLER_URL = 'http://dev-logistics-wizard.mybluemix.net/api/v1';
-// const ERP_URL = 'http://dev-logistics-wizard-erp.mybluemix.net/api/v1';
+const CONTROLLER_URL = __DEV__
+  ? 'https://dev-logistics-wizard.mybluemix.net/api/v1'
+  : 'https://logistics-wizard.mybluemix.net/api/v1';
 
 export const callApi = (endpoint, options = {}) =>
   fetch(`${options.apiUrl || CONTROLLER_URL}/${endpoint}`, {
