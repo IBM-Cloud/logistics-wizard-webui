@@ -1,12 +1,17 @@
-const CONTROLLER_URL = __DEV__
+export const CONTROLLER_URL = __DEV__
   ? 'https://dev-logistics-wizard.mybluemix.net/api/v1'
   : 'https://logistics-wizard.mybluemix.net/api/v1';
 
-export const callApi = (endpoint, options = {}) =>
-  fetch(`${options.apiUrl || CONTROLLER_URL}/${endpoint}`, {
-    headers: options.headers || { 'Content-Type': 'application/json' },
-    method: options.method || 'GET',
-    body: options.body ? JSON.stringify(options.body) : undefined,
+export const callApi = (endpoint, {
+  apiUrl = CONTROLLER_URL,
+  headers = { 'Content-Type': 'application/json' },
+  method = 'GET',
+  body,
+} = {}) =>
+  fetch(`${apiUrl}/${endpoint}`, {
+    headers,
+    method,
+    body: body ? JSON.stringify(body) : undefined,
   })
   .then(response => response.json().then(json => ({ json, response })))
   .then(({ json, response }) => {

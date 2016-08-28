@@ -31,6 +31,7 @@
     "babel/generator-star-spacing": [2, {"before": true, "after": false}],
     "no-constant-condition": [2, {"checkLoops": false}],
     "react/jsx-filename-extension": [0],
+    "func-names": [0],
     "react/prefer-stateless-function": [1]
   }
 }

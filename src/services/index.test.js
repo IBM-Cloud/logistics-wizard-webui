@@ -5,9 +5,8 @@ import {
   getDemo,
   login,
   getAdminData,
+  CONTROLLER_URL,
 } from './';
-
-const apiUrl = 'http://dev-logistics-wizard.mybluemix.net/api/v1';
 
 test('(API) createDemo', function *(t) {
   t.plan(2);
@@ -15,7 +14,7 @@ test('(API) createDemo', function *(t) {
   const endpoint = '/demos';
   const success = { id: 123, name: 'demo' };
 
-  nock(apiUrl)
+  nock(CONTROLLER_URL)
     .post(endpoint, {
       name: 'demo',
       email: 'email@company.com',
@@ -26,7 +25,7 @@ test('(API) createDemo', function *(t) {
   t.deepEqual(response, success);
 
   const fail = { message: 'Invalid email address' };
-  nock(apiUrl)
+  nock(CONTROLLER_URL)
     .post(endpoint, {
       name: 'demo',
       email: 'bademail',
@@ -48,7 +47,7 @@ test('(API) getDemo', function *(t) {
   const endpoint = `/demos/${guid}`;
   const success = { guid, id: 123, name: 'demo' };
 
-  nock(apiUrl)
+  nock(CONTROLLER_URL)
     .get(endpoint)
     .reply(200, success);
 
@@ -56,7 +55,7 @@ test('(API) getDemo', function *(t) {
   t.deepEqual(response, success);
 
   const fail = { message: 'Demo does not exist' };
-  nock(apiUrl)
+  nock(CONTROLLER_URL)
     .get('/demos/1111')
     .reply(404, fail);
 
@@ -77,7 +76,7 @@ test('(API) login', function *(t) {
   const endpoint = `/demos/${guid}/login`;
   const success = { token: 'logintoken' };
 
-  nock(apiUrl)
+  nock(CONTROLLER_URL)
     .post(endpoint, { userId })
     .reply(200, success);
 
@@ -85,7 +84,7 @@ test('(API) login', function *(t) {
   t.deepEqual(response, success);
 
   const fail = { message: 'Demo or user does not exist' };
-  nock(apiUrl)
+  nock(CONTROLLER_URL)
     .post(endpoint, { userId })
     .reply(404, fail);
 
@@ -105,7 +104,7 @@ test('(API) getAdminData', function *(t) {
   const endpoint = '/admin';
   const success = { mockData: 'blahblah' };
 
-  nock(apiUrl)
+  nock(CONTROLLER_URL)
     .get(endpoint)
     .reply(200, success);
 
@@ -113,7 +112,7 @@ test('(API) getAdminData', function *(t) {
   t.deepEqual(response, success);
 
   const fail = { message: 'Unauthorized' };
-  nock(apiUrl)
+  nock(CONTROLLER_URL)
     .get(endpoint)
     .reply(401, fail);
 
