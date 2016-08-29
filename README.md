@@ -119,10 +119,12 @@ The application structure presented in this project is **fractal**, where functi
     │       ├── container    # Connect components to actions and store
     │       ├── modules      # Collections of reducers/constants/actions
     │       └── routes **    # Fractal sub-routes (** optional)
+    ├── services             # API wrappers
     ├── static               # Static assets (not imported anywhere in source code)
     ├── store                # Redux-specific pieces
     │   ├── createStore.js   # Create and instrument redux store
-    │   └── reducers.js      # Reducer registry and injection
+    │   ├── reducers.js      # Reducer registry and injection
+    │   └── sagas.js         # Saga registry and injection
     └── styles               # Application-wide styles (generally settings)
 ```
 
