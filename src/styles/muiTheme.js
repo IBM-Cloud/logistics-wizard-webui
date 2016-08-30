@@ -10,6 +10,9 @@ const muiTheme = getMuiTheme({
     borderColor: '#DADDE0',
     textColor: '#485566',
   },
+  raisedButton: {
+    border: '1px solid #FFF',
+  },
 });
 
 export default muiTheme;
