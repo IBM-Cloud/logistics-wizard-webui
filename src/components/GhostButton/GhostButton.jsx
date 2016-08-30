@@ -1,23 +1,23 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import classNames from 'classnames';
-import classes from './GlobalButton.scss';
+import classes from './GhostButton.scss';
 
-export const GlobalButton = (props) => (
+export const GhostButton = (props) => (
   <div>
     <RaisedButton
       label={props.label}
       backgroundColor={'#2b333d'}
       labelColor={'#FFFFFF'}
       className={classNames({
-        [classes.globalButton]: true,
+        [classes.ghostButton]: true,
         [props.className]: true,
       })}
     />
   </div>
 );
 
-GlobalButton.propTypes = {
+GhostButton.propTypes = {
   backgroundColor: React.PropTypes.string,
   children: React.PropTypes.node,
   className: React.PropTypes.string,
@@ -37,4 +37,4 @@ GlobalButton.propTypes = {
   style: React.PropTypes.object,
 };
 
-export default GlobalButton;
+export default GhostButton;

@@ -1,15 +1,15 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import GlobalButton from './GlobalButton';
+import GhostButton from './GhostButton';
 
-storiesOf('GlobalButton', module)
+storiesOf('GhostButton', module)
   .add('default', () => (
-    <GlobalButton
+    <GhostButton
       clicky={action('You clicked the button.')}
     />
   ))
   .add('custom prop', () => (
-    <GlobalButton
+    <GhostButton
       customProp="What a fancy example!"
       clicky={action('You clicked the button.')}
     />
