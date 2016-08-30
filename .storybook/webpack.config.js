@@ -1,40 +1,7 @@
-// const path = require('path');
-//
-// module.exports = {
-//   module: {
-//     loaders: [
-//       {
-//         test: /\.scss$/,
-//         loaders: [
-//           'style',
-//           'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-//           'postcss',
-//           'sass',
-//         ],
-//         exclude: path.resolve(__dirname, '../src/styles'),
-//       },
-//       {
-//         test: /\.scss$/,
-//         loaders: ['style', 'css', 'sass'],
-//         include: path.resolve(__dirname, '../src/styles'),
-//       },
-//       { test: /\.woff(\?.*)?$/,  loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff' },
-//       { test: /\.woff2(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2' },
-//       { test: /\.otf(\?.*)?$/,   loader: 'file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype' },
-//       { test: /\.ttf(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream' },
-//       { test: /\.eot(\?.*)?$/,   loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
-//       { test: /\.svg(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
-//       { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' },
-//     ],
-//   },
-//   resolve: {
-//     root: path.resolve(__dirname, '../src'),
-//     extensions: ['', '.js', '.jsx'],
-//   },
-// };
-
 const path = require('path');
 const cssnano = require('cssnano');
+const webpack = require('webpack');
+const argv = require('yargs').argv;
 
 const clientPath = path.resolve(__dirname, '../src');
 const stylesPath = path.resolve(__dirname, '../src/styles');
@@ -49,6 +16,32 @@ const webpackConfig = {
   },
   module: {},
 };
+
+// ------------------------------------
+// Plugins
+// ------------------------------------
+/*
+  Until I figure out how to get the Storybook webpack config
+  to run with babel (to support import/export) I have to just copy this
+  from 'config' instead of importing it from there.
+  This might help: https://github.com/kadirahq/react-storybook/issues/155
+*/
+const env = process.env.NODE_ENV || 'development';
+webpackConfig.plugins = [
+  new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': JSON.stringify(env),
+    },
+    'NODE_ENV': env,
+    '__DEV__': env === 'development',
+    '__PROD__': env === 'production',
+    '__TEST__': env === 'test',
+    '__DEBUG__': env === 'development' && !argv.no_debug,
+    '__COVERAGE__': !argv.watch && env === 'test',
+    '__BASENAME__': JSON.stringify(process.env.BASENAME || ''),
+  }),
+];
+
 
 // ------------------------------------
 // Loaders

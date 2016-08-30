@@ -67,7 +67,8 @@ if (__DEV__) {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   );
-} else if (__PROD__) {
+}
+else if (__PROD__) {
   debug('Enable plugins for production (OccurenceOrder, Dedupe & UglifyJS).');
   webpackConfig.plugins.push(
     new webpack.optimize.OccurrenceOrderPlugin(),

@@ -2,12 +2,13 @@ import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import { Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator } from 'material-ui/Toolbar';
 import { Icon } from 'react-fa';
+import { palette } from 'styles/muiTheme';
 import RoleSwitcher from './RoleSwitcher';
 import classes from './GlobalNav.scss';
 
 const styles = {
   toolbar: {
-    backgroundColor: 'rgb(15, 147, 166)',
+    backgroundColor: palette.primary1Color,
   },
   separator: {
     backgroundColor: 'rgb(184, 222, 228)',
@@ -18,7 +19,7 @@ const styles = {
     fontSize: '0.9rem',
   },
   title: {
-    color: 'rgb(255, 255, 255)',
+    color: palette.alternateTextColor,
     fontSize: '1rem',
   },
 };
