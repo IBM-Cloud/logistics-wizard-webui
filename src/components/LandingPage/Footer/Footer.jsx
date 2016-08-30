@@ -1,6 +1,5 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import GlobalButton from 'components/GlobalButton';
+import GhostButton from 'components/GhostButton';
 import classes from './Footer.scss';
 
 // TODO: Replace inline styles with MuiTheme.
@@ -12,7 +11,7 @@ export const Footer = () => (
   <div className={classes.footer}>
     <div className={classes.gradient} />
     <h4>Learn more on the Logistics Wizard Wiki</h4>
-    <GlobalButton label="Github Wiki" className={classes.button} />
+    <GhostButton label="Github Wiki" className={classes.button} />
   </div>
 );
 
