@@ -1,15 +1,18 @@
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import colors from '!!sass-variable-loader!./base/_colors.scss';
+
+export const palette = {
+  primary1Color: colors.primary1Color,
+  primary2Color: colors.primary2Color,
+  accent1Color: colors.accent1Color,
+  alternateTextColor: colors.alternateTextColor,
+  borderColor: colors.borderColor,
+  textColor: colors.textColor,
+};
 
 const muiTheme = getMuiTheme({
   fontFamily: 'Helvetica Neue',
-  palette: {
-    primary1Color: '#0F94A7',
-    primary2Color: '#485566',
-    accent1Color: '#91C383',
-    alternateTextColor: '#FFFFFF',
-    borderColor: '#DADDE0',
-    textColor: '#485566',
-  },
+  palette,
 });
 
 export default muiTheme;
