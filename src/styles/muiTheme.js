@@ -13,6 +13,9 @@ export const palette = {
 const muiTheme = getMuiTheme({
   fontFamily: 'Helvetica Neue',
   palette,
+  raisedButton: {
+    border: '1px solid #FFF',
+  },
 });
 
 export default muiTheme;
