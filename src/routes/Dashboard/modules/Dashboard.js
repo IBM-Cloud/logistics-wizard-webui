@@ -67,7 +67,7 @@ function *watchGetAdminData() {
         demoState = yield select(demoSelector);
       }
       catch (error) {
-        console.log(error);
+        // console.log(error);
         // yield put(receiveDemoFailure(error));
       }
     }
@@ -78,7 +78,7 @@ function *watchGetAdminData() {
       demoState = yield select(demoSelector);
     }
     catch (error) {
-      console.log(error);
+      // console.log(error);
       // yield put(loginFailure(error));
     }
 
@@ -87,7 +87,7 @@ function *watchGetAdminData() {
       yield put(adminDataReceived(adminData));
     }
     catch (error) {
-      console.log(error);
+      // console.log(error);
       // yield put(getAdminDataFilure(error));
     }
   }
