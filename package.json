@@ -152,6 +152,7 @@
     "eslint-plugin-promise": "^2.0.0",
     "eslint-plugin-react": "^6.0.0",
     "isomorphic-fetch": "^2.2.1",
+    "jsdom": "^9.4.5",
     "mock-css-modules": "^1.0.0",
     "nock": "^8.0.0",
     "nodemon": "^1.8.1",
