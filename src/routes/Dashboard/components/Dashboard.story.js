@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf, action, linkTo } from '@kadira/storybook';
+import { storiesOf, action } from '@kadira/storybook';
 import Dashboard from './Dashboard';
 
 storiesOf('Dashboard', module)

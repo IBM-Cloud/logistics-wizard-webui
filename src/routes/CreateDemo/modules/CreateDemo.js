@@ -34,14 +34,10 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [CREATE_DEMO_FAILURE]: (state, action) => {
-    console.error(action.payload);
-
-    return {
-      ...state,
-      error: action.payload.message,
-    };
-  },
+  [CREATE_DEMO_FAILURE]: (state, action) => ({
+    ...state,
+    error: action.payload.message,
+  }),
 };
 
 // ------------------------------------

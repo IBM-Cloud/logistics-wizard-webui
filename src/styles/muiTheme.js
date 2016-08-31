@@ -1,5 +1,5 @@
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import colors from '!!sass-variable-loader!./base/_colors.scss';
+import colors from './base/_colors.scss';
 
 export const palette = {
   primary1Color: colors.primary1Color,

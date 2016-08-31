@@ -1,6 +1,12 @@
 $primary1Color: #0F94a7;
+:export { primary1Color: $primary1Color; }
 $primary2Color: #485566;
+:export { primary2Color: $primary2Color; }
 $accent1Color: #91C383;
+:export { accent1Color: $accent1Color; }
 $alternateTextColor: #FFFFFF;
+:export { alternateTextColor: $alternateTextColor; }
 $borderColor: #DADDE0;
+:export { borderColor: $borderColor; }
 $textColor: #485566;
+:export { textColor: $textColor; }
