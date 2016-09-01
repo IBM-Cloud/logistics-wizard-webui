@@ -1,4 +1,3 @@
-// import { delay } from 'redux-saga';
 import { call, take, put, select } from 'redux-saga/effects';
 import api from 'services';
 import { loginSuccess, receiveDemoSuccess, demoSelector } from 'modules/demos';
@@ -12,14 +11,14 @@ export const ADMIN_DATA_RECEIVED = 'Dashboard/ADMIN_DATA_RECEIVED';
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const getAdminData = (value) => ({
+export const getAdminData = (guid) => ({
   type: GET_ADMIN_DATA,
-  payload: value,
+  guid,
 });
 
-export const adminDataReceived = (value) => ({
+export const adminDataReceived = (payload) => ({
   type: ADMIN_DATA_RECEIVED,
-  payload: value,
+  payload,
 });
 
 export const actions = {
@@ -58,11 +57,11 @@ export const dashboardSelector = state => state.dashboard;
 
 function *watchGetAdminData() {
   while (true) {
-    const { payload } = yield take(GET_ADMIN_DATA);
+    const { guid } = yield take(GET_ADMIN_DATA);
     let demoState = yield select(demoSelector);
-    if (demoState.guid !== payload) {
+    if (demoState.guid !== guid) {
       try {
-        const demoSession = yield call(api.getDemo, payload);
+        const demoSession = yield call(api.getDemo, guid);
         yield put(receiveDemoSuccess(demoSession));
         demoState = yield select(demoSelector);
       }
@@ -70,16 +69,16 @@ function *watchGetAdminData() {
         // console.log(error);
         // yield put(receiveDemoFailure(error));
       }
-    }
 
-    try {
-      const { token } = yield call(api.login, demoState.id, demoState.guid);
-      yield put(loginSuccess(token));
-      demoState = yield select(demoSelector);
-    }
-    catch (error) {
-      // console.log(error);
-      // yield put(loginFailure(error));
+      try {
+        const { token } = yield call(api.login, demoState.id, demoState.guid);
+        yield put(loginSuccess(token));
+        demoState = yield select(demoSelector);
+      }
+      catch (error) {
+        // console.log(error);
+        // yield put(loginFailure(error));
+      }
     }
 
     try {
