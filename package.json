@@ -66,7 +66,7 @@
       }
     },
     "test": {
-      "command": "node_modules/.bin/nyc node --harmony_proxies ./node_modules/.bin/ava",
+      "command": "node_modules/.bin/nyc node --harmony-proxies ./node_modules/.bin/ava",
       "env": {
         "NODE_ENV": "test",
         "NODE_PATH": "src",
@@ -104,7 +104,6 @@
     "file-loader": "^0.9.0",
     "font-awesome": "^4.6.3",
     "fs-extra": "^0.30.0",
-    "harmony-reflect": "^1.5.0",
     "history": "^2.0.0",
     "html-webpack-plugin": "^2.7.1",
     "imports-loader": "^0.6.5",
