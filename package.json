@@ -66,7 +66,7 @@
       }
     },
     "test": {
-      "command": "node_modules/.bin/nyc node --harmony-proxies ./node_modules/.bin/ava",
+      "command": "node_modules/.bin/nyc node --harmony_proxies ./node_modules/.bin/ava",
       "env": {
         "NODE_ENV": "test",
         "NODE_PATH": "src",
