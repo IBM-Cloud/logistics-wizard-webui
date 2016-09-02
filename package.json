@@ -22,9 +22,8 @@
     "deploy:dev": "better-npm-run deploy:dev",
     "deploy:prod": "better-npm-run deploy:prod",
     "storybook": "start-storybook -p 9001",
-    "codecov": "cat coverage/lcov.info | codecov",
-    "cover": "nyc npm run test",
-    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100"
+    "coveralls": "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "check-coverage": "nyc check-coverage --statements 80 --branches 70 --functions 80 --lines 80"
   },
   "betterScripts": {
     "compile": {
@@ -70,8 +69,7 @@
       "command": "node_modules/.bin/nyc node --harmony-proxies ./node_modules/.bin/ava",
       "env": {
         "NODE_ENV": "test",
-        "NODE_PATH": "src",
-        "DEBUG": "app:*"
+        "NODE_PATH": "src"
       }
     }
   },
@@ -143,6 +141,7 @@
     "@kadira/storybook": "^2.1.0",
     "ava": "^0.15.2",
     "babel-eslint": "^6.0.0-beta.6",
+    "coveralls": "^2.11.12",
     "enzyme": "^2.0.0",
     "eslint": "^3.1.1",
     "eslint-config-airbnb": "^10.0.0",
@@ -196,9 +195,8 @@
       "src/store/*"
     ],
     "reporter": [
-      "lcov",
       "text",
-      "html"
+      "lcov"
     ]
   }
 }
