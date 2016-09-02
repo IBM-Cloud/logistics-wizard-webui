@@ -3,7 +3,6 @@
   - name: logistics-wizard
     memory: 64M
     buildpack: staticfile_buildpack
-    path: .
     host: logistics-wizard
     env:
       NODE_ENV: production
