@@ -38,3 +38,6 @@ global['__TEST__'] = env === 'test';
 global['__DEBUG__'] = env === 'development' && !argv.no_debug;
 global['__COVERAGE__'] = !argv.watch && env === 'test';
 global['__BASENAME__'] = JSON.stringify(process.env.BASENAME || '');
+
+const controller_service = process.env.CONTROLLER_SERVICE || 'https://not.set.net';
+global['__CONTROLLER_API__'] = `${controller_service}/api/v1`;

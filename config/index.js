@@ -33,7 +33,7 @@ const config = {
   // ----------------------------------
   // Controller Service Configuration
   // ----------------------------------
-  controller_service : process.env.CONTROLLER_SERVICE || 'https://notset',
+  controller_service : process.env.CONTROLLER_SERVICE || 'https://not.set.net',
 
   // ----------------------------------
   // Compiler Configuration
