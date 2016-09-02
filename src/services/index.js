@@ -1,5 +1,5 @@
 export const CONTROLLER_URL = process.env.CONTROLLER_SERVICE ?
-  process.env.CONTROLLER_SERVICE : 'not set';
+  process.env.CONTROLLER_SERVICE : 'https://notset';
 
 export const callApi = (endpoint, {
   apiUrl = CONTROLLER_URL,
