@@ -1,6 +1,5 @@
-export const CONTROLLER_URL = __DEV__
-  ? 'https://dev-logistics-wizard.mybluemix.net/api/v1'
-  : 'https://logistics-wizard.mybluemix.net/api/v1';
+export const CONTROLLER_URL = process.env.CONTROLLER_SERVICE ?
+  process.env.CONTROLLER_SERVICE : 'not set';
 
 export const callApi = (endpoint, {
   apiUrl = CONTROLLER_URL,
