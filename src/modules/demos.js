@@ -30,8 +30,8 @@ const ACTION_HANDLERS = {
     ...state,
     name: action.payload.name,
     guid: action.payload.guid,
-    id: action.payload.id,
-    roles: [{
+    users: [{
+      id: action.payload.users[0].id,
       username: action.payload.users[0].username,
       type: action.payload.users[0].roles[0].name,
     }],

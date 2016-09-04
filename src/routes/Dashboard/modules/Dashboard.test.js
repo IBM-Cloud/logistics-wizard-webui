@@ -1,8 +1,9 @@
 import test from 'ava';
 import { reducerTest, actionTest } from 'redux-ava';
 import { call, take, select, put } from 'redux-saga/effects';
-import { loginSuccess, receiveDemoSuccess } from 'modules/demos';
+import { demosReducer, loginSuccess, receiveDemoSuccess, demoSelector } from 'modules/demos';
 import api from 'services';
+import mockApi from 'services/mockApi';
 import {
   GET_ADMIN_DATA,
   ADMIN_DATA_RECEIVED,
@@ -12,12 +13,6 @@ import {
   watchGetAdminData,
   dashboardSelector,
 } from './Dashboard';
-
-const adminDataPayload = () => ({
-  stores: [{ store: 'store stuff' }],
-  shipments: [{ shipment: 'shipment stuff' }],
-});
-
 
 test('(Selector) returns the slice of state for dashboard.', t => {
   t.deepEqual(dashboardSelector({ dashboard: { id: '123' } }), { id: '123' });
@@ -59,8 +54,8 @@ test('(Reducer) return previous state when no action is matched', reducerTest(
 test('(Reducer) spreads payload to state on adminDataReceived', reducerTest(
   dashboardReducer,
   {},
-  adminDataReceived(adminDataPayload()),
-  adminDataPayload(),
+  adminDataReceived({ mockData: 'test' }),
+  { mockData: 'test' },
 ));
 
 
@@ -71,42 +66,62 @@ test('(Reducer) doesnt try to handle saga', reducerTest(
   { mock: 'mock' },
 ));
 
-/*
-test('(Saga) watchGetAdminData - API Success', t => {
+test('(Saga) watchGetAdminData - Not logged in, API Success', t => {
   const saga = watchGetAdminData();
-  const payload = adminDataPayload();
-  const createDemoAction = getAdminData(payload);
-  const demoSession = { mockResponse: 'blah blah' };
-  const demoState = { guid: '1234' };
+  let demoState = demosReducer({}, receiveDemoSuccess(mockApi.getDemo()));
 
-  t.deepEqual(saga.next().value, take(GET_ADMIN_DATA),
-    'listens for GET_ADMIN_DATA action.');
-  t.deepEqual(saga.next(createDemoAction).value, call(api.createDemo, payload.name, payload.email),
-    'calls api with action payload as params.');
-  t.deepEqual(saga.next(demoSession).value, put(receiveDemoSuccess(demoSession)),
-    'dispatches receiveDemoSuccess action.');
-  t.deepEqual(saga.next().value, select(demoSelector),
-    'gets the updated state.');
-  t.deepEqual(saga.next(demoState).value, put(push(`/dashboard/${demoState.guid}`)),
-    'dispatches route change to dashboard');
-  t.deepEqual(saga.next().value, take(CREATE_DEMO),
-    'saga resets, and begins listening for CREATE_DEMO again.');
+  const newGuid = 'Another Guid';
+  const action = getAdminData(newGuid);
+  t.deepEqual(saga.next().value, take(GET_ADMIN_DATA));
+  t.deepEqual(saga.next(action).value, select(demoSelector));
+
+  // Saga should see that our guid doesn't match, so fetches new demo and logs in.
+
+  t.truthy(action.guid);
+  t.deepEqual(saga.next(demoState).value, call(api.getDemo, action.guid));
+
+  const demoPayload = mockApi.getDemo(newGuid);
+  t.deepEqual(saga.next(demoPayload).value, put(receiveDemoSuccess(demoPayload)));
+  t.deepEqual(saga.next().value, select(demoSelector));
+  demoState = demosReducer(demoState, receiveDemoSuccess(demoPayload));
+
+  t.truthy(demoState.users[0].id);
+  t.truthy(demoState.guid);
+  t.deepEqual(saga.next(demoState).value, call(api.login, demoState.users[0].id, demoState.guid));
+  const loginPayload = mockApi.login();
+  t.deepEqual(saga.next(loginPayload).value, put(loginSuccess(loginPayload.token)));
+  t.deepEqual(saga.next().value, select(demoSelector));
+  demoState = demosReducer(demoState, loginSuccess(loginPayload.token));
+
+  t.truthy(demoState.token);
+  t.deepEqual(saga.next(demoState).value, call(api.getAdminData, demoState.token));
+  const adminPayload = mockApi.getAdminData();
+  t.deepEqual(saga.next(adminPayload).value, put(adminDataReceived(adminPayload)));
+
+  // Saga loops back to beginning
+  t.deepEqual(saga.next().value, take(GET_ADMIN_DATA));
 });
+
+test('(Saga) watchGetAdminData - Already logged in, API Success', t => {
+  const saga = watchGetAdminData();
+  let demoState = demosReducer({}, receiveDemoSuccess(mockApi.getDemo()));
+  demoState = demosReducer(demoState, loginSuccess(mockApi.login().token));
+
+  const action = getAdminData(demoState.guid);
+  t.deepEqual(saga.next().value, take(GET_ADMIN_DATA));
+  t.deepEqual(saga.next(action).value, select(demoSelector));
+
+  // Saga should see that our guid already matches here, so goes straight to api.getAdminData
+
+  t.truthy(demoState.token);
+  t.deepEqual(saga.next(demoState).value, call(api.getAdminData, demoState.token));
+
+  const adminPayload = mockApi.getAdminData();
+  t.deepEqual(saga.next(adminPayload).value, put(adminDataReceived(adminPayload)));
+
+  // Saga loops back to beginning
+  t.deepEqual(saga.next().value, take(GET_ADMIN_DATA));
+});
+
 
 test.todo('Build a meaningful action around api failure.');
-test('(Saga) watchCreateDemo - API Failure', t => {
-  const saga = watchCreateDemo();
-  const payload = { name: 'test demo', email: 'name@email.com' };
-  const createDemoAction = createDemo(payload);
-  const error = { message: 'bad email' };
-
-  t.deepEqual(saga.next().value, take(CREATE_DEMO),
-    'listens for CREATE_DEMO action.');
-  t.deepEqual(saga.next(createDemoAction).value, call(api.createDemo, payload.name, payload.email),
-    'calls api with action payload as params.');
-  t.deepEqual(saga.throw(error).value, put(createDemoFailure(error)),
-    'dispatches createDemoFailure if api call fails.');
-  t.deepEqual(saga.next().value, take(CREATE_DEMO),
-    'saga resets, and begins listening for CREATE_DEMO again.');
-});
-*/

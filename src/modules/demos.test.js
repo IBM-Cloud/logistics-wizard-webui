@@ -56,10 +56,11 @@ test('(Reducer) stores token on loginSuccess', reducerTest(
 const demoApiResponse = () => ({
   name: 'demo',
   guid: 'guid',
-  id: 'id',
+  id: 'demoid',
   users: [{
+    id: 'userid',
     username: 'johndoe',
-    roles: [{ name: 'Supply Chain Manager' }],
+    roles: [{ name: 'supplychainmanager' }],
   }],
 });
 
@@ -70,10 +71,10 @@ test('(Reducer) adds demo session to state on receiveDemoSuccess', reducerTest(
   {
     name: 'demo',
     guid: 'guid',
-    id: 'id',
-    roles: [{
+    users: [{
+      id: 'userid',
       username: 'johndoe',
-      type: 'Supply Chain Manager',
+      type: 'supplychainmanager',
     }],
   },
 ));

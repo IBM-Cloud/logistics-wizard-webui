@@ -55,7 +55,7 @@ export default dashboardReducer;
 // This is set up in `../index.js` as the key in  `injectSagas(store, { key: 'dashboard', sagas });`
 export const dashboardSelector = state => state.dashboard;
 
-function *watchGetAdminData() {
+export function *watchGetAdminData() {
   while (true) {
     const { guid } = yield take(GET_ADMIN_DATA);
     let demoState = yield select(demoSelector);
@@ -71,7 +71,7 @@ function *watchGetAdminData() {
       }
 
       try {
-        const { token } = yield call(api.login, demoState.id, demoState.guid);
+        const { token } = yield call(api.login, demoState.users[0].id, demoState.guid);
         yield put(loginSuccess(token));
         demoState = yield select(demoSelector);
       }
