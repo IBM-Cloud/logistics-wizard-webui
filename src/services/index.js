@@ -1,6 +1,4 @@
-export const CONTROLLER_URL = __DEV__
-  ? 'https://dev-logistics-wizard.mybluemix.net/api/v1'
-  : 'https://logistics-wizard.mybluemix.net/api/v1';
+export const CONTROLLER_URL = __CONTROLLER_API__;
 
 export const callApi = (endpoint, {
   apiUrl = CONTROLLER_URL,
