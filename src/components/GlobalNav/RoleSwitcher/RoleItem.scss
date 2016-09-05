@@ -44,33 +44,27 @@
 /* Menu Item Text Styles */
 .textContainer {
   display: flex;
-  align-items: center;
-  justify-content: center;
   align-self: center;
-
-  p {
-    margin: 0;
-  }
+  flex-wrap: wrap;
+  flex-direction: column;
 
   .label {
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
-    align-self: center;
-  }
 
-  .label.center {
-    align-self: flex-start;
+    &.center {
+      align-self: flex-start;
+    }
   }
 
   .sublabel {
     font-size: 0.7rem;
     line-height: 0.7rem;
     font-style: italic;
-    align-self: flex-end;
   }
 
-  .button {
+  .light {
     font-weight: 500;
   }
 }

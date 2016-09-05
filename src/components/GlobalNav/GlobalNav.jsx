@@ -2,7 +2,6 @@ import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import { Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator } from 'material-ui/Toolbar';
 import { Icon } from 'react-fa';
-import { palette } from 'styles/muiTheme';
 import { Link } from 'react-router';
 import RoleSwitcher from './RoleSwitcher';
 import classes from './GlobalNav.scss';

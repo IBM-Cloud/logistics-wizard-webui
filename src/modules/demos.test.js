@@ -61,6 +61,10 @@ const demoApiResponse = () => ({
     id: 'userid',
     username: 'johndoe',
     roles: [{ name: 'supplychainmanager' }],
+  }, {
+    id: 'userid2',
+    username: 'jane',
+    roles: [{ name: 'retailstoremanager' }],
   }],
 });
 
@@ -75,6 +79,10 @@ test('(Reducer) adds demo session to state on receiveDemoSuccess', reducerTest(
       id: 'userid',
       username: 'johndoe',
       type: 'supplychainmanager',
+    }, {
+      id: 'userid2',
+      username: 'jane',
+      type: 'retailstoremanager',
     }],
   },
 ));

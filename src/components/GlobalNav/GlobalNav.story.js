@@ -3,6 +3,17 @@ import { storiesOf } from '@kadira/storybook';
 import GlobalNav from './GlobalNav';
 import RoleSwitcher from './RoleSwitcher';
 
+const users = [
+  {
+    role: 'supplychainmanager',
+    loggedIn: true,
+  },
+  {
+    role: 'retailstoremanager',
+    location: 'Austin, TX',
+  },
+];
+
 storiesOf('GlobalNav', module)
   .addDecorator((story) => (
     <div style={{ width: '100vw' }}>
@@ -13,5 +24,5 @@ storiesOf('GlobalNav', module)
     <GlobalNav />
   ))
   .add('Role Switcher', () => (
-    <RoleSwitcher open />
+    <RoleSwitcher users={users} />
   ));

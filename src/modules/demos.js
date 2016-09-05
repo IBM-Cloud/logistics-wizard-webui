@@ -30,11 +30,11 @@ const ACTION_HANDLERS = {
     ...state,
     name: action.payload.name,
     guid: action.payload.guid,
-    users: [{
-      id: action.payload.users[0].id,
-      username: action.payload.users[0].username,
-      type: action.payload.users[0].roles[0].name,
-    }],
+    users: action.payload.users.map(user => ({
+      id: user.id,
+      username: user.username,
+      type: user.roles[0].name,
+    })),
   }),
   [LOGIN_SUCCESS]: (state, action) => ({
     ...state,
