@@ -1,3 +1,5 @@
+@import '~styles/base/colors';
+
 .item {
   min-height: 65px;
   display: flex;
@@ -5,9 +7,9 @@
   text-align: left;
   cursor: pointer;
   border: none;
-  border-bottom: 1px solid rgb(219, 222, 224);
+  border-bottom: 1px solid $borderColor;
   background: rgb(255, 255, 255);
-  color: rgb(72, 85, 102);
+  color: $primary2Color;
   margin: 0;
   padding: 0;
   padding-left: 5px;
@@ -19,7 +21,7 @@
 
   &.selected {
     padding-left: 0px;
-    border-left: 5px solid rgb(145, 195, 131);
+    border-left: 5px solid $accent1Color;
   }
 }
 
@@ -28,17 +30,18 @@
   border-left: 5px solid transparent;
   align-self: center;
 
-  .icon {
-    font-size: 1.5rem;
-    color: rgb(72, 85, 102);
-    line-height: 2.6rem;
-    margin: 0px 1rem;
-  }
+}
 
-  .small {
-    font-size: 0.8rem;
-    margin-left: 1.2rem;
-  }
+.icon {
+  font-size: 1.5rem;
+  color: $primary2Color;
+  line-height: 2.6rem;
+  margin: 0px 1rem;
+}
+
+.small {
+  font-size: 0.8rem;
+  margin-left: 1.2rem;
 }
 
 /* Menu Item Text Styles */
@@ -47,24 +50,20 @@
   align-self: center;
   flex-wrap: wrap;
   flex-direction: column;
+}
 
-  .label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
+.light {
+  font-weight: 500;
+}
 
-    &.center {
-      align-self: flex-start;
-    }
-  }
+.sublabel {
+  font-size: 0.7rem;
+  line-height: 0.7rem;
+  font-style: italic;
+}
 
-  .sublabel {
-    font-size: 0.7rem;
-    line-height: 0.7rem;
-    font-style: italic;
-  }
-
-  .light {
-    font-weight: 500;
-  }
+.label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
 }

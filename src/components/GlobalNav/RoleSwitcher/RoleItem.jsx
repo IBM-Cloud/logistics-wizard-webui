@@ -3,51 +3,74 @@ import classNames from 'classnames';
 import classes from './RoleItem.scss';
 
 export class RoleItem extends React.PureComponent {
-  render() {
-    return (
-      <button
+  iconContainer = (user) => (
+    <div className={classes.iconContainer}>
+      <i
         className={classNames({
-          [classes.item]: true,
-          [classes.selected]: this.props.selected,
+          [classes.icon]: true,
+          'fa-user': user,
+          'fa-plus': !user,
+          [classes.small]: !user,
+          fa: true,
+        })}
+      />
+    </div>
+  )
+
+  textContainer = (user) => (
+    <div className={classes.textContainer}>
+      <div
+        className={classNames({
+          [classes.label]: true,
+          [classes.light]: !user,
         })}
       >
-        <div className={classes.iconContainer}>
-          <i
-            className={classNames({
-              [classes.icon]: true,
-              [this.props.iconType]: true,
-              [classes.small]: this.props.light,
-              fa: true,
-            })}
-          />
-        </div>
+        {user ? user.role : 'Create New Retail Manager' }
+      </div>
+      {user && user.location
+        ? <div className={classes.sublabel}>{user.location}</div>
+        : ''
+      }
+    </div>
+  )
 
-        <div className={classes.textContainer}>
-          <div
-            className={classNames({
-              [classes.label]: true,
-              [classes.center]: !this.props.location,
-              [classes.light]: this.props.light,
-            })}
-          >
-            {this.props.label}
-          </div>
-          {this.props.location
-            ? <div className={classes.sublabel}>{this.props.location}</div>
-            : ''
-          }
-        </div>
+  handleClick = () => {
+    const { user, roleAction } = this.props;
+
+    if (user && !user.loggedIn) {
+      roleAction(user.id);
+    }
+    else {
+      roleAction();
+    }
+  }
+
+  render() {
+    const user = this.props.user;
+
+    return (
+      <button
+        onTouchTap={this.handleClick}
+        className={classNames({
+          [classes.item]: true,
+          [classes.selected]: (user ? user.loggedIn : false),
+        })}
+      >
+        {this.iconContainer(user)}
+        {this.textContainer(user)}
       </button>
     );
   }
 }
 
 RoleItem.propTypes = {
-  selected: React.PropTypes.bool,
-  light: React.PropTypes.bool,
-  location: React.PropTypes.string,
-  iconType: React.PropTypes.string.isRequired,
-  label: React.PropTypes.string.isRequired,
+  user: React.PropTypes.shape({
+    id: React.PropTypes.number.isRequired,
+    role: React.PropTypes.string.isRequired,
+    location: React.PropTypes.string,
+    loggedIn: React.PropTypes.bool,
+  }),
+  roleAction: React.PropTypes.func.isRequired,
 };
 
 export default RoleItem;

@@ -3,6 +3,7 @@
 import { argv } from 'yargs';
 import fs from 'fs';
 import config from '../config';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 Object.assign(global, config.globals);
 
@@ -28,3 +29,4 @@ require.extensions['.html'] = (module, filename) => {
 global.document = require('jsdom').jsdom(require('../src/index.html'));
 global.window = document.defaultView;
 global.navigator = window.navigator;
+injectTapEventPlugin(); // for component tests using onTouchTap event

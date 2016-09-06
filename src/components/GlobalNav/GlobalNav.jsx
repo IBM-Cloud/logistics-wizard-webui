@@ -3,7 +3,7 @@ import IconButton from 'material-ui/IconButton';
 import { Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator } from 'material-ui/Toolbar';
 import { Icon } from 'react-fa';
 import { Link } from 'react-router';
-import RoleSwitcher from './RoleSwitcher';
+import RoleSwitcher from 'containers/RoleSwitcherContainer';
 import classes from './GlobalNav.scss';
 
 const styles = {
@@ -36,6 +36,7 @@ export const GlobalNav = () => (
   </div>
 );
 
-GlobalNav.propTypes = {};
+GlobalNav.propTypes = {
+};
 
 export default GlobalNav;

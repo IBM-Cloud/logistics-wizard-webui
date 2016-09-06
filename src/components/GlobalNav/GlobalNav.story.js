@@ -5,10 +5,12 @@ import RoleSwitcher from './RoleSwitcher';
 
 const users = [
   {
+    id: 1,
     role: 'supplychainmanager',
     loggedIn: true,
   },
   {
+    id: 2,
     role: 'retailstoremanager',
     location: 'Austin, TX',
   },
@@ -20,8 +22,11 @@ storiesOf('GlobalNav', module)
       {story()}
     </div>
   ))
-  .add('Default', () => (
+  .add('Not Logged in', () => (
     <GlobalNav />
+  ))
+  .add('Logged in', () => (
+    <GlobalNav users={users} />
   ))
   .add('Role Switcher', () => (
     <RoleSwitcher users={users} />
