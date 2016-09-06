@@ -1,0 +1,31 @@
+.iconSection {
+  background: rgb(15,148,167);
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  padding: 0;
+}
+
+.iconContainer {
+  width: 20%;
+  margin: 0 5%;
+  text-align: center;
+
+  & h6 {
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+  }
+
+  & p {
+    color: rgb(255, 255, 255);
+    font-size: 0.8rem;
+    font-weight: 300;
+  }
+}
+
+.icon {
+  min-height: 151px;
+}

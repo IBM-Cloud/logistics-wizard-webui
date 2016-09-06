@@ -7,8 +7,8 @@ export const GhostButton = (props) => (
   <div>
     <RaisedButton
       label={props.label}
-      backgroundColor={'#2b333d'}
-      labelColor={'#FFFFFF'}
+      backgroundColor={props.backgroundColor || '#2b333d'}
+      labelColor={props.labelColor || '#FFFFFF'}
       className={classNames({
         [classes.ghostButton]: true,
         [props.className]: true,
