@@ -22,6 +22,7 @@
 
 .title {
   color: rgb(255, 255, 255);
+  font-weight: 600;
 }
 
 .topLink {
@@ -30,13 +31,12 @@
 
   & .text {
     color: rgb(255, 255, 255);
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     padding-top: 0.5rem;
   }
 }
 
 .github {
-  font-size: 1.9rem;
   color: rgb(184, 222, 228);
 
   &:hover {
@@ -55,8 +55,8 @@
 }
 
 .map {
-  height: 500px;
-  object-fit: contain;
+  max-width: 100%;
+  object-fit: cover;
 }
 
 .dots {

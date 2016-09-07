@@ -1,3 +1,4 @@
+import 'styles/core.scss';
 import React from 'react';
 import Header from './Header/Header';
 import LogisticsWizard from './LogisticsWizard/LogisticsWizard';
@@ -6,15 +7,8 @@ import ArchDiagram from './ArchDiagram/ArchDiagram';
 import Footer from './Footer/Footer';
 import classes from './LandingPage.scss';
 
-export const LandingPage = (props) => (
+export const LandingPage = () => (
   <div className={classes.landingPage}>
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    <br /><br />
     <Header />
     <LogisticsWizard />
     <IconSection />
@@ -29,10 +23,5 @@ export const LandingPage = (props) => (
   //   <Footer />
   // </div>
 );
-
-LandingPage.propTypes = {
-  customProp: React.PropTypes.string,
-  clicky: React.PropTypes.func.isRequired,
-};
 
 export default LandingPage;
