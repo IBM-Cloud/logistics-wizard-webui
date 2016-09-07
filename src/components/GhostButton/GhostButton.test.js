@@ -17,3 +17,4 @@ test('(Component) Has expected elements.', t => {
 });
 
 test.todo('Add Primary3Color to GhostButton styles!');
+test.todo('Add Light / Dark property options!');

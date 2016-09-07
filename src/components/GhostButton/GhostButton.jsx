@@ -16,6 +16,8 @@ GhostButton.propTypes = {
   backgroundColor: React.PropTypes.string,
   className: React.PropTypes.string,
   labelColor: React.PropTypes.string,
+  light: React.PropTypes.bool,
+  dark: React.PropTypes.bool,
 };
 
 export default GhostButton;

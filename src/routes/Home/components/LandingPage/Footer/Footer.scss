@@ -22,10 +22,6 @@
   height: 2px;
   width: 100%;
   margin-bottom: 2rem;
-
-  background: rgb(145, 195, 131);
-  background: -moz-linear-gradient(left,  rgb(255,255,255) 0%, rgb(145,195,131) 100%);
-  background: -webkit-linear-gradient(left,  rgb(255,255,255) 0%,rgb(145,195,131) 100%);
   background: linear-gradient(to right,  rgb(255,255,255) 0%,rgb(145,195,131) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#91c383',GradientType=1 );
 }

@@ -2,16 +2,12 @@
   position: relative;
   overflow: hidden;
   padding: 7rem 12rem 10rem 12rem;
-
-  background: rgb(15,148,167);
-  background: -moz-linear-gradient(top,  rgb(15,148,167) 0%, rgb(5,116,132) 100%);
-  background: -webkit-linear-gradient(top,  rgb(15,148,167) 0%,rgb(5,116,132) 100%);
   background: linear-gradient(to bottom,  rgb(15,148,167) 0%,rgb(5,116,132) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f94a7', endColorstr='#057484',GradientType=0 );
 
   // TODO: Figure out how to add graph as a background from assets?
   // Update: Posting a question on the React Boilerplat Github Repo.
-  
+
   & h1 {
     color: rgb(255, 255, 255);
     font-size: 1.6rem;

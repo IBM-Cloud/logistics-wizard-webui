@@ -1,16 +1,19 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf } from '@kadira/storybook';
 import GhostButton from './GhostButton';
+import classes from './GhostButton.scss';
 
 storiesOf('GhostButton', module)
-  .add('default', () => (
-    <GhostButton
-      clicky={action('You clicked the button.')}
-    />
+  .add('Dark', () => (
+    <div style={{ backgroundColor: '#000' }}>
+      <GhostButton label="Ghost Button" />
+    </div>
   ))
-  .add('custom prop', () => (
+  .add('Light', () => (
     <GhostButton
-      customProp="What a fancy example!"
-      clicky={action('You clicked the button.')}
+      label="Ghost Button"
+      className={classes.button}
+      backgroundColor="#FFFFFF"
+      labelColor="#0F94A7"
     />
   ));
