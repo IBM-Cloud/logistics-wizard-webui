@@ -41,23 +41,23 @@ This project is designed with a bunch of awesome new front-end technologies, all
 
 ## Getting Started
 
-After confirming that your development environment meets the specified [requirements](#requirements), you can create a new project based on `logistics-wizard` in one of two ways:
+After confirming that your development environment meets the specified [requirements](#requirements), you can create a new project based on `logistics-wizard-webui` in one of two ways:
 
 ### Install from source
 
 First, clone or download:
 
 ```bash
-$ git clone git@github.com:IBM-Bluemix/logistics-wizard.git
+$ git clone git@github.com:IBM-Bluemix/logistics-wizard-webui.git
 // or
-$ wget -O logistics-wizard.zip https://github.com/IBM-Bluemix/logistics-wizard/archive/master.zip
-$ unzip logistics-wizard.zip
+$ wget -O logistics-wizard-webui.zip https://github.com/IBM-Bluemix/logistics-wizard-webui/archive/master.zip
+$ unzip logistics-wizard-webui.zip
 ```
 
 Then, rename to your project name and change into the directory:
 
 ```bash
-$ mv logistics-wizard <my-project-name>
+$ mv logistics-wizard-webui <my-project-name>
 $ cd <my-project-name>
 ```
 
