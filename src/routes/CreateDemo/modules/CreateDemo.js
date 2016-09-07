@@ -1,8 +1,6 @@
-import { call, take, put, select } from 'redux-saga/effects';
+import { call, take, put } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import api from 'services';
-
-import { receiveDemoSuccess, demoSelector } from 'modules/demos';
 
 export const createDemoSelector = state => state.createDemo;
 // ------------------------------------
@@ -15,9 +13,13 @@ export const CREATE_DEMO_FAILURE = 'CreateDemo/CREATE_DEMO_FAILURE';
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const createDemo = (value) => ({
+export const createDemo = ({
+  name = `Test Demo ${Date.now()}`,
+  email,
+} = {}) => ({
   type: CREATE_DEMO,
-  payload: value,
+  name,
+  email,
 });
 
 export const createDemoFailure = (value) => ({
@@ -56,13 +58,11 @@ export default createDemoReducer;
 // ------------------------------------
 export function *watchCreateDemo() {
   while (true) {
-    const { payload } = yield take(CREATE_DEMO);
+    const action = yield take(CREATE_DEMO);
 
     try {
-      const demoSession = yield call(api.createDemo, payload.name, payload.email);
-      yield put(receiveDemoSuccess(demoSession));
-      const demoState = yield select(demoSelector);
-      yield put(push(`/dashboard/${demoState.guid}`));
+      const demoSession = yield call(api.createDemo, action.name, action.email);
+      yield put(push(`/dashboard/${demoSession.guid}`));
     }
     catch (error) {
       yield put(createDemoFailure(error));

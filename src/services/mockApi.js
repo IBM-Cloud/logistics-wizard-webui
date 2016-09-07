@@ -27,6 +27,20 @@ export const login = () => ({
   token: faker.random.uuid(),
 });
 
+export const getRetailers = () => ([
+  {
+    managerId: null,
+    address: {
+      state: faker.address.state(),
+      city: faker.address.city(),
+      latitude: faker.address.latitude(),
+      country: faker.address.country(),
+      longitude: faker.address.longitude(),
+    },
+    id: 405,
+  },
+]);
+
 export const getAdminData = () => ({
   'distribution-centers': [{
     contact: {
@@ -58,17 +72,7 @@ export const getAdminData = () => ({
     toId: 405,
     updatedAt: null,
   }],
-  retailers: [{
-    managerId: null,
-    address: {
-      state: faker.address.state(),
-      city: faker.address.city(),
-      latitude: faker.address.latitude(),
-      country: faker.address.country(),
-      longitude: faker.address.longitude(),
-    },
-    id: 405,
-  }],
+  retailers: getRetailers(),
 });
 
 export const mockApi = {

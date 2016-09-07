@@ -1,5 +1,6 @@
 import { injectReducer } from 'store/reducers';
 import { injectSagas } from 'store/sagas';
+import { getDemoSession } from 'modules/demos';
 
 export default (store) => ({
   path: 'dashboard/:guid',
@@ -14,5 +15,8 @@ export default (store) => ({
 
       cb(null, Dashboard);
     }, 'dashboard');
+  },
+  onEnter: (nextState) => {
+    store.dispatch(getDemoSession(nextState.params.guid));
   },
 });

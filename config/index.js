@@ -33,7 +33,7 @@ const config = {
   // ----------------------------------
   // Controller Service Configuration
   // ----------------------------------
-  controller_service : process.env.CONTROLLER_SERVICE || 'https://not.set.net',
+  controller_service : process.env.CONTROLLER_SERVICE,
 
   // ----------------------------------
   // Compiler Configuration
@@ -72,6 +72,7 @@ Edit at Your Own Risk
 // Environment
 // ------------------------------------
 // N.B.: globals added here must _also_ be added to .eslintrc
+
 config.globals = {
   'process.env'  : {
     'NODE_ENV' : JSON.stringify(config.env),
@@ -83,9 +84,7 @@ config.globals = {
   '__DEBUG__'    : config.env === 'development' && !argv.no_debug,
   '__COVERAGE__' : !argv.watch && config.env === 'test',
   '__BASENAME__' : JSON.stringify(process.env.BASENAME || ''),
-  '__CONTROLLER_API__' : config.env === 'test' ?
-    `${config.controller_service}/api/v1` :
-    JSON.stringify(`${config.controller_service}/api/v1`),
+  '__CONTROLLER_API__' : JSON.stringify(config.controller_service || ''),
 };
 
 // ------------------------------------

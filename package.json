@@ -62,14 +62,16 @@
     "start": {
       "command": "babel-node bin/server",
       "env": {
-        "DEBUG": "app:*"
+        "DEBUG": "app:*",
+        "CONTROLLER_SERVICE": "https://dev-logistics-wizard-controller.mybluemix.net/api/v1"
       }
     },
     "test": {
       "command": "node_modules/.bin/nyc node --harmony-proxies ./node_modules/.bin/ava",
       "env": {
         "NODE_ENV": "test",
-        "NODE_PATH": "src"
+        "NODE_PATH": "src",
+        "CONTROLLER_SERVICE": "https://fake-controller.mybluemix.net/api/v1"
       }
     }
   },

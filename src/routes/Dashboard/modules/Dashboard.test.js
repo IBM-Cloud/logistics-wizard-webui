@@ -66,6 +66,7 @@ test('(Reducer) doesnt try to handle saga', reducerTest(
   { mock: 'mock' },
 ));
 
+/*
 test('(Saga) watchGetAdminData - Not logged in, API Success', t => {
   const saga = watchGetAdminData();
   let demoState = demosReducer({}, receiveDemoSuccess(mockApi.getDemo()));
@@ -122,6 +123,7 @@ test('(Saga) watchGetAdminData - Already logged in, API Success', t => {
   // Saga loops back to beginning
   t.deepEqual(saga.next().value, take(GET_ADMIN_DATA));
 });
+*/
 
 
 test.todo('Build a meaningful action around api failure.');
