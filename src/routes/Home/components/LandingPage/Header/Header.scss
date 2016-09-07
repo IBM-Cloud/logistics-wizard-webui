@@ -1,0 +1,60 @@
+.header {
+  width: 100%;
+  text-align: center;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(43, 51, 61);
+
+  & h1 {
+    position: relative;
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    font-weight: 300;
+    margin-top: 9rem;
+    z-index: 10;
+  }
+}
+
+.toolbar {
+  background: transparent;
+}
+
+.title {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+}
+
+.topLink {
+  position: relative;
+  z-index: 20;
+
+  .text {
+    color: rgb(255, 255, 255);
+    font-size: 0.8rem;
+    padding-top: 0.5rem;
+  }
+}
+
+.github {
+  color: rgb(184, 222, 228);
+
+  &:hover {
+    color: rgb(255, 255, 255);
+  }
+}
+
+.background {
+  position: absolute;
+  min-height: 500px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.map {
+  max-width: 100%;
+  object-fit: cover;
+}
