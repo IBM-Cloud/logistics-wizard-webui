@@ -8,17 +8,17 @@ import ArchDiagram from './ArchDiagram/ArchDiagram';
 import Footer from './Footer/Footer';
 
 storiesOf('LandingPage', module)
-  .add('default', () => (
+  .add('Default', () => (
     <LandingPage
       clicky={action('You clicked the button.')}
     />
   ))
-  .add('custom prop', () => (
-    <LandingPage
-      customProp="What a fancy example!"
-      clicky={action('You clicked the button.')}
-    />
-  ))
+  // .add('custom prop', () => (
+  //   <LandingPage
+  //     customProp="What a fancy example!"
+  //     clicky={action('You clicked the button.')}
+  //   />
+  // ))
   .add('Header', () => (
     <Header />
   ))

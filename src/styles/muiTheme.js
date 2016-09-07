@@ -1,7 +1,7 @@
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const muiTheme = getMuiTheme({
-  fontFamily: 'Helvetica Neue',
+  fontFamily: 'Libre Franklin, sans-serif',
   palette: {
     primary1Color: '#0F94A7',
     primary2Color: '#485566',

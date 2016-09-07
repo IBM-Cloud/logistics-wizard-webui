@@ -18,17 +18,14 @@
   }
 
   & p {
-    font-size: 0.8rem;
     font-weight: 300;
   }
 
   section {
     width: 40%;
 
-    &:last-child {
-      text-align: center;
-      padding-top: 0;
-      background: rgb(255, 255, 255);
+    img {
+      width: 100%;
     }
   }
 }

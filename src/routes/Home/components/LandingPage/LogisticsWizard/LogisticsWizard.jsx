@@ -1,5 +1,6 @@
 import React from 'react';
 import GhostButton from 'components/GhostButton';
+import Mockup from '../assets/img/mockup.png';
 import classes from './LogisticsWizard.scss';
 
 // TODO: Replace inline styles with MuiTheme.
@@ -25,7 +26,7 @@ export const LogisticsWizard = () => (
     </section>
 
     <section>
-      <p>Image Placeholder</p>
+      <img src={Mockup} role="presentation" />
     </section>
   </div>
 );
