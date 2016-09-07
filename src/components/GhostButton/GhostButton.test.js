@@ -1,31 +1,19 @@
-// import test from 'ava';
-// import sinon from 'sinon';
-// import React from 'react';
-// import { shallow } from 'enzyme';
-// import GlobalButton from './GlobalButton';
+import test from 'ava';
+import React from 'react';
+import { shallow } from 'enzyme';
+import GhostButton from './GhostButton';
 
-// const setup = () => {
-//   const spies = {
-//     clicky: sinon.spy(),
-//   };
-//   const props = {
-//     customProp: 'Test',
-//     clicky: spies.clicky,
-//   };
-//   const component = shallow(<GlobalButton {...props} />);
-//
-//   return { spies, props, component };
-// };
+const setup = () => {
+  const props = {};
+  const component = shallow(<GhostButton {...props} />);
 
-// test('(Component) Has expected elements.', t => {
-//   const { props, component } = setup();
-// });
-//
-// test('(Component) Works as expected.', t => {
-//   const { spies, component } = setup();
-//
-//   t.false(spies.clicky.calledOnce);
-//   component.find('button').first().simulate('click');
-//   t.true(spies.clicky.calledOnce,
-//     'calls clicky prop when clicked');
-// });
+  return { props, component };
+};
+
+test('(Component) Has expected elements.', t => {
+  const { component } = setup();
+
+  t.true(component.is('RaisedButton'));
+});
+
+test.todo('Add Primary3Color to GhostButton styles!');

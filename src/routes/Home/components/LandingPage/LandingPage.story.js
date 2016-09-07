@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf } from '@kadira/storybook';
 import LandingPage from './LandingPage';
 import Header from './Header/Header';
 import LogisticsWizard from './LogisticsWizard/LogisticsWizard';
