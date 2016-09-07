@@ -15,13 +15,6 @@ export const LandingPage = () => (
     <ArchDiagram />
     <Footer />
   </div>
-  // <div className={classes.footer}>
-  //   <h1>LandingPage</h1>
-  //   <h2>Prop: {props.customProp || 'no prop given.'}</h2>
-  //   <button onClick={props.clicky}>Clicky</button>
-  //
-  //   <Footer />
-  // </div>
 );
 
 export default LandingPage;

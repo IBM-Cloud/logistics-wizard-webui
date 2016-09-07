@@ -17,6 +17,8 @@ const setup = () => {
   return { spies, props, component };
 };
 
+// TODO: WRITE TESTS...
+
 test('(Component) Has expected elements.', t => {
   const { props, component } = setup();
   t.true(component.is('div'),

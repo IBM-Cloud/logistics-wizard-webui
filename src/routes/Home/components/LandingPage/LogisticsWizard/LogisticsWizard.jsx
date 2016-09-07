@@ -3,11 +3,6 @@ import GhostButton from 'components/GhostButton';
 import Mockup from '../assets/img/mockup.png';
 import classes from './LogisticsWizard.scss';
 
-// TODO: Replace inline styles with MuiTheme.
-// TODO: Add ghost button theme to global css.
-// TODO: Create custom raised button with inline style overrides for border.
-// TODO: Accept props so we can still use Raised Button props as well. =)
-
 export const LogisticsWizard = () => (
   <div className={classes.logisticsWizard}>
     <section>
@@ -30,10 +25,5 @@ export const LogisticsWizard = () => (
     </section>
   </div>
 );
-
-// Footer.propTypes = {
-//   customProp: React.PropTypes.string,
-//   clicky: React.PropTypes.func.isRequired,
-// };
 
 export default LogisticsWizard;
