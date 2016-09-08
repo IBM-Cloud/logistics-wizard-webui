@@ -19,7 +19,7 @@ const PopUpCard = (props) => {
     ? `${props.location.city}, ${props.location.state}`
     : '...';
   const title = props.title
-    ? `Shipment ${props.title}`
+    ? `${props.title}`
     : '...';
   return (
     <Paper style={styles.paper} zDepth={2}>

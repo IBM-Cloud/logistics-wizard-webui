@@ -56,7 +56,7 @@ export default class Dashboard extends React.PureComponent {
         </SelectField>
         <PopUpCard
           location={shipment.currentLocation || {}}
-          title={shipment.id ? shipment.id.toString() : '...'}
+          title={shipment.id ? `Shipment ${shipment.id.toString()}` : '...'}
           status={shipment.status || '...'}
         />
         <pre>{this.props.dbdata ? JSON.stringify(this.props.dbdata, null, 2) : 'loading...'}</pre>
