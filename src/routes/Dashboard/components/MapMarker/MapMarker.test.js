@@ -7,7 +7,7 @@ const setup = () => {
   const spies = {
   };
   const props = {
-    type: 'retailer'
+    type: 'retailer',
   };
   const component = shallow(<MapMarker {...props} />);
 
@@ -15,7 +15,7 @@ const setup = () => {
 };
 
 test('(Component) Has expected elements.', t => {
-  const { props, component } = setup();
+  const { component } = setup();
 
   t.true(component.is('div'),
     'is wrapped by a div.');
