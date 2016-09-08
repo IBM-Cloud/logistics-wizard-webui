@@ -22,13 +22,15 @@ export const createDemo = (name, email) =>
     body: { name, email },
   });
 
-export const getDemo = (guid) => callApi(`demos/${guid}`);
+export const getDemo = guid => callApi(`demos/${guid}`);
 
 export const login = (id, guid) =>
   callApi(`demos/${guid}/login`, {
     method: 'POST',
     body: { userId: id },
   });
+
+export const getRetailers = guid => callApi(`demos/${guid}/retailers`);
 
 export const getAdminData = token =>
   callApi('admin', { headers: { Authorization: `Bearer ${token}` } });
@@ -37,6 +39,7 @@ export const api = {
   createDemo,
   getDemo,
   login,
+  getRetailers,
   getAdminData,
 };
 

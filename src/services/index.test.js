@@ -4,6 +4,7 @@ import {
   createDemo,
   getDemo,
   login,
+  getRetailers,
   getAdminData,
 } from './';
 
@@ -91,6 +92,34 @@ test('(API) login', function *(t) {
 
   try {
     yield login(userId, guid);
+  }
+  catch (error) {
+    t.deepEqual(error, fail,
+      'promise should fail with api message as the error');
+  }
+});
+
+test('(API) getRetailers', function *(t) {
+  t.plan(2);
+
+  const guid = '1234';
+  const endpoint = `/demos/${guid}/retailers`;
+  const success = [1, 2, 3];
+
+  nock(controllerApi)
+    .get(endpoint)
+    .reply(200, success);
+
+  const response = yield getRetailers(guid);
+  t.deepEqual(response, success);
+
+  const fail = { message: 'Demo does not exist' };
+  nock(controllerApi)
+    .get(endpoint)
+    .reply(404, fail);
+
+  try {
+    yield getRetailers(guid);
   }
   catch (error) {
     t.deepEqual(error, fail,

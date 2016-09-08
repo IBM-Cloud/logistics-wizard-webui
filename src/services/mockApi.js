@@ -1,45 +1,50 @@
 import faker from 'faker';
 
-export const getDemo = ({
-  guid = faker.random.uuid(),
-} = {}) => ({
-  createdAt: faker.date.recent(),
-  name: faker.fake('{{lorem.word}} {{random.number}}'),
-  guid,
-  id: faker.random.number(),
-  users: [{
-    username: faker.name.firstName(),
-    email: faker.internet.email(),
-    created: null,
-    id: faker.random.number(),
-    demoId: faker.random.number(),
-    roles: [{
-      id: 1,
-      name: 'supplychainmanager',
-      description: null,
-      created: faker.date.recent(),
-      modified: faker.date.recent(),
-    }],
+export const getUser = (id, role = 'retailstoremanager') => ({
+  username: faker.name.firstName(),
+  email: faker.internet.email(),
+  created: null,
+  id,
+  demoId: faker.random.number(),
+  roles: [{
+    id: 1,
+    name: role,
+    description: null,
+    created: faker.date.recent(),
+    modified: faker.date.recent(),
   }],
 });
 
-export const login = () => ({
-  token: faker.random.uuid(),
+export const getDemo = ({
+  name = faker.fake('{{lorem.word}} {{random.number}}'),
+  guid = faker.random.uuid(),
+} = {}) => ({
+  createdAt: faker.date.recent(),
+  name,
+  guid,
+  id: faker.random.number(),
+  users: [
+    getUser(100, 'supplychainmanager'),
+  ],
 });
 
-export const getRetailers = () => ([
-  {
-    managerId: null,
-    address: {
-      state: faker.address.state(),
-      city: faker.address.city(),
-      latitude: faker.address.latitude(),
-      country: faker.address.country(),
-      longitude: faker.address.longitude(),
-    },
-    id: 405,
+export const login = (token = faker.random.uuid()) => ({ token });
+
+export const getRetailer = ({
+  managerId = null,
+  state = faker.address.state(),
+  city = faker.address.city(),
+} = {}) => ({
+  managerId,
+  address: {
+    state,
+    city,
+    latitude: faker.address.latitude(),
+    country: faker.address.country(),
+    longitude: faker.address.longitude(),
   },
-]);
+  id: 405,
+});
 
 export const getAdminData = () => ({
   'distribution-centers': [{
@@ -72,12 +77,14 @@ export const getAdminData = () => ({
     toId: 405,
     updatedAt: null,
   }],
-  retailers: getRetailers(),
+  retailers: [getRetailer()],
 });
 
 export const mockApi = {
+  getUser,
   getDemo,
   login,
+  getRetailer,
   getAdminData,
 };
 

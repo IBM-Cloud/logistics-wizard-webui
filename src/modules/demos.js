@@ -30,9 +30,10 @@ export const login = (userid) => ({
   userid,
 });
 
-export const loginSuccess = (value) => ({
+export const loginSuccess = ({ token, id }) => ({
   type: LOGIN_SUCCESS,
-  payload: value,
+  token,
+  id,
 });
 
 export const actions = {
@@ -48,28 +49,35 @@ const matchUserToLocation = (userid, retailers) => {
   return `${location.city}, ${location.state}`;
 };
 
+const mapUserData = (users, retailers) =>
+  users.map(user => {
+    const isSupplyManager = user.roles[0].name.includes('supply');
+    const userMapping = {
+      id: user.id,
+      role: isSupplyManager ? 'Supply Chain Manager' : 'Retail Store Manager',
+    };
+
+    if (!isSupplyManager) {
+      userMapping.location = matchUserToLocation(user.id, retailers);
+    }
+
+    return userMapping;
+  });
+
 const ACTION_HANDLERS = {
   [GET_DEMO_SUCCESS]: (state, { demo, retailers }) => ({
     ...state,
     name: demo.name,
     guid: demo.guid,
-    users: demo.users.map(user => {
-      const isSupplyManager = user.roles[0].name.includes('supply');
-      const userMapping = {
-        id: user.id,
-        role: isSupplyManager ? 'Supply Chain Manager' : 'Retail Store Manager',
-      };
-
-      if (!isSupplyManager) {
-        userMapping.location = matchUserToLocation(user.id, retailers);
-      }
-
-      return userMapping;
-    }),
+    users: mapUserData(demo.users, retailers),
   }),
-  [LOGIN_SUCCESS]: (state, action) => ({
+  [LOGIN_SUCCESS]: (state, { token, id }) => ({
     ...state,
-    token: action.payload,
+    token: token.token,
+    users: state.users.map(user => ({
+      ...user,
+      loggedIn: user.id === id,
+    })),
   }),
 };
 
@@ -110,6 +118,13 @@ export function *watchGetDemoSession() {
   }
 }
 
+export function *watchLogin() {
+  while (true) {
+    const { id } = yield take(LOGIN);
+  }
+}
+
 export const sagas = [
   watchGetDemoSession,
+  watchLogin,
 ];
