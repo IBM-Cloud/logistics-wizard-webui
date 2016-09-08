@@ -7,7 +7,7 @@ const mapActionCreators = {
 };
 
 const mapStateToProps = (state) => ({
-  demoName: state.demoSession.name,
+  demoName: state.demoSession.name || 'loading...',
   dbdata: state.dashboard,
 });
 
