@@ -63,8 +63,8 @@ test('(Action) login',
 test('(Action) loginSuccess',
   actionTest(
     loginSuccess,
-    { token: { token: 'token' }, id: 'userid' },
-    { type: LOGIN_SUCCESS, token: { token: 'token' }, id: 'userid' })
+    { token: { token: 'token' }, userid: 'userid' },
+    { type: LOGIN_SUCCESS, token: { token: 'token' }, userid: 'userid' })
   );
 
 test('(Reducer) initializes with empty state', t => {
@@ -109,7 +109,7 @@ test('(Reducer) stores token on loginSuccess, and changes logged in user', reduc
       loggedIn: false,
     }],
   },
-  loginSuccess({ token: mockApi.login('new-token'), id: 200 }),
+  loginSuccess({ token: mockApi.login('new-token'), userid: 200 }),
   {
     name: 'demo',
     guid: 'guid',
@@ -170,7 +170,7 @@ test('(Saga) watchGetDemoSession - new Guid, API Success', t => {
   // Saga should see that our guid doesn't match, so fetches new demo and logs in.
 
   t.truthy(action.guid);
-  const demoState = demosReducer({}, { type: '@@@@@' });
+  let demoState = demosReducer({}, { type: '@@@@@' });
   t.deepEqual(
     saga.next(demoState).value,
     [call(api.getDemo, action.guid), call(api.getRetailers, action.guid)]
@@ -182,7 +182,10 @@ test('(Saga) watchGetDemoSession - new Guid, API Success', t => {
     saga.next([demoPayload, retailersPayload]).value,
     put(getDemoSuccess({ demo: demoPayload, retailers: retailersPayload }))
   );
-  t.deepEqual(saga.next().value, put(login()));
+  t.deepEqual(saga.next().value, select(demoSelector));
+
+  demoState = demosReducer(demoState, getDemoSuccess({ demo: demoPayload, retailers: retailersPayload }));
+  t.deepEqual(saga.next(demoState).value, put(login(demoState.users[0].id)));
 
   // Saga loops back to beginning
   t.deepEqual(saga.next().value, take(GET_DEMO_SESSION));
@@ -196,29 +199,20 @@ test('(Saga) watchLogin - Not logged in, API Success', t => {
   const demo = mockApi.getDemo();
   demo.users.push(mockApi.getUser(200));
   const retailers = [mockApi.getRetailer({ managerId: 200 })];
-  const demoState = demosReducer({}, getDemoSuccess({ demo, retailers }));
 
+  const action = login(100);
   t.deepEqual(saga.next().value, take(LOGIN));
 
-  /*
-  const action = login(100);
+  const demoState = demosReducer({}, getDemoSuccess({ demo, retailers }));
   t.deepEqual(saga.next(action).value, select(demoSelector));
 
-  // Saga should see that our guid doesn't match, so fetches new demo and logs in.
+  t.truthy(action.userid);
+  t.truthy(demoState.guid);
+  const token = mockApi.login();
+  t.deepEqual(saga.next(demoState).value, call(api.login, action.userid, demoState.guid));
 
-  t.truthy(action.id);
-  t.deepEqual(
-    saga.next(demoState).value,
-    [call(api.getDemo, action.guid), call(api.getRetailers, action.guid)]
-  );
-
-  t.deepEqual(
-    saga.next([demoPayload, retailersPayload]).value,
-    put(getDemoSuccess({ demo: demoPayload, retailers: retailersPayload }))
-  );
-  t.deepEqual(saga.next().value, put(login()));
+  t.deepEqual(saga.next(token).value, put(loginSuccess({ token, userid: action.userid })));
 
   // Saga loops back to beginning
-  t.deepEqual(saga.next().value, take(GET_DEMO_SESSION));
-  */
+  t.deepEqual(saga.next().value, take(LOGIN));
 });

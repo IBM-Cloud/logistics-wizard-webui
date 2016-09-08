@@ -7,7 +7,7 @@ export const callApi = (endpoint, {
   fetch(`${apiUrl}/${endpoint}`, {
     headers,
     method,
-    body: body ? JSON.stringify(body) : undefined,
+    body: JSON.stringify(body),
   })
   .then(response => response.json().then(json => ({ json, response })))
   .then(({ json, response }) => {

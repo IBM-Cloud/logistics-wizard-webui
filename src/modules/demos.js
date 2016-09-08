@@ -25,15 +25,20 @@ export const getDemoSuccess = (payload) => ({
   retailers: payload.retailers,
 });
 
+// TODO finish this v
+export const createUser = () => ({
+  type: 'CREATE_USER',
+});
+
 export const login = (userid) => ({
   type: LOGIN,
   userid,
 });
 
-export const loginSuccess = ({ token, id }) => ({
+export const loginSuccess = ({ token, userid }) => ({
   type: LOGIN_SUCCESS,
   token,
-  id,
+  userid,
 });
 
 export const actions = {
@@ -71,12 +76,12 @@ const ACTION_HANDLERS = {
     guid: demo.guid,
     users: mapUserData(demo.users, retailers),
   }),
-  [LOGIN_SUCCESS]: (state, { token, id }) => ({
+  [LOGIN_SUCCESS]: (state, { token, userid }) => ({
     ...state,
     token: token.token,
     users: state.users.map(user => ({
       ...user,
-      loggedIn: user.id === id,
+      loggedIn: user.id === userid,
     })),
   }),
 };
@@ -99,7 +104,7 @@ export default demosReducer;
 export function *watchGetDemoSession() {
   while (true) {
     const { guid } = yield take(GET_DEMO_SESSION);
-    const demoState = yield select(demoSelector);
+    let demoState = yield select(demoSelector);
 
     if (demoState.guid !== guid) {
       try {
@@ -108,11 +113,12 @@ export function *watchGetDemoSession() {
           call(api.getRetailers, guid),
         ];
         yield put(getDemoSuccess({ demo, retailers }));
-        yield put(login());
+        demoState = yield select(demoSelector);
+        yield put(login(demoState.users[0].id));
       }
       catch (error) {
-        // console.log(error);
-        // yield put(getDemoSession(error));
+        console.log('Get Demo Failure: ', error);
+        // yield put(getDemoFailure(error));
       }
     }
   }
@@ -120,7 +126,16 @@ export function *watchGetDemoSession() {
 
 export function *watchLogin() {
   while (true) {
-    const { id } = yield take(LOGIN);
+    const { userid } = yield take(LOGIN);
+    const demoState = yield select(demoSelector);
+    try {
+      const token = yield call(api.login, userid, demoState.guid);
+      yield put(loginSuccess({ token, userid }));
+    }
+    catch (error) {
+      console.log('Login Failure: ', error);
+      // yield put(loginFailure(error));
+    }
   }
 }
 

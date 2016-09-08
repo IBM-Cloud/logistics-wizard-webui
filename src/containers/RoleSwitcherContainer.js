@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { switchUser, createUser } from 'modules/demos';
+import { login, createUser } from 'modules/demos';
 import RoleSwitcher from 'components/GlobalNav/RoleSwitcher';
 
 const mapActionCreators = {
-  switchUser,
+  login,
   createUser,
 };
 

@@ -13,6 +13,7 @@ export default (store) => ({
       injectReducer(store, { key: 'dashboard', reducer });
       injectSagas(store, { key: 'dashboard', sagas });
 
+      store.dispatch(getDemoSession(nextState.params.guid));
       cb(null, Dashboard);
     }, 'dashboard');
   },
