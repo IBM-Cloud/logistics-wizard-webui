@@ -4,7 +4,19 @@
   overflow: hidden;
 }
 
-pre {
-  font-size: 12px;
-  padding:5px;
+.mainSection {
+  padding: .5em;
+}
+.col1 {
+    float: left;
+    width: 50%;
+    margin: 0;
+}
+
+.col2 {
+    margin-left: 50%;
+}
+
+h6 {
+  margin-top:12px;
 }

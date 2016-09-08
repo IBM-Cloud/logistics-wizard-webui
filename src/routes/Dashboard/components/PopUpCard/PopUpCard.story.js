@@ -1,8 +1,8 @@
 import React from 'react';
-import { storiesOf, action, linkTo } from '@kadira/storybook';
+import { storiesOf } from '@kadira/storybook';
 import PopUpCard from './PopUpCard';
 
-var shipment = {
+const shipment1 = {
       "toId": 462,
       "estimatedTimeOfArrival": "2016-10-22T00:00:00.000Z",
       "status": "DELIVERED",
@@ -19,11 +19,24 @@ var shipment = {
       "createdAt": "2016-09-08T16:26:16.933Z",
       "id": 810
     };
+    const shipment2 = {
+      "toId": 473,
+      "estimatedTimeOfArrival": "2016-10-16T00:00:00.000Z",
+      "status": "NEW",
+      "updatedAt": null,
+      "currentLocation": null,
+      "fromId": 2,
+      "deliveredAt": null,
+      "createdAt": "2016-09-08T20:05:30.001Z",
+      "id": 827
+    };
 storiesOf('PopUpCard', module)
-  .add('default state', () => (
+  .add('shipment1', () => (
     <PopUpCard
-      location={shipment.currentLocation}
-      title={shipment.id ? `Shipment ${shipment.id.toString()}` : '...'}
-      status={shipment.status || '...'}
+      shipment={shipment1}
+    />
+)).add('shipment2', () => (
+    <PopUpCard
+      shipment={shipment2}
     />
   ));

@@ -7,7 +7,7 @@ import classes from './PopUpCard.scss';
 const styles = {
   paper: {
     height: 300,
-    width: 250,
+    width: 220,
     margin: 20,
     overflow: 'scroll',
   },
@@ -15,11 +15,30 @@ const styles = {
 
 
 const PopUpCard = (props) => {
-  const location = props.location
-    ? `${props.location.city}, ${props.location.state}`
-    : '...';
-  const title = props.title
-    ? `${props.title}`
+  let currentLocation;
+  let estimatedTimeOfArrival;
+  let updatedAt;
+  if(props.shipment){
+    const shipment = props.shipment;
+    if (shipment.currentLocation) {
+      currentLocation = (
+        <div><h6>CURRENT LOCATION</h6> {shipment.currentLocation.city},
+          {shipment.currentLocation.state}</div>
+      );
+    }
+    if (shipment.estimatedTimeOfArrival) {
+      estimatedTimeOfArrival = (
+        <div><h6>ESTIMATED TOA</h6> {shipment.estimatedTimeOfArrival}</div>
+      );
+    }
+    if (shipment.updatedAt) {
+      updatedAt = (
+        <div><h6>LAST UPDATED</h6> {shipment.updatedAt}</div>
+      );
+    }
+  }
+  const title = props.shipment
+    ? `Shipment ${props.shipment.id}`
     : '...';
   return (
     <Paper style={styles.paper} zDepth={2}>
@@ -27,19 +46,27 @@ const PopUpCard = (props) => {
         <ToolbarTitle text={title} />
       </Toolbar>
       <div className={classes.mainSection}>
-        <pre>
-          Status: { props.status ? props.status : 'loading...'}{"\n"}
-          Location: { location }
-        </pre>
+          <div className={classes.col1}>
+            <h6>ORDER</h6>
+              { props.shipment ? props.shipment.id : '...'}{"\n"}
+          </div>
+          <div className={classes.col2}>
+            <h6>STATUS</h6>
+            { props.shipment ? props.shipment.status : 'loading...'}{"\n"}
+          </div>
+
+          { currentLocation }
+          { estimatedTimeOfArrival }
+          { updatedAt }
+
+
       </div>
     </Paper>
   );
 };
 
 PopUpCard.propTypes = {
-  location: React.PropTypes.object.isRequired,
-  status: React.PropTypes.string.isRequired,
-  title: React.PropTypes.string.isRequired,
+  shipment: React.PropTypes.object.isRequired,
 };
 
 export default PopUpCard;
