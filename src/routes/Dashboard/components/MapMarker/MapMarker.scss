@@ -1,0 +1,68 @@
+.distributionCenter {
+  background-color: white;
+  border: 4px solid #30a5ff;
+  border-radius: 8px;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  position: absolute;
+  left: -8px;
+}
+
+.distributionCenter:hover {
+  border: 4px solid red;
+}
+
+.distributionCenter .mapMarkerPopup {
+  display: none;
+}
+
+.distributionCenter:hover .mapMarkerPopup {
+  display: inline-block;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: -100px;
+  top: 4px;
+  z-index: 1000;
+}
+
+.shipment {
+  background-color: #30a5ff;
+  border-radius: 12px;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  position: absolute;
+  left: -12px;
+  top: -12px;
+}
+
+.shipment i {
+  color: white;
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  padding: 5px;
+}
+
+.retailer {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid #d183a9;
+  border-radius: 12px;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  position: absolute;
+  left: -12px;
+  top: -12px;
+}
+
+.retailer i {
+  color: #d183a9;
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+  padding-top: 5px;
+  padding-left: 6px;
+}
