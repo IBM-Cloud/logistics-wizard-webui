@@ -1,4 +1,4 @@
-// import CoreLayout from '../layouts/CoreLayout/CoreLayout';
+import CoreLayout from '../layouts/CoreLayout/CoreLayout';
 import Home from './Home';
 import CreateDemoRoute from './CreateDemo';
 import DashboardRoute from './Dashboard';
@@ -7,8 +7,12 @@ export const createRoutes = (store) => ({
   path: '/',
   indexRoute: Home,
   childRoutes: [
-    CreateDemoRoute(store),
-    DashboardRoute(store),
+    { component: CoreLayout,
+      childRoutes: [
+        CreateDemoRoute(store),
+        DashboardRoute(store),
+      ],
+    },
   ],
 });
 
