@@ -25,12 +25,10 @@ const setup = () => {
 
 test.todo('write tests for dashboard elements once complete.');
 test('(Component) Renders with expected elements', t => {
-  const { props, component } = setup();
+  const { component } = setup();
 
   t.true(component.is('div'),
     'is wrapped by a div');
-  t.regex(component.find('p').first().text(), new RegExp(props.demoName, 'g'),
-    'renders demo name from props');
 });
 
 test('(Component) Works as expected.', t => {
