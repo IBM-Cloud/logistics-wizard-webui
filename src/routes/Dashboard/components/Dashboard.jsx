@@ -12,7 +12,7 @@ export default class Dashboard extends React.PureComponent {
   render() {
     return (
       <div className={classes.dashboard}>
-        <h4>Dashboard</h4>
+        <h4>Dashboard {this.props.dbdata ? '' : <i className="fa fa-spinner fa-spin" />}</h4>
         <Tabs className={classes.tabs}>
           <Tab label="Map">
             <div className={classes.map}>
