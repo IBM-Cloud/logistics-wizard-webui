@@ -50,7 +50,6 @@ export const Map = (props) => (
       .filter(shipment => (shipment.currentLocation != null))
       .map(shipment => <MapMarker
         type="shipment"
-        icon="truck"
         lat={shipment.currentLocation.latitude}
         lng={shipment.currentLocation.longitude}
     ></MapMarker>)}
@@ -58,7 +57,6 @@ export const Map = (props) => (
       // keep only shipments with a current location
       .map(retailer => <MapMarker
         type="retailer"
-        icon="circle"
         lat={retailer.address.latitude}
         lng={retailer.address.longitude}
     ></MapMarker>)}
