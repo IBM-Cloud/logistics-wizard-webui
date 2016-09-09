@@ -1,5 +1,6 @@
 import { call, take, put, select } from 'redux-saga/effects';
 import api from 'services';
+import { getAdminData } from 'routes/Dashboard/modules/Dashboard';
 
 // ------------------------------------
 // Constants
@@ -131,6 +132,7 @@ export function *watchLogin() {
     try {
       const token = yield call(api.login, userid, demoState.guid);
       yield put(loginSuccess({ token, userid }));
+      yield put(getAdminData(demoState.guid));
     }
     catch (error) {
       console.log('Login Failure: ', error);

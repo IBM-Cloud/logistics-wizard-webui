@@ -3,6 +3,7 @@ import { reducerTest, actionTest } from 'redux-ava';
 import { call, take, select, put } from 'redux-saga/effects';
 import api from 'services';
 import mockApi from 'services/mockApi';
+import { getAdminData } from 'routes/Dashboard/modules/Dashboard';
 import {
   GET_DEMO_SESSION,
   GET_DEMO_SUCCESS,
@@ -212,6 +213,7 @@ test('(Saga) watchLogin - Not logged in, API Success', t => {
   t.deepEqual(saga.next(demoState).value, call(api.login, action.userid, demoState.guid));
 
   t.deepEqual(saga.next(token).value, put(loginSuccess({ token, userid: action.userid })));
+  t.deepEqual(saga.next().value, put(getAdminData(demoState.guid)));
 
   // Saga loops back to beginning
   t.deepEqual(saga.next().value, take(LOGIN));

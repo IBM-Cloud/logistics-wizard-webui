@@ -22,7 +22,8 @@ export class CreateDemo extends React.Component {
   }
 
   handleClick = () => {
-    const body = { name: this.state.demoName };
+    const body = {};
+    if (this.state.demoName !== '') body.name = this.state.demoName;
     if (this.state.email !== '') body.email = this.state.email;
     this.props.createDemo(body);
   }
