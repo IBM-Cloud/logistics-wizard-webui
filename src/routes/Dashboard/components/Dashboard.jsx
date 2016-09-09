@@ -1,4 +1,5 @@
 import React from 'react';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import classes from './Dashboard.scss';
 import Map from './Map';
 
@@ -12,14 +13,22 @@ export default class Dashboard extends React.PureComponent {
     return (
       <div className={classes.dashboard}>
         <h4>Dashboard</h4>
-        <div className={classes.map}>
-          <Map
-            className={classes.map}
-            distributionCenters={this.props.dbdata ? this.props.dbdata['distribution-centers'] : []}
-            shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
-            retailers={this.props.dbdata ? this.props.dbdata.retailers : []}
-          />
-        </div>
+        <Tabs className={classes.tabs}>
+          <Tab label="Map">
+            <div className={classes.map}>
+              <Map
+                className={classes.map}
+                distributionCenters={this.props.dbdata ? this.props.dbdata['distribution-centers'] : []}
+                shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
+                retailers={this.props.dbdata ? this.props.dbdata.retailers : []}
+              />
+            </div>
+          </Tab>
+          <Tab label="Raw Data">
+            <p>Demo Name: {this.props.demoName || 'loading...'}</p>
+            <pre>{this.props.dbdata ? JSON.stringify(this.props.dbdata, null, 2) : 'loading...'}</pre>
+          </Tab>
+        </Tabs>
       </div>
     );
   }
