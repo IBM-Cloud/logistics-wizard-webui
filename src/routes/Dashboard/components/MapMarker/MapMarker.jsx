@@ -11,9 +11,8 @@ export const MapMarker = (props) => (
 );
 
 MapMarker.propTypes = {
-  text: React.PropTypes.oneOf(['distributionCenter', 'retailer', 'shipment']),
+  type: React.PropTypes.oneOf(['distributionCenter', 'retailer', 'shipment']).isRequired,
   icon: React.PropTypes.string,
-  type: React.PropTypes.string.isRequired,
   children: React.PropTypes.element,
 };
 
