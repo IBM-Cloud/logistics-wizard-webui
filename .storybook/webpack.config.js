@@ -30,15 +30,16 @@ const env = process.env.NODE_ENV || 'development';
 webpackConfig.plugins = [
   new webpack.DefinePlugin({
     'process.env': {
-      'NODE_ENV': JSON.stringify(env),
+      NODE_ENV: JSON.stringify(env),
     },
-    'NODE_ENV': env,
-    '__DEV__': env === 'development',
-    '__PROD__': env === 'production',
-    '__TEST__': env === 'test',
-    '__DEBUG__': env === 'development' && !argv.no_debug,
-    '__COVERAGE__': !argv.watch && env === 'test',
-    '__BASENAME__': JSON.stringify(process.env.BASENAME || ''),
+    NODE_ENV: env,
+    __DEV__: env === 'development',
+    __PROD__: env === 'production',
+    __TEST__: env === 'test',
+    __DEBUG__: env === 'development' && !argv.no_debug,
+    __COVERAGE__: !argv.watch && env === 'test',
+    __BASENAME__: JSON.stringify(process.env.BASENAME || ''),
+    __CONTROLLER_API__: JSON.stringify('https://fake-controller.net'),
   }),
 ];
 

@@ -1,5 +1,7 @@
+export const controllerApi = `${__CONTROLLER_API__}/api/v1`;
+
 export const callApi = (endpoint, {
-  apiUrl = __CONTROLLER_API__,
+  apiUrl = controllerApi,
   headers = { 'Content-Type': 'application/json' },
   method = 'GET',
   body,

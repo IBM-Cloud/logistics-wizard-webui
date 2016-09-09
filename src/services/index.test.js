@@ -1,14 +1,13 @@
 import test from 'ava';
 import nock from 'nock';
 import {
+  controllerApi,
   createDemo,
   getDemo,
   login,
   getRetailers,
   getAdminData,
-} from './';
-
-const controllerApi = __CONTROLLER_API__;
+} from '../services';
 
 test('(API) createDemo', function *(t) {
   t.plan(2);
