@@ -1,12 +1,13 @@
 import test from 'ava';
 import nock from 'nock';
 import {
+  controllerApi,
   createDemo,
   getDemo,
   login,
+  getRetailers,
   getAdminData,
-  CONTROLLER_URL,
-} from './';
+} from '../services';
 
 test('(API) createDemo', function *(t) {
   t.plan(2);
@@ -14,7 +15,7 @@ test('(API) createDemo', function *(t) {
   const endpoint = '/demos';
   const success = { id: 123, name: 'demo' };
 
-  nock(CONTROLLER_URL)
+  nock(controllerApi)
     .post(endpoint, {
       name: 'demo',
       email: 'email@company.com',
@@ -25,7 +26,7 @@ test('(API) createDemo', function *(t) {
   t.deepEqual(response, success);
 
   const fail = { message: 'Invalid email address' };
-  nock(CONTROLLER_URL)
+  nock(controllerApi)
     .post(endpoint, {
       name: 'demo',
       email: 'bademail',
@@ -47,7 +48,7 @@ test('(API) getDemo', function *(t) {
   const endpoint = `/demos/${guid}`;
   const success = { guid, id: 123, name: 'demo' };
 
-  nock(CONTROLLER_URL)
+  nock(controllerApi)
     .get(endpoint)
     .reply(200, success);
 
@@ -55,7 +56,7 @@ test('(API) getDemo', function *(t) {
   t.deepEqual(response, success);
 
   const fail = { message: 'Demo does not exist' };
-  nock(CONTROLLER_URL)
+  nock(controllerApi)
     .get('/demos/1111')
     .reply(404, fail);
 
@@ -76,7 +77,7 @@ test('(API) login', function *(t) {
   const endpoint = `/demos/${guid}/login`;
   const success = { token: 'logintoken' };
 
-  nock(CONTROLLER_URL)
+  nock(controllerApi)
     .post(endpoint, { userId })
     .reply(200, success);
 
@@ -84,12 +85,40 @@ test('(API) login', function *(t) {
   t.deepEqual(response, success);
 
   const fail = { message: 'Demo or user does not exist' };
-  nock(CONTROLLER_URL)
+  nock(controllerApi)
     .post(endpoint, { userId })
     .reply(404, fail);
 
   try {
     yield login(userId, guid);
+  }
+  catch (error) {
+    t.deepEqual(error, fail,
+      'promise should fail with api message as the error');
+  }
+});
+
+test('(API) getRetailers', function *(t) {
+  t.plan(2);
+
+  const guid = '1234';
+  const endpoint = `/demos/${guid}/retailers`;
+  const success = [1, 2, 3];
+
+  nock(controllerApi)
+    .get(endpoint)
+    .reply(200, success);
+
+  const response = yield getRetailers(guid);
+  t.deepEqual(response, success);
+
+  const fail = { message: 'Demo does not exist' };
+  nock(controllerApi)
+    .get(endpoint)
+    .reply(404, fail);
+
+  try {
+    yield getRetailers(guid);
   }
   catch (error) {
     t.deepEqual(error, fail,
@@ -104,7 +133,7 @@ test('(API) getAdminData', function *(t) {
   const endpoint = '/admin';
   const success = { mockData: 'blahblah' };
 
-  nock(CONTROLLER_URL)
+  nock(controllerApi)
     .get(endpoint)
     .reply(200, success);
 
@@ -112,7 +141,7 @@ test('(API) getAdminData', function *(t) {
   t.deepEqual(response, success);
 
   const fail = { message: 'Unauthorized' };
-  nock(CONTROLLER_URL)
+  nock(controllerApi)
     .get(endpoint)
     .reply(401, fail);
 

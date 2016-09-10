@@ -1,12 +1,15 @@
-$primary1Color: #0F94a7;
+$primary1Color: rgba(15, 148, 167, 1);
+$primary2Color: rgba(72, 85, 102, 1);
+$primary3Color: rgba(184, 222, 228, 1);
+$accent1Color: rgba(145, 195, 131, 1);
+$alternateTextColor: rgba(255, 255, 255, 1);
+$borderColor: rgba(218, 221, 224, 1);
+$textColor: $primary2Color;
+
 :export { primary1Color: $primary1Color; }
-$primary2Color: #485566;
 :export { primary2Color: $primary2Color; }
-$accent1Color: #91C383;
+:export { primary3Color: $primary3Color; }
 :export { accent1Color: $accent1Color; }
-$alternateTextColor: #FFFFFF;
 :export { alternateTextColor: $alternateTextColor; }
-$borderColor: #DADDE0;
 :export { borderColor: $borderColor; }
-$textColor: #485566;
 :export { textColor: $textColor; }

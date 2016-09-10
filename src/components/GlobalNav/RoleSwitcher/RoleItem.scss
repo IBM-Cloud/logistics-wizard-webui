@@ -1,0 +1,69 @@
+@import '~styles/base/colors';
+
+.item {
+  min-height: 65px;
+  display: flex;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  border-bottom: 1px solid $borderColor;
+  background: rgb(255, 255, 255);
+  color: $primary2Color;
+  margin: 0;
+  padding: 0;
+  padding-left: 5px;
+  outline: none;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.selected {
+    padding-left: 0px;
+    border-left: 5px solid $accent1Color;
+  }
+}
+
+/* Menu Icon Styles */
+.iconContainer {
+  border-left: 5px solid transparent;
+  align-self: center;
+
+}
+
+.icon {
+  font-size: 1.5rem;
+  color: $primary2Color;
+  line-height: 2.6rem;
+  margin: 0px 1rem;
+}
+
+.small {
+  font-size: 0.8rem;
+  margin-left: 1.2rem;
+}
+
+/* Menu Item Text Styles */
+.textContainer {
+  display: flex;
+  align-self: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.light {
+  font-weight: 500;
+}
+
+.sublabel {
+  font-size: 0.7rem;
+  line-height: 0.7rem;
+  font-style: italic;
+}
+
+.label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}

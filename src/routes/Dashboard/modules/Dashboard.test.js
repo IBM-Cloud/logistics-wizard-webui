@@ -1,7 +1,7 @@
 import test from 'ava';
 import { reducerTest, actionTest } from 'redux-ava';
 import { call, take, select, put } from 'redux-saga/effects';
-import { demosReducer, loginSuccess, receiveDemoSuccess, demoSelector } from 'modules/demos';
+import { demosReducer, loginSuccess, getDemoSuccess, demoSelector } from 'modules/demos';
 import api from 'services';
 import mockApi from 'services/mockApi';
 import {
@@ -66,62 +66,29 @@ test('(Reducer) doesnt try to handle saga', reducerTest(
   { mock: 'mock' },
 ));
 
-test('(Saga) watchGetAdminData - Not logged in, API Success', t => {
+test('(Saga) watchGetAdminData - API Success', t => {
   const saga = watchGetAdminData();
-  let demoState = demosReducer({}, receiveDemoSuccess(mockApi.getDemo()));
+  // Setup initial state
+  const demo = mockApi.getDemo();
+  demo.users.push(mockApi.getUser(200));
+  const retailers = [mockApi.getRetailer({ managerId: 200 })];
+  let demoState = demosReducer({}, getDemoSuccess({ demo, retailers }));
+  const token = mockApi.login();
+  demoState = demosReducer(demoState, loginSuccess({ token, userid: demoState.users[0].id }));
 
   const newGuid = 'Another Guid';
   const action = getAdminData(newGuid);
   t.deepEqual(saga.next().value, take(GET_ADMIN_DATA));
+
   t.deepEqual(saga.next(action).value, select(demoSelector));
 
-  // Saga should see that our guid doesn't match, so fetches new demo and logs in.
-
-  t.truthy(action.guid);
-  t.deepEqual(saga.next(demoState).value, call(api.getDemo, action.guid));
-
-  const demoPayload = mockApi.getDemo(newGuid);
-  t.deepEqual(saga.next(demoPayload).value, put(receiveDemoSuccess(demoPayload)));
-  t.deepEqual(saga.next().value, select(demoSelector));
-  demoState = demosReducer(demoState, receiveDemoSuccess(demoPayload));
-
-  t.truthy(demoState.users[0].id);
-  t.truthy(demoState.guid);
-  t.deepEqual(saga.next(demoState).value, call(api.login, demoState.users[0].id, demoState.guid));
-  const loginPayload = mockApi.login();
-  t.deepEqual(saga.next(loginPayload).value, put(loginSuccess(loginPayload.token)));
-  t.deepEqual(saga.next().value, select(demoSelector));
-  demoState = demosReducer(demoState, loginSuccess(loginPayload.token));
-
+  const adminPayload = mockApi.getAdminData();
   t.truthy(demoState.token);
   t.deepEqual(saga.next(demoState).value, call(api.getAdminData, demoState.token));
-  const adminPayload = mockApi.getAdminData();
   t.deepEqual(saga.next(adminPayload).value, put(adminDataReceived(adminPayload)));
 
   // Saga loops back to beginning
   t.deepEqual(saga.next().value, take(GET_ADMIN_DATA));
 });
 
-test('(Saga) watchGetAdminData - Already logged in, API Success', t => {
-  const saga = watchGetAdminData();
-  let demoState = demosReducer({}, receiveDemoSuccess(mockApi.getDemo()));
-  demoState = demosReducer(demoState, loginSuccess(mockApi.login().token));
-
-  const action = getAdminData(demoState.guid);
-  t.deepEqual(saga.next().value, take(GET_ADMIN_DATA));
-  t.deepEqual(saga.next(action).value, select(demoSelector));
-
-  // Saga should see that our guid already matches here, so goes straight to api.getAdminData
-
-  t.truthy(demoState.token);
-  t.deepEqual(saga.next(demoState).value, call(api.getAdminData, demoState.token));
-
-  const adminPayload = mockApi.getAdminData();
-  t.deepEqual(saga.next(adminPayload).value, put(adminDataReceived(adminPayload)));
-
-  // Saga loops back to beginning
-  t.deepEqual(saga.next().value, take(GET_ADMIN_DATA));
-});
-
-
-test.todo('Build a meaningful action around api failure.');
+test.todo('(Saga) watchGetAdminData - Write failure logic.');

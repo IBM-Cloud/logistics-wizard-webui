@@ -4,11 +4,6 @@ import classes from './Dashboard.scss';
 import Map from './Map';
 
 export default class Dashboard extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    props.getAdminData(props.params.guid);
-  }
-
   render() {
     return (
       <div className={classes.dashboard}>
@@ -26,7 +21,13 @@ export default class Dashboard extends React.PureComponent {
           </Tab>
           <Tab label="Raw Data">
             <p>Demo Name: {this.props.demoName || 'loading...'}</p>
-            <pre>{this.props.dbdata ? JSON.stringify(this.props.dbdata, null, 2) : 'loading...'}</pre>
+            <pre>
+              {
+                Object.keys(this.props.dbdata).length !== 0
+                ? JSON.stringify(this.props.dbdata, null, 2)
+                : 'loading...'
+              }
+            </pre>
           </Tab>
         </Tabs>
       </div>
@@ -35,8 +36,6 @@ export default class Dashboard extends React.PureComponent {
 }
 
 Dashboard.propTypes = {
-  demoName: React.PropTypes.string.isRequired,
+  demoName: React.PropTypes.string,
   dbdata: React.PropTypes.object.isRequired,
-  getAdminData: React.PropTypes.func.isRequired,
-  params: React.PropTypes.object.isRequired,
 };

@@ -69,7 +69,8 @@
       "command": "node_modules/.bin/nyc node --harmony-proxies ./node_modules/.bin/ava",
       "env": {
         "NODE_ENV": "test",
-        "NODE_PATH": "src"
+        "NODE_PATH": "src",
+        "CONTROLLER_SERVICE": "https://fake-controller.net"
       }
     }
   },

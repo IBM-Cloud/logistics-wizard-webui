@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
-import { getAdminData } from '../modules/Dashboard';
 import Dashboard from '../components/Dashboard';
 
 const mapActionCreators = {
-  getAdminData,
 };
 
 const mapStateToProps = (state) => ({

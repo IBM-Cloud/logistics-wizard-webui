@@ -9,8 +9,8 @@ export const LogisticsWizard = () => (
       <h1>Logistics Wizard</h1>
       <p>
         A cognitive logistics solution that analyzes real-time data, provides
-         intelligent recommendations, and presents your employees with a beautiful
-         monitoring dashboard to help lead your supply chain management system into the future.
+        intelligent recommendations, and presents your employees with a beautiful
+        monitoring dashboard to help lead your supply chain management system into the future.
       </p>
       <GhostButton
         label="View Logistics Wizard in Action"

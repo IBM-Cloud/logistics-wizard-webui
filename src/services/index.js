@@ -1,7 +1,7 @@
-export const CONTROLLER_URL = __CONTROLLER_API__;
+export const controllerApi = `${__CONTROLLER_API__}/api/v1`;
 
 export const callApi = (endpoint, {
-  apiUrl = CONTROLLER_URL,
+  apiUrl = controllerApi,
   headers = { 'Content-Type': 'application/json' },
   method = 'GET',
   body,
@@ -9,7 +9,7 @@ export const callApi = (endpoint, {
   fetch(`${apiUrl}/${endpoint}`, {
     headers,
     method,
-    body: body ? JSON.stringify(body) : undefined,
+    body: JSON.stringify(body),
   })
   .then(response => response.json().then(json => ({ json, response })))
   .then(({ json, response }) => {
@@ -24,13 +24,15 @@ export const createDemo = (name, email) =>
     body: { name, email },
   });
 
-export const getDemo = (guid) => callApi(`demos/${guid}`);
+export const getDemo = guid => callApi(`demos/${guid}`);
 
 export const login = (id, guid) =>
   callApi(`demos/${guid}/login`, {
     method: 'POST',
     body: { userId: id },
   });
+
+export const getRetailers = guid => callApi(`demos/${guid}/retailers`);
 
 export const getAdminData = token =>
   callApi('admin', { headers: { Authorization: `Bearer ${token}` } });
@@ -39,6 +41,7 @@ export const api = {
   createDemo,
   getDemo,
   login,
+  getRetailers,
   getAdminData,
 };
 
