@@ -1,3 +1,17 @@
+// --------------------------------------------
+// Hide and show the popup on :hover
+// --------------------------------------------
+div > div.mapMarkerPopup {
+  display: none;
+}
+
+div:hover > div.mapMarkerPopup {
+  display: block;
+}
+
+// --------------------------------------------
+// Distribution Center
+// --------------------------------------------
 .distributionCenter {
   background-color: white;
   border: 4px solid #30a5ff;
@@ -10,23 +24,12 @@
 }
 
 .distributionCenter:hover {
-  border: 4px solid red;
+  border: 4px solid rgb(221, 90, 90);
 }
 
-.distributionCenter .mapMarkerPopup {
-  display: none;
-}
-
-.distributionCenter:hover .mapMarkerPopup {
-  display: inline-block;
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  left: -100px;
-  top: 4px;
-  z-index: 1000;
-}
-
+// --------------------------------------------
+// Shipment
+// --------------------------------------------
 .shipment {
   background-color: #30a5ff;
   border-radius: 12px;
@@ -38,6 +41,10 @@
   top: -12px;
 }
 
+.shipment:hover {
+  background-color: rgb(221, 90, 90);
+}
+
 .shipment i {
   color: white;
   font-size: 14px;
@@ -46,6 +53,18 @@
   padding: 5px;
 }
 
+div.shipment:hover > div.mapMarkerPopup {
+  display: inline-block;
+  width: 200px;
+  position: absolute;
+  left: -88px;
+  top: 14px;
+  z-index: 1000;
+}
+
+// --------------------------------------------
+// Retailer
+// --------------------------------------------
 .retailer {
   background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid #d183a9;
@@ -58,6 +77,10 @@
   top: -12px;
 }
 
+.retailer:hover {
+  border: 1px solid rgb(221, 90, 90);
+}
+
 .retailer i {
   color: #d183a9;
   font-size: 12px;
@@ -65,4 +88,8 @@
   height: 12px;
   padding-top: 5px;
   padding-left: 6px;
+}
+
+.retailer:hover i {
+  color: rgb(221, 90, 90);
 }

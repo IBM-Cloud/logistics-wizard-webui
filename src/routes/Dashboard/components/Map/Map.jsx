@@ -1,10 +1,10 @@
 import React from 'react';
 import GoogleMap from 'google-map-react';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
 import MapMarker from '../MapMarker/';
 // map style from https://snazzymaps.com/style/151/ultra-light-with-labels
 // https://googlemaps.github.io/js-samples/styledmaps/wizard/
 import mapStyle from './Map.style.json';
+import PopUpCard from '../PopUpCard/';
 
 function createMapOptions(maps) {
   // Available options can be found in
@@ -36,15 +36,7 @@ export const Map = (props) => (
       text={dc.address.city}
       lat={dc.address.latitude}
       lng={dc.address.longitude}
-    >
-      <Card>
-        <CardHeader title={dc.address.city} subtitle={dc.contact.name} />
-        <CardText>
-          <strong>Contact</strong>
-          <span>{dc.contact.name}</span>
-        </CardText>
-      </Card>
-    </MapMarker>)}
+    />)}
     {props.shipments
       // keep only shipments with a current location
       .filter(shipment => (shipment.currentLocation != null))
@@ -52,14 +44,16 @@ export const Map = (props) => (
         type="shipment"
         lat={shipment.currentLocation.latitude}
         lng={shipment.currentLocation.longitude}
-    ></MapMarker>)}
+      >
+        <PopUpCard shipment={shipment} />
+      </MapMarker>)}
     {props.retailers
       // keep only shipments with a current location
       .map(retailer => <MapMarker
         type="retailer"
         lat={retailer.address.latitude}
         lng={retailer.address.longitude}
-    ></MapMarker>)}
+      />)}
   </GoogleMap>
 );
 

@@ -1,20 +1,15 @@
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  overflow: hidden;
-}
-
 .mainSection {
   padding: .5rem;
 }
+
 .col1 {
-    float: left;
-    width: 50%;
-    margin: 0;
+  float: left;
+  width: 50%;
+  margin: 0;
 }
 
 .col2 {
-    margin-left: 50%;
+  margin-left: 50%;
 }
 
 h6 {
