@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import React from 'react';
 import GhostButton from 'components/GhostButton';
 import Mockup from '../assets/img/mockup.png';
@@ -12,12 +13,14 @@ export const LogisticsWizard = () => (
         intelligent recommendations, and presents your employees with a beautiful
         monitoring dashboard to help lead your supply chain management system into the future.
       </p>
-      <GhostButton
-        label="View Logistics Wizard in Action"
-        className={classes.button}
-        backgroundColor="#FFFFFF"
-        labelColor="#0F94A7"
-      />
+      <Link to='/create-demo'>
+        <GhostButton
+          label="View Logistics Wizard in Action"
+          className={classes.button}
+          backgroundColor="#FFFFFF"
+          labelColor="#0F94A7"
+        />
+      </Link>
     </section>
 
     <section>
