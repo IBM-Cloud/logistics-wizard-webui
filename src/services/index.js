@@ -37,12 +37,25 @@ export const getRetailers = guid => callApi(`demos/${guid}/retailers`);
 export const getAdminData = token =>
   callApi('admin', { headers: { Authorization: `Bearer ${token}` } });
 
+export const createUser = guid => {
+  getRetailers(guid).then(retailers => {
+    const availableRetailers = retailers.filter(retailer => !retailer.managerId);
+    if (availableRetailers.length > 0) {
+      callApi(`demos/${guid}/users`, {
+        method: 'POST',
+        body: { retailerId: availableRetailers[0].id },
+      });
+    }
+  });
+};
+
 export const api = {
   createDemo,
   getDemo,
   login,
   getRetailers,
   getAdminData,
+  createUser,
 };
 
 export default api;
