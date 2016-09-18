@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import classes from './RoleItem.scss';
 
-export class RoleItem extends React.PureComponent {
+export class RoleItem extends React.Component {
   iconContainer = (user) => (
     <div className={classes.iconContainer}>
       <i
@@ -34,7 +34,7 @@ export class RoleItem extends React.PureComponent {
     </div>
   )
 
-  handleClick = () => {
+  handleClick = (event) => {
     const { user, roleAction } = this.props;
 
     if (user && !user.loggedIn) {
@@ -43,6 +43,9 @@ export class RoleItem extends React.PureComponent {
     else {
       roleAction();
     }
+
+    // forward the event to dismiss the popup menu
+    this.props.onTouchTap(event);
   }
 
   render() {
@@ -71,6 +74,7 @@ RoleItem.propTypes = {
     loggedIn: React.PropTypes.bool,
   }),
   roleAction: React.PropTypes.func.isRequired,
+  onTouchTap: React.PropTypes.func, // set by the IconMenu on its children
 };
 
 export default RoleItem;
