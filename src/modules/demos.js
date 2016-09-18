@@ -1,4 +1,5 @@
 import { call, take, put, select } from 'redux-saga/effects';
+import jwt_decode from 'jwt-decode';
 import api from 'services';
 import { getAdminData } from 'routes/Dashboard/modules/Dashboard';
 
@@ -9,6 +10,7 @@ export const GET_DEMO_SESSION = 'demos/GET_DEMO_SESSION';
 export const GET_DEMO_SUCCESS = 'demos/GET_DEMO_SUCCESS';
 export const LOGIN = 'demos/LOGIN';
 export const LOGIN_SUCCESS = 'demos/LOGIN_SUCCESS';
+export const CREATE_USER = 'demos/CREATE_USER';
 
 export const demoSelector = state => state.demoSession;
 
@@ -28,7 +30,7 @@ export const getDemoSuccess = (payload) => ({
 
 // TODO finish this v
 export const createUser = () => ({
-  type: 'CREATE_USER',
+  type: CREATE_USER,
 });
 
 export const login = (userid) => ({
@@ -80,6 +82,7 @@ const ACTION_HANDLERS = {
   [LOGIN_SUCCESS]: (state, { token, userid }) => ({
     ...state,
     token: token.token,
+    user: jwt_decode(token.token).user,
     users: state.users.map(user => ({
       ...user,
       loggedIn: user.id === userid,
@@ -141,7 +144,22 @@ export function *watchLogin() {
   }
 }
 
+export function *watchCreateUser() {
+  while (true) {
+    yield take(CREATE_USER);
+    const demoState = yield select(demoSelector);
+    try {
+      yield call(api.createUser, demoState.guid);
+      yield put(getAdminData(demoState.guid));
+    }
+    catch (error) {
+      console.log('Create User Failure:', error);
+    }
+  }
+}
+
 export const sagas = [
   watchGetDemoSession,
   watchLogin,
+  watchCreateUser,
 ];
