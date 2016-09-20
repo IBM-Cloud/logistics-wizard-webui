@@ -1,4 +1,12 @@
-# Logistics Wizard Demo
+# Logistics Wizard Web User Interface
+
+| **master** | [![Build Status](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui) [![Coverage Status](https://coveralls.io/repos/github/IBM-Bluemix/logistics-wizard-webui/badge.svg?branch=master)](https://coveralls.io/github/IBM-Bluemix/logistics-wizard-webui?branch=master) |
+| ----- | ----- |
+| **dev** | [![Build Status](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui.svg?branch=dev)](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui) [![Coverage Status](https://coveralls.io/repos/github/IBM-Bluemix/logistics-wizard-webui/badge.svg?branch=dev)](https://coveralls.io/github/IBM-Bluemix/logistics-wizard-webui?branch=dev)|
+
+This project is part of the larger [Logistics Wizard](https://github.com/IBM-Bluemix/logistics-wizard) project.
+
+## Overview
 
 This project is designed with a bunch of awesome new front-end technologies, all on top of a configurable, feature-rich webpack build system that's already setup to provide hot reloading, CSS modules with Sass support, unit testing, code coverage reports, bundle splitting, and a whole lot more, while providing amazing developer tools such as Redux CLI (a generator), Redux devtools (Chrome extension), and Storybook for visually developing and testing components.
 
