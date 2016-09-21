@@ -3,6 +3,7 @@
 | **master** | [![Build Status](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui) [![Coverage Status](https://coveralls.io/repos/github/IBM-Bluemix/logistics-wizard-webui/badge.svg?branch=master)](https://coveralls.io/github/IBM-Bluemix/logistics-wizard-webui?branch=master) |
 | ----- | ----- |
 | **dev** | [![Build Status](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui.svg?branch=dev)](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui) [![Coverage Status](https://coveralls.io/repos/github/IBM-Bluemix/logistics-wizard-webui/badge.svg?branch=dev)](https://coveralls.io/github/IBM-Bluemix/logistics-wizard-webui?branch=dev)|
+<a href="https://www.zenhub.com/"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 This project is part of the larger [Logistics Wizard](https://github.com/IBM-Bluemix/logistics-wizard) project.
 
