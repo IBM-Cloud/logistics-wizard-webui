@@ -180,6 +180,7 @@ location / {
 ```
 **Deploy Instructions**
   1. Manually Install CF and Bluemix CLI *or use homebrew on Mac*:
+  
     ```bash
     brew tap cloudfoundry/tap
     brew install cf-cli
@@ -187,12 +188,15 @@ location / {
     brew cask install bluemix-cli
     ```
   1. Connect and Login to Bluemix
+  
   ```bash
   bluemix api https://api.ng.bluemix.net
   bluemix login -u <your username> -o <your org> -s <your space>
+  
   ```
   1. Update the `host` key in `manifest.yml` to whatever you like
   1. From now on, all you have to do is
+  
   ```bash
   cf push
   ```
