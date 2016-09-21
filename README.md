@@ -179,7 +179,7 @@ location / {
   ...
 ```
 **Deploy Instructions**
-  1. Manually Install CF and Bluemix CLI *or use homebrew on Mac*:
+  1. Manually Install [Cloud Foundry](https://github.com/cloudfoundry/cli/releases) and [Bluemix CLI](http://clis.ng.bluemix.net/ui/home.html) *or use homebrew on Mac*:
   
     ```bash
     brew tap cloudfoundry/tap
