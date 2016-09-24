@@ -6,7 +6,9 @@ export const Footer = () => (
   <div className={classes.footer}>
     <div className={classes.gradient} />
     <h4>Learn more on the Logistics Wizard Wiki</h4>
-    <GhostButton label="Github Wiki" className={classes.button} />
+    <a href="https://github.com/IBM-Bluemix/logistics-wizard/wiki">
+      <GhostButton label="Github Wiki" className={classes.button} />
+    </a>
   </div>
 );
 
