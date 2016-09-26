@@ -25,7 +25,7 @@ function createMapOptions(maps) {
 export const Map = (props) => (
   <GoogleMap
     bootstrapURLKeys={{
-      key: '',
+      key: __GOOGLE_MAPS_KEY__,
     }}
     center={props.center}
     zoom={props.zoom}

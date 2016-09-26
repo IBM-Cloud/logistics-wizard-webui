@@ -8,8 +8,16 @@ import ip from 'ip';
 
 const localip = ip.address();
 const debug = _debug('app:config');
-debug('Creating default configuration.');
+const localEnv = (() => {
+  try {
+    return require('./.env');
+  }
+  catch (err) {
+    return {};
+  }
+})();
 
+debug('Creating default configuration.');
 // ========================================================
 // Default Configuration
 // ========================================================
@@ -29,11 +37,6 @@ const config = {
   // ----------------------------------
   server_host : localip, // use string 'localhost' to prevent exposure on local network
   server_port : process.env.PORT || 3000,
-
-  // ----------------------------------
-  // Controller Service Configuration
-  // ----------------------------------
-  controller_service : process.env.CONTROLLER_SERVICE,
 
   // ----------------------------------
   // Compiler Configuration
@@ -84,7 +87,8 @@ config.globals = {
   '__DEBUG__'    : config.env === 'development' && !argv.no_debug,
   '__COVERAGE__' : !argv.watch && config.env === 'test',
   '__BASENAME__' : JSON.stringify(process.env.BASENAME || ''),
-  '__CONTROLLER_API__' : JSON.stringify(config.controller_service || ''),
+  '__CONTROLLER_API__' : JSON.stringify(process.env.CONTROLLER_SERVICE || localEnv.controller_service || ''),
+  '__GOOGLE_MAPS_KEY__' : JSON.stringify(process.env.GOOGLE_MAPS_KEY || localEnv.google_maps_key || ''),
 };
 
 // ------------------------------------
