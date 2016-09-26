@@ -29,15 +29,15 @@ test('(Constant) CREATE_DEMO_FAILURE === "CreateDemo/CREATE_DEMO_FAILURE"', t =>
 test('(Action) createDemo',
   actionTest(
     createDemo,
-    { name: 'test' },
-    { type: CREATE_DEMO, name: 'test', email: undefined }),
+    { name: 'name' },
+    { type: CREATE_DEMO, payload: { name: 'name', guid: undefined } }),
   );
 
-test('(Action) createDemo - with email',
+test('(Action) createDemo',
   actionTest(
     createDemo,
-    { name: 'test', email: 'name@email.com' },
-    { type: CREATE_DEMO, name: 'test', email: 'name@email.com' }),
+    { name: 'name', guid: '123abc' },
+    { type: CREATE_DEMO, payload: { name: 'name', guid: '123abc' } }),
   );
 
 test('(Action) createDemoFailure',
@@ -73,12 +73,24 @@ test('(Reducer) doesnt try to handle saga', reducerTest(
   { mock: 'mock' },
 ));
 
+test('(Saga) watchCreateDemo - Guid given', t => {
+  const saga = watchCreateDemo();
+  const action = createDemo({ guid: '123abc' });
+
+  t.deepEqual(saga.next().value, take(CREATE_DEMO));
+  t.deepEqual(saga.next(action).value, put(push(`/dashboard/${action.payload.guid}`)));
+
+  t.deepEqual(saga.next().value, take(CREATE_DEMO),
+    'saga resets, and begins listening for CREATE_DEMO again.');
+});
+
+
 test('(Saga) watchCreateDemo - API Success', t => {
   const saga = watchCreateDemo();
   const action = createDemo();
 
   t.deepEqual(saga.next().value, take(CREATE_DEMO));
-  t.deepEqual(saga.next(action).value, call(api.createDemo, action.name, action.email));
+  t.deepEqual(saga.next(action).value, call(api.createDemo, action.name));
 
   const response = mockApi.getDemo();
   t.deepEqual(saga.next(response).value, put(push(`/dashboard/${response.guid}`)));
@@ -93,7 +105,7 @@ test('(Saga) watchCreateDemo - API Failure', t => {
   const action = createDemo();
 
   t.deepEqual(saga.next().value, take(CREATE_DEMO));
-  t.deepEqual(saga.next(action).value, call(api.createDemo, action.name, action.email));
+  t.deepEqual(saga.next(action).value, call(api.createDemo, action.name));
 
   const error = { message: 'bad email' };
   t.deepEqual(saga.throw(error).value, put(createDemoFailure(error)),

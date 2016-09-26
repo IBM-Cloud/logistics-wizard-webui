@@ -1,24 +1,10 @@
 .container {
   display: flex;
   flex-wrap: wrap;
+  max-width: 550px;
+  margin: 1.5rem auto;
   align-items: stretch;
   overflow: hidden;
-}
-
-.infoSection {
-  padding: 1.5rem;
-  background-color: #485566;
-  color: white;
-  flex: 1 0 100%;
-  border-left: 0.5rem solid #91C383;
-
-  &.full {
-    flex: 1 0 33%;
-  }
-}
-
-.title {
-  margin-top: 0;
 }
 
 .mainSection {
@@ -28,6 +14,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .inputs {
   flex: 1 0 auto;
 }
