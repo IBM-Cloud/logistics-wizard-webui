@@ -17,6 +17,7 @@
     "__DEBUG__"    : false,
     "__COVERAGE__" : false,
     "__BASENAME__" : false,
+    "__GOOGLE_MAPS_KEY__" : false,
     "__CONTROLLER_API__" : false
   },
   "rules": {

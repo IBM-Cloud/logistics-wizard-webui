@@ -70,8 +70,16 @@ $ mv logistics-wizard-webui <my-project-name>
 $ cd <my-project-name>
 ```
 
-### Install dependencies, and check to see it works
+### Set up env vars
+Create a file called `config/.env` with the following data
+```javascript
+module.exports = {
+  controller_service: '<url to your controller api deployment or localhost>',
+  google_maps_key: '<your google maps api key here>',
+}
+```
 
+### Install dependencies, and check to see it works
 ```bash
 $ npm install                   # Install project dependencies
 $ npm start                     # Compile and launch
@@ -156,7 +164,10 @@ TODO: Describe generating various components and routes with redux-cli
 We use `react-router` [route definitions](https://github.com/reactjs/react-router/blob/master/docs/API.md#plainroute) (`<route>/index.js`) to define units of logic within our application. See the [application structure](#application-structure) section for more information.
 
 ## Storybook
-TODO - add some info about storybook
+With Storybook, you can design and code components in isolation.
+```
+npm run storybook
+```
 
 ## Testing
 To add a unit test, simply create a `.test.js` file anywhere in `~/src`. Ava will pick up on these files automatically. If you are using `redux-cli`, test files should automatically be generated when you create a component or route. If you wish to change test file locations or settings you may do so within the `ava` object in `~/package.json`.
@@ -180,7 +191,7 @@ location / {
 ```
 **Deploy Instructions**
   1. Manually Install [Cloud Foundry](https://github.com/cloudfoundry/cli/releases) and [Bluemix CLI](http://clis.ng.bluemix.net/ui/home.html) *or use homebrew on Mac*:
-  
+
     ```bash
     brew tap cloudfoundry/tap
     brew install cf-cli
@@ -188,15 +199,15 @@ location / {
     brew cask install bluemix-cli
     ```
   1. Connect and Login to Bluemix
-  
+
   ```bash
   bluemix api https://api.ng.bluemix.net
   bluemix login -u <your username> -o <your org> -s <your space>
-  
+
   ```
   1. Update the `host` key in `manifest.yml` to whatever you like
   1. From now on, all you have to do is
-  
+
   ```bash
   cf push
   ```
