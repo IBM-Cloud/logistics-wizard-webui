@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from 'react-fa';
+import { Link } from 'react-router';
 
 // Material UI
 import IconButton from 'material-ui/IconButton';
@@ -21,8 +22,6 @@ const styles = {
 
 export const Header = () => (
   <div className={classes.header}>
-
-
     <div className={classes.background}>
       <img src={Background} role="presentation" className={classes.map} />
     </div>
@@ -30,7 +29,9 @@ export const Header = () => (
     <Toolbar style={styles.toolbar}>
       <ToolbarTitle text="Logistics Wizard" style={styles.title} className={classes.title} />
       <div className={classes.topLink}>
-        <p className={classes.text}>Github Source Code</p>
+        <a href="https://github.com/IBM-Bluemix/logistics-wizard">
+          <p className={classes.text}>Github Source Code</p>
+        </a>
       </div>
     </Toolbar>
 
