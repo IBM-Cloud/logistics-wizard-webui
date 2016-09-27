@@ -27,6 +27,14 @@ const webpackConfig = {
   This might help: https://github.com/kadirahq/react-storybook/issues/155
 */
 const env = process.env.NODE_ENV || 'development';
+const localEnv = (() => {
+  try {
+    return require('../config/.env');
+  }
+  catch (err) {
+    return {};
+  }
+})();
 webpackConfig.plugins = [
   new webpack.DefinePlugin({
     'process.env': {
@@ -40,6 +48,8 @@ webpackConfig.plugins = [
     __COVERAGE__: !argv.watch && env === 'test',
     __BASENAME__: JSON.stringify(process.env.BASENAME || ''),
     __CONTROLLER_API__: JSON.stringify('https://fake-controller.net'),
+    __GOOGLE_MAPS_KEY__: JSON.stringify(process.env.GOOGLE_MAPS_KEY || localEnv.google_maps_key || ''),
+
   }),
 ];
 
