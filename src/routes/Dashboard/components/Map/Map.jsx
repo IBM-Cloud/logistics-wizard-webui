@@ -31,28 +31,32 @@ export const Map = (props) => (
     zoom={props.zoom}
     options={createMapOptions}
   >
-    {props.distributionCenters.map(dc => <MapMarker
-      type="distributionCenter"
-      text={dc.address.city}
-      lat={dc.address.latitude}
-      lng={dc.address.longitude}
-    />)}
+    {props.distributionCenters.map((dc, i) =>
+      <MapMarker
+        type="distributionCenter"
+        text={dc.address.city}
+        lat={dc.address.latitude}
+        lng={dc.address.longitude}
+        key={i}
+      />)}
     {props.shipments
       // keep only shipments with a current location
       .filter(shipment => (shipment.currentLocation != null))
-      .map(shipment => <MapMarker
-        type="shipment"
-        lat={shipment.currentLocation.latitude}
-        lng={shipment.currentLocation.longitude}
-      >
-        <PopUpCard shipment={shipment} />
-      </MapMarker>)}
-    {props.retailers
-      // keep only shipments with a current location
-      .map(retailer => <MapMarker
+      .map((shipment, i) =>
+        <MapMarker
+          type="shipment"
+          lat={shipment.currentLocation.latitude}
+          lng={shipment.currentLocation.longitude}
+          key={i}
+        >
+          <PopUpCard shipment={shipment} />
+        </MapMarker>)}
+    {props.retailers.map((retailer, i) =>
+      <MapMarker
         type="retailer"
         lat={retailer.address.latitude}
         lng={retailer.address.longitude}
+        key={i}
       />)}
   </GoogleMap>
 );

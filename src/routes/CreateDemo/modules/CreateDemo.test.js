@@ -29,23 +29,26 @@ test('(Constant) CREATE_DEMO_FAILURE === "CreateDemo/CREATE_DEMO_FAILURE"', t =>
 test('(Action) createDemo',
   actionTest(
     createDemo,
-    { name: 'name' },
-    { type: CREATE_DEMO, payload: { name: 'name', guid: undefined } }),
-  );
+    undefined,
+    { type: CREATE_DEMO, payload: undefined }
+  )
+);
 
 test('(Action) createDemo',
   actionTest(
     createDemo,
-    { name: 'name', guid: '123abc' },
-    { type: CREATE_DEMO, payload: { name: 'name', guid: '123abc' } }),
-  );
+    '123abc',
+    { type: CREATE_DEMO, payload: '123abc' }
+  )
+);
 
 test('(Action) createDemoFailure',
   actionTest(
     createDemoFailure,
     { message: 'bad email' },
-    { type: CREATE_DEMO_FAILURE, payload: { message: 'bad email' } })
-  );
+    { type: CREATE_DEMO_FAILURE, payload: { message: 'bad email' } }
+  )
+);
 
 test('(Reducer) initializes with empty state', t => {
   t.deepEqual(createDemoReducer(undefined, {}), {});
@@ -75,10 +78,10 @@ test('(Reducer) doesnt try to handle saga', reducerTest(
 
 test('(Saga) watchCreateDemo - Guid given', t => {
   const saga = watchCreateDemo();
-  const action = createDemo({ guid: '123abc' });
+  const action = createDemo('123abc');
 
   t.deepEqual(saga.next().value, take(CREATE_DEMO));
-  t.deepEqual(saga.next(action).value, put(push(`/dashboard/${action.payload.guid}`)));
+  t.deepEqual(saga.next(action).value, put(push(`/dashboard/${action.payload}`)));
 
   t.deepEqual(saga.next().value, take(CREATE_DEMO),
     'saga resets, and begins listening for CREATE_DEMO again.');
@@ -90,7 +93,7 @@ test('(Saga) watchCreateDemo - API Success', t => {
   const action = createDemo();
 
   t.deepEqual(saga.next().value, take(CREATE_DEMO));
-  t.deepEqual(saga.next(action).value, call(api.createDemo, action.name));
+  t.deepEqual(saga.next(action).value, call(api.createDemo));
 
   const response = mockApi.getDemo();
   t.deepEqual(saga.next(response).value, put(push(`/dashboard/${response.guid}`)));
@@ -105,7 +108,7 @@ test('(Saga) watchCreateDemo - API Failure', t => {
   const action = createDemo();
 
   t.deepEqual(saga.next().value, take(CREATE_DEMO));
-  t.deepEqual(saga.next(action).value, call(api.createDemo, action.name));
+  t.deepEqual(saga.next(action).value, call(api.createDemo));
 
   const error = { message: 'bad email' };
   t.deepEqual(saga.throw(error).value, put(createDemoFailure(error)),

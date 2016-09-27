@@ -15,4 +15,10 @@ export default (store) => ({
       cb(null, CreateDemo);
     }, 'createDemo');
   },
+  onEnter: (nextState, replaceState) => {
+    const savedGuid = window.localStorage.getItem('savedGuid');
+    if (savedGuid) {
+      replaceState({ nextPathname: nextState.location.pathname }, `/dashboard/${savedGuid}`);
+    }
+  },
 });

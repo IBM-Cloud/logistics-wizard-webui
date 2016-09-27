@@ -18,10 +18,10 @@ export const callApi = (endpoint, {
     return json;
   });
 
-export const createDemo = (name, email) =>
+export const createDemo = () =>
   callApi('demos', {
     method: 'POST',
-    body: { name, email },
+    body: { name: 'demo' },
   });
 
 export const getDemo = guid => callApi(`demos/${guid}`);
