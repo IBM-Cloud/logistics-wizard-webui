@@ -13,13 +13,9 @@ export const CREATE_DEMO_FAILURE = 'CreateDemo/CREATE_DEMO_FAILURE';
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const createDemo = ({
-  name = `Test Demo ${Date.now()}`,
-  email,
-} = {}) => ({
+export const createDemo = (guid) => ({
   type: CREATE_DEMO,
-  name,
-  email,
+  payload: guid,
 });
 
 export const createDemoFailure = (value) => ({
@@ -58,14 +54,19 @@ export default createDemoReducer;
 // ------------------------------------
 export function *watchCreateDemo() {
   while (true) {
-    const action = yield take(CREATE_DEMO);
+    const { payload } = yield take(CREATE_DEMO);
 
-    try {
-      const demoSession = yield call(api.createDemo, action.name, action.email);
-      yield put(push(`/dashboard/${demoSession.guid}`));
+    if (payload) {
+      yield put(push(`/dashboard/${payload}`));
     }
-    catch (error) {
-      yield put(createDemoFailure(error));
+    else {
+      try {
+        const demoSession = yield call(api.createDemo);
+        yield put(push(`/dashboard/${demoSession.guid}`));
+      }
+      catch (error) {
+        yield put(createDemoFailure(error));
+      }
     }
   }
 }

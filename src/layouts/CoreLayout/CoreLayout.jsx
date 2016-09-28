@@ -4,7 +4,7 @@ import 'styles/core.scss';
 import classes from './CoreLayout.scss';
 
 export const CoreLayout = ({ children }) => (
-  <div className={classes.layoutContainer}>
+  <div>
     <GlobalNav />
     <div className={classes.mainContainer}>
       {children}

@@ -114,6 +114,7 @@ export function *watchGetDemoSession() {
           call(api.getRetailers, guid),
         ];
         yield put(getDemoSuccess({ demo, retailers }));
+        window.localStorage.setItem('savedGuid', guid);
         demoState = yield select(demoSelector);
         yield put(login(demoState.users[0].id));
       }

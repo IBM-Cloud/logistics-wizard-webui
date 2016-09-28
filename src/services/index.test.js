@@ -18,23 +18,19 @@ test('(API) createDemo', function *(t) {
   nock(controllerApi)
     .post(endpoint, {
       name: 'demo',
-      email: 'email@company.com',
     })
     .reply(200, success);
 
-  const response = yield createDemo('demo', 'email@company.com');
+  const response = yield createDemo();
   t.deepEqual(response, success);
 
   const fail = { message: 'Invalid email address' };
   nock(controllerApi)
-    .post(endpoint, {
-      name: 'demo',
-      email: 'bademail',
-    })
+    .post(endpoint, { name: 'demo' })
     .reply(422, fail);
 
   try {
-    yield createDemo('demo', 'bademail');
+    yield createDemo();
   }
   catch (error) {
     t.deepEqual(error, fail);

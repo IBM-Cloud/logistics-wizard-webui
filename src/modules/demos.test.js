@@ -184,8 +184,11 @@ test('(Saga) watchGetDemoSession - new Guid, API Success', t => {
     put(getDemoSuccess({ demo: demoPayload, retailers: retailersPayload }))
   );
   t.deepEqual(saga.next().value, select(demoSelector));
+  t.is(window.localStorage.getItem('savedGuid'), newGuid,
+    'The new Guid is added to localStorage');
 
-  demoState = demosReducer(demoState, getDemoSuccess({ demo: demoPayload, retailers: retailersPayload }));
+  demoState = demosReducer(demoState,
+    getDemoSuccess({ demo: demoPayload, retailers: retailersPayload }));
   t.deepEqual(saga.next(demoState).value, put(login(demoState.users[0].id)));
 
   // Saga loops back to beginning

@@ -7,9 +7,9 @@ export const createRoutes = (store) => ({
   path: '/',
   indexRoute: Home,
   childRoutes: [
+    CreateDemoRoute(store),
     { component: CoreLayout,
       childRoutes: [
-        CreateDemoRoute(store),
         DashboardRoute(store),
       ],
     },

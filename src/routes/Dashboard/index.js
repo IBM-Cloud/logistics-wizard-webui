@@ -17,7 +17,4 @@ export default (store) => ({
       cb(null, Dashboard);
     }, 'dashboard');
   },
-  // onEnter: (nextState) => {
-  //   store.dispatch(getDemoSession(nextState.params.guid));
-  // },
 });
