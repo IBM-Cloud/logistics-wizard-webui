@@ -21,7 +21,6 @@ export const callApi = (endpoint, {
 export const createDemo = () =>
   callApi('demos', {
     method: 'POST',
-    body: { name: 'demo' },
   });
 
 export const getDemo = guid => callApi(`demos/${guid}`);

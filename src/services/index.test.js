@@ -10,31 +10,17 @@ import {
 } from '../services';
 
 test('(API) createDemo', function *(t) {
-  t.plan(2);
+  t.plan(1);
 
   const endpoint = '/demos';
-  const success = { id: 123, name: 'demo' };
+  const success = { id: 123 };
 
   nock(controllerApi)
-    .post(endpoint, {
-      name: 'demo',
-    })
+    .post(endpoint)
     .reply(200, success);
 
   const response = yield createDemo();
   t.deepEqual(response, success);
-
-  const fail = { message: 'Invalid email address' };
-  nock(controllerApi)
-    .post(endpoint, { name: 'demo' })
-    .reply(422, fail);
-
-  try {
-    yield createDemo();
-  }
-  catch (error) {
-    t.deepEqual(error, fail);
-  }
 });
 
 test('(API) getDemo', function *(t) {
@@ -42,7 +28,7 @@ test('(API) getDemo', function *(t) {
 
   const guid = '1234';
   const endpoint = `/demos/${guid}`;
-  const success = { guid, id: 123, name: 'demo' };
+  const success = { guid, id: 123 };
 
   nock(controllerApi)
     .get(endpoint)
