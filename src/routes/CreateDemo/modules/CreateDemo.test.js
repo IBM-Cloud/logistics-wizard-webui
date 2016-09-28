@@ -45,8 +45,8 @@ test('(Action) createDemo',
 test('(Action) createDemoFailure',
   actionTest(
     createDemoFailure,
-    { message: 'bad email' },
-    { type: CREATE_DEMO_FAILURE, payload: { message: 'bad email' } }
+    { message: 'new demo failed' },
+    { type: CREATE_DEMO_FAILURE, payload: { message: 'new demo failed' } }
   )
 );
 
@@ -64,8 +64,8 @@ test('(Reducer) return previous state when no action is matched', reducerTest(
 test('(Reducer) adds error to the state on createDemoFailure.', reducerTest(
   createDemoReducer,
   {},
-  createDemoFailure({ message: 'invalid email' }),
-  { error: 'invalid email' },
+  createDemoFailure({ message: 'create failed' }),
+  { error: 'create failed' },
 ));
 
 
@@ -110,7 +110,7 @@ test('(Saga) watchCreateDemo - API Failure', t => {
   t.deepEqual(saga.next().value, take(CREATE_DEMO));
   t.deepEqual(saga.next(action).value, call(api.createDemo));
 
-  const error = { message: 'bad email' };
+  const error = { message: 'new demo failed' };
   t.deepEqual(saga.throw(error).value, put(createDemoFailure(error)),
     'dispatches createDemoFailure if api call fails.');
   t.deepEqual(saga.next().value, take(CREATE_DEMO),
