@@ -39,14 +39,30 @@ test('(Component) Create Demo button works as expected.', t => {
   t.false(spies.createDemo.calledOnce);
   t.false(spies.dispatch.calledOnce);
 
+  t.is(component.find('LoadingSpinner').length, 0,
+    'Loading Spinner should not be there yet');
+
   component.find('RaisedButton').first().simulate('click');
   t.true(spies.dispatch.calledOnce);
   t.true(spies.createDemo.calledOnce,
     'calls createDemo when clicked');
+  t.is(component.find('LoadingSpinner').length, 1,
+    'Loading Spinner loaded');
+
+});
+
+test('(Component) Create Demo button with GUID works as expected.', t => {
+  const { spies, component } = setup();
+
+  t.is(component.find('LoadingSpinner').length, 0,
+    'Loading Spinner should not be there yet');
 
   const guidInput = component.find('TextField').first();
   guidInput.simulate('change', { target: { id: 'demoGuid', value: '1234abcd' } });
   component.find('RaisedButton').first().simulate('click');
-  t.deepEqual(spies.createDemo.args[1][0], { guid: '1234abcd' },
+  t.deepEqual(spies.createDemo.args[0][0], { guid: '1234abcd' },
     'if guid is entered, it passes it to the createDemo action');
+
+  t.is(component.find('LoadingSpinner').length, 1,
+    'Loading Spinner loaded');
 });
