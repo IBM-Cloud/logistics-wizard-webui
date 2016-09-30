@@ -2,6 +2,7 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import LoadingSpinner from '../../../components/LoadingSpinner';
 import classes from './CreateDemo.scss';
 
 export class CreateDemo extends React.Component {
@@ -19,6 +20,8 @@ export class CreateDemo extends React.Component {
   }
 
   handleClick = () => {
+    this.setState({loading : true});
+
     if (this.state.demoGuid !== '') {
       this.props.createDemo({ guid: this.state.demoGuid });
     }
@@ -43,12 +46,16 @@ export class CreateDemo extends React.Component {
             />
           </div>
           <div className={classes.buttonWrapper}>
-            <RaisedButton
-              primary
-              className={classes.button}
-              label="Start the Logistics Wizard Demo"
-              onClick={this.handleClick}
-            />
+            {this.state.loading ?
+              <LoadingSpinner />
+              :
+              <RaisedButton
+                primary
+                className={classes.button}
+                label="Start the Logistics Wizard Demo"
+                onClick={this.handleClick}
+              />
+            }
           </div>
         </div>
       </Paper>
