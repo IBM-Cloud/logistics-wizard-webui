@@ -1,6 +1,7 @@
 import React from 'react';
 import { Icon } from 'react-fa';
 import { Link } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
 
 // Material UI
 import IconButton from 'material-ui/IconButton';
@@ -36,6 +37,13 @@ export const Header = () => (
     </Toolbar>
 
     <h1>Let your global supply chain do the THINKing,<br /> so you don't have to.</h1>
+    <Link to="/create-demo">
+        <RaisedButton
+        primary
+        className={classes.button}
+        label="Start the Logistics Wizard Demo"
+      />
+  </Link>
   </div>
 );
 
