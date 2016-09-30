@@ -2,12 +2,10 @@ import React from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
 
 const LoadingSpinner = (props) => (
-  <div>
-    <CircularProgress
-      style={props.style || {marginLeft: '50%'}}
-      size={props.size || .5}
-    />
-  </div>
+  <CircularProgress
+    style={props.style || {marginLeft: '50%'}}
+    size={props.size || .5}
+  />
 );
 
 LoadingSpinner.propTypes = {

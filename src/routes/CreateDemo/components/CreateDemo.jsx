@@ -2,7 +2,7 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import LoadingSpinner from '../../../components/LoadingSpinner';
+import LoadingSpinner from 'components/LoadingSpinner';
 import classes from './CreateDemo.scss';
 
 export class CreateDemo extends React.Component {
