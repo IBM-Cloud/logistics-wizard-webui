@@ -21,7 +21,7 @@ export const Header = () => (
     <Toolbar className={classes.toolbar}>
       <ToolbarTitle text="Logistics Wizard" className={classes.title} />
       <div className={classes.topLink}>
-        <a href="https://github.com/IBM-Bluemix/logistics-wizard">
+        <a href="https://github.com/IBM-Bluemix/logistics-wizard" target="_blank">
           <p className={classes.text}>Github Source Code</p>
         </a>
       </div>
