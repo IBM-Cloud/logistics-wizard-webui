@@ -48,7 +48,6 @@ test('(Component) Create Demo button works as expected.', t => {
     'calls createDemo when clicked');
   t.is(component.find('LoadingSpinner').length, 1,
     'Loading Spinner loaded');
-
 });
 
 test('(Component) Create Demo button with GUID works as expected.', t => {

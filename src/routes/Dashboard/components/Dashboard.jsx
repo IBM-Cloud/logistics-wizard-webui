@@ -20,7 +20,6 @@ export default class Dashboard extends React.PureComponent {
             </div>
           </Tab>
           <Tab label="Raw Data">
-            <p>Demo Name: {this.props.demoName || 'loading...'}</p>
             <pre>
               {
                 Object.keys(this.props.dbdata).length !== 0

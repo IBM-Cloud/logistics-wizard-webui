@@ -4,6 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import AccountUser from 'material-ui/svg-icons/action/account-circle';
 import { palette } from 'styles/muiTheme';
 import RoleItem from './RoleItem';
+import LoadingSpinner from 'components/LoadingSpinner';
 
 const iconStyles = {
   width: '2rem',
@@ -34,7 +35,7 @@ export const RoleSwitcher = ({ users, login, createUser }) => (
     ))}
     <RoleItem roleAction={createUser} />
   </IconMenu>
-  : <span>No Demo Session</span>
+  : <div><LoadingSpinner color={palette.primary3Color}/></div>
 );
 
 RoleSwitcher.propTypes = {

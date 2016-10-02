@@ -12,25 +12,16 @@ import Background from '../assets/img/background.png';
 
 import classes from './Header.scss';
 
-const styles = {
-  toolbar: {
-    background: 'transparent',
-  },
-  title: {
-    fontSize: '0.8rem',
-  },
-};
-
 export const Header = () => (
   <div className={classes.header}>
     <div className={classes.background}>
       <img src={Background} role="presentation" className={classes.map} />
     </div>
 
-    <Toolbar style={styles.toolbar}>
-      <ToolbarTitle text="Logistics Wizard" style={styles.title} className={classes.title} />
+    <Toolbar className={classes.toolbar}>
+      <ToolbarTitle text="Logistics Wizard" className={classes.title} />
       <div className={classes.topLink}>
-        <a href="https://github.com/IBM-Bluemix/logistics-wizard">
+        <a href="https://github.com/IBM-Bluemix/logistics-wizard" target="_blank">
           <p className={classes.text}>Github Source Code</p>
         </a>
       </div>

@@ -17,8 +17,8 @@ const setup = () => {
 
 test.todo('write tests for dashboard elements once complete.');
 test('(Component) Renders with expected elements', t => {
-  const { component, props } = setup();
+  const { component } = setup();
 
-  t.regex(component.find('p').first().text(), new RegExp(props.demoName, 'g'),
-    'renders demo name from props');
+  t.is(component.find('Map').length, 1,
+    'has map');
 });

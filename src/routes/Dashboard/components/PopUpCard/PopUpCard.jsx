@@ -3,12 +3,24 @@ import Paper from 'material-ui/Paper';
 import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 import classes from './PopUpCard.scss';
 
+const styles = {
+  paper: {
+    width: '160',
+  },
+};
+
 const PopUpCard = (props) => {
   let currentLocation;
   let estimatedTimeOfArrival;
   let updatedAt;
+  let status;
   if (props.shipment) {
     const shipment = props.shipment;
+    if (shipment.status) {
+      status = (
+        <div><h6>STATUS</h6> {shipment.status}</div>
+      );
+    }
     if (shipment.currentLocation) {
       currentLocation = (
         <div><h6>CURRENT LOCATION</h6> {shipment.currentLocation.city},
@@ -17,7 +29,7 @@ const PopUpCard = (props) => {
     }
     if (shipment.estimatedTimeOfArrival) {
       estimatedTimeOfArrival = (
-        <div><h6>ESTIMATED TOA</h6> {shipment.estimatedTimeOfArrival}</div>
+        <div><h6>ESTIMATED TOA</h6>{shipment.estimatedTimeOfArrival}</div>
       );
     }
     if (shipment.updatedAt) {
@@ -30,19 +42,11 @@ const PopUpCard = (props) => {
     ? `Shipment ${props.shipment.id}`
     : '...';
   return (
-    <Paper zDepth={2}>
-      <Toolbar>
-        <ToolbarTitle text={title} />
-      </Toolbar>
+    <Paper zDepth={2} style={styles.paper}>
       <div className={classes.mainSection}>
-        <div className={classes.col1}>
-          <h6>ORDER</h6>
-            { props.shipment ? props.shipment.id : '...'}{"\n"}
-        </div>
-        <div className={classes.col2}>
-          <h6>STATUS</h6>
-          { props.shipment ? props.shipment.status : 'loading...'}{"\n"}
-        </div>
+        <h4>{title}</h4>
+        <hr />
+        { status }
         { currentLocation }
         { estimatedTimeOfArrival }
         { updatedAt }
