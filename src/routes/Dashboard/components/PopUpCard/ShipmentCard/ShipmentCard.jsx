@@ -33,7 +33,7 @@ const ShipmentCard = (props) => {
     if (shipment.estimatedTimeOfArrival) {
       const formattedTime = moment(shipment.estimatedTimeOfArrival).format(timeFormat)
       estimatedTimeOfArrival = (
-        <div><h6>ESTIMATED TOA</h6>{formattedTime}</div>
+        <div><h6>ESTIMATED TOA</h6> {formattedTime}</div>
       );
     }
     if (shipment.updatedAt) {
