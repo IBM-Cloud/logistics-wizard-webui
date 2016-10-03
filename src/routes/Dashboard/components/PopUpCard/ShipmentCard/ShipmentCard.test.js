@@ -1,7 +1,7 @@
 import test from 'ava';
 import React from 'react';
 import { shallow } from 'enzyme';
-import PopUpCard from './PopUpCard';
+import ShipmentCard from './ShipmentCard';
 
 const setup = () => {
   const spies = {
@@ -25,17 +25,15 @@ const setup = () => {
       id: 810,
     },
   };
-  const component = shallow(<PopUpCard {...props} />);
+  const component = shallow(<ShipmentCard {...props} />);
 
   return { spies, props, component };
 };
 
-test.todo('write tests for PopUpCard once complete.');
+test.todo('write tests for ShipmentCard once complete.');
 test('(Component) Renders with expected elements', t => {
-  const { props, component } = setup();
+  const { component } = setup();
 
   t.true(component.is('Paper'),
     'is wrapped by a Paper');
-  t.regex(component.find('p').first().text(), new RegExp(props.demoName, 'g'),
-    'renders demo name from props');
 });

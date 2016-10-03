@@ -1,7 +1,7 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
-import classes from './PopUpCard.scss';
+import classes from '../PopUpCard.scss';
 
 const styles = {
   paper: {
@@ -9,7 +9,7 @@ const styles = {
   },
 };
 
-const PopUpCard = (props) => {
+const ShipmentCard = (props) => {
   let currentLocation;
   let estimatedTimeOfArrival;
   let updatedAt;
@@ -24,7 +24,7 @@ const PopUpCard = (props) => {
     if (shipment.currentLocation) {
       currentLocation = (
         <div><h6>CURRENT LOCATION</h6> {shipment.currentLocation.city},
-          {shipment.currentLocation.state}</div>
+          &nbsp;{shipment.currentLocation.state}</div>
       );
     }
     if (shipment.estimatedTimeOfArrival) {
@@ -55,8 +55,8 @@ const PopUpCard = (props) => {
   );
 };
 
-PopUpCard.propTypes = {
+ShipmentCard.propTypes = {
   shipment: React.PropTypes.object.isRequired,
 };
 
-export default PopUpCard;
+export default ShipmentCard;

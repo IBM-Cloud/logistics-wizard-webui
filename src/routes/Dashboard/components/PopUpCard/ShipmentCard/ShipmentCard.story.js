@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import PopUpCard from './PopUpCard';
+import ShipmentCard from './ShipmentCard';
 
 const shipment1 = {
   toId: 462,
@@ -30,13 +30,13 @@ const shipment2 = {
   createdAt: '2016-09-08T20:05:30.001Z',
   id: 827,
 };
-storiesOf('PopUpCard', module)
+storiesOf('ShipmentCard', module)
   .add('shipment1', () => (
-    <PopUpCard
+    <ShipmentCard
       shipment={shipment1}
     />
 )).add('shipment2', () => (
-  <PopUpCard
+  <ShipmentCard
     shipment={shipment2}
   />
   ));
