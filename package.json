@@ -116,6 +116,7 @@
     "koa-proxy": "^0.6.0",
     "koa-static": "^3.0.0",
     "material-ui": "^0.15.2",
+    "moment": "^2.15.1",
     "node-sass": "^3.7.0",
     "nodemon": "^1.10.0",
     "normalize.css": "^4.1.1",
