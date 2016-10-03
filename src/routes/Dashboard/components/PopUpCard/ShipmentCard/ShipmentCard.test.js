@@ -32,7 +32,7 @@ const setup = () => {
 
 test.todo('write tests for ShipmentCard once complete.');
 test('(Component) Renders with expected elements', t => {
-  const { props, component } = setup();
+  const { component } = setup();
 
   t.true(component.is('Paper'),
     'is wrapped by a Paper');
