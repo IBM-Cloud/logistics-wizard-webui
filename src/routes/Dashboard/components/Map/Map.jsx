@@ -4,7 +4,9 @@ import MapMarker from '../MapMarker/';
 // map style from https://snazzymaps.com/style/151/ultra-light-with-labels
 // https://googlemaps.github.io/js-samples/styledmaps/wizard/
 import mapStyle from './Map.style.json';
-import PopUpCard from '../PopUpCard/';
+import ShipmentCard from '../PopUpCard/ShipmentCard';
+import RetailerCard from '../PopUpCard/RetailerCard';
+import DCCard from '../PopUpCard/DCCard';
 
 function createMapOptions(maps) {
   // Available options can be found in
@@ -38,7 +40,10 @@ export const Map = (props) => (
         lat={dc.address.latitude}
         lng={dc.address.longitude}
         key={i}
-      />)}
+      >
+        <DCCard dc={dc} />
+      </MapMarker>
+      )}
     {props.shipments
       // keep only shipments with a current location
       .filter(shipment => (shipment.currentLocation != null))
@@ -49,7 +54,7 @@ export const Map = (props) => (
           lng={shipment.currentLocation.longitude}
           key={i}
         >
-          <PopUpCard shipment={shipment} />
+          <ShipmentCard shipment={shipment} />
         </MapMarker>)}
     {props.retailers.map((retailer, i) =>
       <MapMarker
@@ -57,7 +62,9 @@ export const Map = (props) => (
         lat={retailer.address.latitude}
         lng={retailer.address.longitude}
         key={i}
-      />)}
+      >
+        <RetailerCard retailer={retailer} />
+      </MapMarker>)}
   </GoogleMap>
 );
 
