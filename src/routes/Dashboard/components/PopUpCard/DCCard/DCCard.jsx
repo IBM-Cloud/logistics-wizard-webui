@@ -5,7 +5,7 @@ import classes from '../PopUpCard.scss';
 
 const styles = {
   paper: {
-    width: '160',
+    width: '120',
   },
 };
 /*

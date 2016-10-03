@@ -3,9 +3,12 @@ import Paper from 'material-ui/Paper';
 import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 import classes from '../PopUpCard.scss';
 
+const moment = require('moment');
+const timeFormat = 'MMM Do, h:mm a';
+
 const styles = {
   paper: {
-    width: '160',
+    width: '140',
   },
 };
 
@@ -28,13 +31,15 @@ const ShipmentCard = (props) => {
       );
     }
     if (shipment.estimatedTimeOfArrival) {
+      const formattedTime = moment(shipment.estimatedTimeOfArrival).format(timeFormat)
       estimatedTimeOfArrival = (
-        <div><h6>ESTIMATED TOA</h6>{shipment.estimatedTimeOfArrival}</div>
+        <div><h6>ESTIMATED TOA</h6> {formattedTime}</div>
       );
     }
     if (shipment.updatedAt) {
+      const formattedTime = moment(shipment.updatedAt).format(timeFormat)
       updatedAt = (
-        <div><h6>LAST UPDATED</h6> {shipment.updatedAt}</div>
+        <div><h6>LAST UPDATED</h6> {formattedTime}</div>
       );
     }
   }
