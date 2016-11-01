@@ -15,7 +15,15 @@
     font-weight: 300;
     text-transform: uppercase;
     margin-bottom: 1rem;
+    text-align: center;
   }
+
+  @media screen and (min-width: 800px) {
+    & h4 {
+      text-align: left;
+    }
+  }
+
 }
 
 .gradient {

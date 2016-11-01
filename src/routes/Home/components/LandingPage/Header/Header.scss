@@ -7,6 +7,7 @@
   background-color: rgb(43, 51, 61);
 
   & h1 {
+    padding: 0 2rem;
     position: relative;
     color: rgb(255, 255, 255);
     font-size: 2rem;
@@ -42,19 +43,4 @@
   &:hover {
     color: rgb(255, 255, 255);
   }
-}
-
-.background {
-  position: absolute;
-  min-height: 500px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-}
-
-.map {
-  max-width: 100%;
-  object-fit: cover;
 }
