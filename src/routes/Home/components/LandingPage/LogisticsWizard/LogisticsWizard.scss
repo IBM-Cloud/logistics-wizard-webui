@@ -1,3 +1,5 @@
+@import "~styles/base/colors";
+
 .logisticsWizard {
   width: 100%;
   display: flex;
@@ -8,7 +10,7 @@
   padding: 0 2rem;
 
   & h1 {
-    color: rgb(15, 148, 167);
+    color: $primary1Color;
     font-size: 1.6rem;
     text-transform: uppercase;
     font-weight: 300;
@@ -46,11 +48,11 @@
   top: 45%;
   width: 150%;
   height: 200%;
-  background-color: rgb(15, 148, 167);
+  background-color: $primary1Color;
   transform: rotate(-12deg);
   z-index: -10;
 }
 
 .button {
-  border: 1px solid rgb(15, 148, 167);
+  border: 1px solid $primary1Color;
 }

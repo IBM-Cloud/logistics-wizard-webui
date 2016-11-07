@@ -1,12 +1,14 @@
+@import "~styles/base/colors";
+
 .archDiagram {
   position: relative;
   overflow: hidden;
   padding: 10%;
-  background: linear-gradient(to bottom,  rgb(15,148,167) 0%,rgb(5,116,132) 100%);
+  background: linear-gradient(to bottom,  $primary1Color 0%,rgb(5,116,132) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f94a7', endColorstr='#057484',GradientType=0 );
 
   & h1 {
-    color: rgb(255, 255, 255);
+    color: $alternateTextColor;
     font-size: 1.6rem;
     text-transform: uppercase;
     font-weight: 300;
