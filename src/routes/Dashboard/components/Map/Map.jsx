@@ -4,6 +4,7 @@ import MapMarker from '../MapMarker/';
 // map style from https://snazzymaps.com/style/151/ultra-light-with-labels
 // https://googlemaps.github.io/js-samples/styledmaps/wizard/
 import mapStyle from './Map.style.json';
+import classes from './Map.scss';
 import ShipmentCard from '../PopUpCard/ShipmentCard';
 import RetailerCard from '../PopUpCard/RetailerCard';
 import DCCard from '../PopUpCard/DCCard';
@@ -25,47 +26,49 @@ function createMapOptions(maps) {
 }
 
 export const Map = (props) => (
-  <GoogleMap
-    bootstrapURLKeys={{
-      key: __GOOGLE_MAPS_KEY__,
-    }}
-    center={props.center}
-    zoom={props.zoom}
-    options={createMapOptions}
-  >
-    {props.distributionCenters.map((dc, i) =>
-      <MapMarker
-        type="distributionCenter"
-        text={dc.address.city}
-        lat={dc.address.latitude}
-        lng={dc.address.longitude}
-        key={i}
-      >
-        <DCCard dc={dc} />
-      </MapMarker>
-      )}
-    {props.shipments
-      // keep only shipments with a current location
-      .filter(shipment => (shipment.currentLocation != null))
-      .map((shipment, i) =>
+  <div className={classes.map}>
+    <GoogleMap
+      bootstrapURLKeys={{
+        key: __GOOGLE_MAPS_KEY__,
+      }}
+      center={props.center}
+      zoom={props.zoom}
+      options={createMapOptions}
+    >
+      {props.distributionCenters.map((dc, i) =>
         <MapMarker
-          type="shipment"
-          lat={shipment.currentLocation.latitude}
-          lng={shipment.currentLocation.longitude}
+          type="distributionCenter"
+          text={dc.address.city}
+          lat={dc.address.latitude}
+          lng={dc.address.longitude}
           key={i}
         >
-          <ShipmentCard shipment={shipment} />
+          <DCCard dc={dc} />
+        </MapMarker>
+      )}
+      {props.shipments
+        // keep only shipments with a current location
+        .filter(shipment => (shipment.currentLocation != null))
+        .map((shipment, i) =>
+          <MapMarker
+            type="shipment"
+            lat={shipment.currentLocation.latitude}
+            lng={shipment.currentLocation.longitude}
+            key={i}
+          >
+            <ShipmentCard shipment={shipment} />
+          </MapMarker>)}
+      {props.retailers.map((retailer, i) =>
+        <MapMarker
+          type="retailer"
+          lat={retailer.address.latitude}
+          lng={retailer.address.longitude}
+          key={i}
+        >
+          <RetailerCard retailer={retailer} />
         </MapMarker>)}
-    {props.retailers.map((retailer, i) =>
-      <MapMarker
-        type="retailer"
-        lat={retailer.address.latitude}
-        lng={retailer.address.longitude}
-        key={i}
-      >
-        <RetailerCard retailer={retailer} />
-      </MapMarker>)}
-  </GoogleMap>
+    </GoogleMap>
+  </div>
 );
 
 Map.propTypes = {
