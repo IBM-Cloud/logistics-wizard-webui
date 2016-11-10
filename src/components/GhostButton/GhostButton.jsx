@@ -1,23 +1,32 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { palette } from 'styles/muiTheme';
-import classes from './GhostButton.scss';
 
-export const GhostButton = (props) => (
+const border = {
+  primary: {
+    border: `1px solid ${palette.alternateTextColor}`,
+  },
+  secondary: {
+    border: `1px solid ${palette.primary1Color}`,
+  },
+};
+
+export const GhostButton = props => (
   <RaisedButton
     {...props}
-    backgroundColor={props.backgroundColor || '#2b333d'}
-    labelColor={props.labelColor || palette.alternateTextColor}
-    className={`${classes.ghostButton} ${props.className}`}
+    backgroundColor={props.primary ? palette.primary2Color : '#FFF'}
+    labelColor={props.primary ? palette.alternateTextColor : palette.primary1Color}
+    style={props.primary ? border.primary : border.secondary}
   />
 );
 
 GhostButton.propTypes = {
-  backgroundColor: React.PropTypes.string,
+  primary: React.PropTypes.bool,
   className: React.PropTypes.string,
-  labelColor: React.PropTypes.string,
-  light: React.PropTypes.bool,
-  dark: React.PropTypes.bool,
+};
+
+GhostButton.defaultProps = {
+  primary: true,
 };
 
 export default GhostButton;

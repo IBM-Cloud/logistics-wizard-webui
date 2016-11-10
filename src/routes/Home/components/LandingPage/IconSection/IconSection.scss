@@ -1,5 +1,7 @@
+@import "~styles/base/colors";
+
 .iconSection {
-  background: rgb(15,148,167);
+  background: $primary1Color;
 
   display: flex;
   flex-direction: column;
@@ -13,12 +15,12 @@
     text-align: center;
 
     & h4 {
-      color: rgb(255, 255, 255);
+      color: $alternateTextColor;
       text-transform: uppercase;
     }
 
     & p {
-      color: rgb(255, 255, 255);
+      color: $alternateTextColor;
       font-weight: 300;
     }
   }

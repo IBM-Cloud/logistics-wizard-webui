@@ -23,7 +23,7 @@ export const Header = () => (
     <Toolbar style={styles.toolbar}>
       <ToolbarTitle text="Logistics Wizard" style={styles.title} className={classes.title} />
       <div className={classes.topLink}>
-        <a href="https://github.com/IBM-Bluemix/logistics-wizard" target="_blank">
+        <a href="https://github.com/IBM-Bluemix/logistics-wizard" rel="noopener noreferrer" target="_blank">
           <p className={classes.text}>Github Source Code</p>
         </a>
       </div>
@@ -33,9 +33,7 @@ export const Header = () => (
     <Link to="/create-demo">
       <GhostButton
         label="View Logistics Wizard in Action"
-        className={classes.button}
-        backgroundColor="#FFFFFF"
-        labelColor="#0F94A7"
+        primary={false}
       />
     </Link>
   </div>
