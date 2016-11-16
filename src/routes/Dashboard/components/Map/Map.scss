@@ -1,4 +1,9 @@
+@import '~styles/base/colors';
+
 .map {
   width: 100%;
   height: 600px;
+  border-top: 2px solid $borderColor;
+  border-bottom: 2px solid $borderColor;
+  margin-bottom: 1rem;
 }

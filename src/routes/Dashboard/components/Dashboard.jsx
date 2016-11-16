@@ -1,11 +1,11 @@
 import React from 'react';
-import classes from './Dashboard.scss';
 import Map from './Map';
 import ShipmentsTable from './ShipmentsTable';
 import DashboardTitle from './DashboardTitle';
 import CompletionCard from './CompletionCard';
 import ProgressCard from './ProgressCard';
 import AlertsCard from './AlertsCard';
+import classes from './Dashboard.scss';
 
 export default class Dashboard extends React.PureComponent {
   render() {
@@ -20,7 +20,6 @@ export default class Dashboard extends React.PureComponent {
           </div>
         </div>
         <Map
-          className={classes.map}
           distributionCenters={this.props.dbdata ? this.props.dbdata['distribution-centers'] : []}
           shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
           retailers={this.props.dbdata ? this.props.dbdata.retailers : []}
