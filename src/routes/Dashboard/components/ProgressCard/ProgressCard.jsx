@@ -1,9 +1,16 @@
 import React from 'react';
-import classes from './ProgressCard.scss';
+import cardClasses from '../Dashboard.scss';
 
 export const ProgressCard = (props) => (
-  <div className={classes.progressCard}>
-    <h4>ProgressCard</h4>
+  <div className={cardClasses.shipmentsWrapper}>
+    <div className={cardClasses.shipmentsHeader}>
+      <div className={cardClasses.shipmentsAmount}>44</div>
+      <div className={cardClasses.shipmentsSubtitle}>Shipments In Progress</div>
+    </div>
+    <div className={cardClasses.shipmentsBottom}>
+      <div className={cardClasses.selected}>In Progress</div>
+      <div>Pending</div>
+    </div>
   </div>
 );
 

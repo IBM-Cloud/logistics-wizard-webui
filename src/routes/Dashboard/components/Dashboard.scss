@@ -1,9 +1,60 @@
+@import '~styles/base/colors';
+
 .pageContainer {
-  padding: 0 2rem;
+  padding: 0 1rem;
   max-width: 1280px;
   margin: 0 auto;
 }
 
 .dashboard {
   width: 100%;
+  background-color: $backgroundColor;
+}
+
+.cardSection {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.shipmentsWrapper {
+  border: 1px solid $borderColor;
+  background: white;
+  padding: 1rem;
+  flex: 1;
+  margin-right: 1.5rem;
+}
+
+.shipmentsHeader {
+  border-bottom: 1px solid $borderColor;
+  padding-bottom: 1rem;
+}
+
+.shipmentsAmount {
+  font-size: 2.5rem;
+  color: $accent1Color;
+  text-align: center;
+  font-weight: 300;
+}
+
+.shipmentsSubtitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: $primary1Color;
+  text-align: center;
+}
+
+.shipmentsBottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  color: $textColor;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.selected {
+  color: $primary1Color;
+  text-decoration: underline;
+  font-weight: 700;
 }

@@ -1,3 +1,7 @@
-.dashboardTitle {
-  
+@import '~styles/base/colors';
+
+.title {
+  padding: 1rem 0;
+  color: $textColor;
+  font-size: 1.125rem;
 }
