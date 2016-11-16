@@ -23,7 +23,7 @@
     "deploy:prod": "better-npm-run deploy:prod",
     "storybook": "start-storybook -p 9001",
     "coveralls": "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "check-coverage": "nyc check-coverage --statements 80 --branches 70 --functions 80 --lines 80"
+    "check-coverage": "nyc check-coverage --statements 70 --branches 50 --functions 50 --lines 70"
   },
   "betterScripts": {
     "compile": {
