@@ -1,4 +1,5 @@
 import React from 'react';
+import { palette } from 'styles/muiTheme';
 import {
   Table,
   TableBody,
@@ -9,15 +10,36 @@ import {
 } from 'material-ui/Table';
 import classes from './ShipmentsTable.scss';
 
+const styles = {
+  wrapper: {
+    border: `1px solid ${palette.borderColor}`,
+  },
+  header: {
+    fontWeight: '700',
+    paddingTop: '1.5rem',
+    paddingBottom: '0.5rem',
+  },
+  meta: {
+    color: palette.textColor,
+    fontSize: '0.875rem',
+    fontWeight: '300',
+    paddingTop: '0.5rem',
+    paddingBottom: '0.5rem',
+  },
+};
+
 export const ShipmentsTable = (props) => (
-  <Table>
+  <Table wrapperStyle={styles.wrapper}>
     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
       <TableRow>
-        <TableHeaderColumn>Shipment #</TableHeaderColumn>
-        <TableHeaderColumn>Status</TableHeaderColumn>
-        <TableHeaderColumn>Destination</TableHeaderColumn>
-        <TableHeaderColumn>Date Placed</TableHeaderColumn>
-        <TableHeaderColumn>Estimated Time of Arrival</TableHeaderColumn>
+        <TableHeaderColumn style={styles.meta} colSpan="5">Active Shipments (44)</TableHeaderColumn>
+      </TableRow>
+      <TableRow>
+        <TableHeaderColumn style={styles.header}>Shipment #</TableHeaderColumn>
+        <TableHeaderColumn style={styles.header}>Status</TableHeaderColumn>
+        <TableHeaderColumn style={styles.header}>Destination</TableHeaderColumn>
+        <TableHeaderColumn style={styles.header}>Date Placed</TableHeaderColumn>
+        <TableHeaderColumn style={styles.header}>Estimated Time of Arrival</TableHeaderColumn>
       </TableRow>
     </TableHeader>
     <TableBody displayRowCheckbox={false}>

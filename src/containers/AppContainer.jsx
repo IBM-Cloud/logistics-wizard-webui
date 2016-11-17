@@ -10,7 +10,7 @@ const AppContainer = (props) => {
   return (
     <Provider store={store}>
       <MuiThemeProvider muiTheme={muiTheme}>
-        <div style={{ height: '100%' }}>
+        <div style={{ height: '100vh' }}>
           <Router history={history} children={routes} />
         </div>
       </MuiThemeProvider>
