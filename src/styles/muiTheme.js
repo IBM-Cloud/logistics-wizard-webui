@@ -31,6 +31,22 @@ const muiTheme = getMuiTheme({
     backgroundColor: palette.primary1Color,
     iconColor: palette.alternateTextColor,
   },
+  tableHeader: {
+    // borderColor: palette.borderColor,
+  },
+  tableHeaderColumn: {
+    textColor: palette.primary1Color,
+    height: 1,
+    // spacing: 24,
+  },
+  tableRow: {
+    // hoverColor: palette.accent2Color,
+    // stripeColor: fade(lighten(palette.primary1Color, 0.5), 0.4),
+    // selectedColor: palette.borderColor,
+    // textColor: palette.primary1Color,
+    // borderColor: palette.borderColor,
+    height: 1,
+  },
 });
 
 export default muiTheme;

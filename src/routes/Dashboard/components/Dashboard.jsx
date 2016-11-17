@@ -10,7 +10,7 @@ import classes from './Dashboard.scss';
 export default class Dashboard extends React.PureComponent {
   render() {
     return (
-      <div className={classes.dashboard}>
+      <div className={classes.wrapper}>
         <div className={classes.pageContainer}>
           {this.props.dbdata ? <DashboardTitle /> : <i className="fa fa-spinner fa-spin" />}
           <div className={classes.cardSection}>
