@@ -36,12 +36,19 @@ export const getRetailers = guid => callApi(`demos/${guid}/retailers`);
 export const getAdminData = token =>
   callApi('admin', { headers: { Authorization: `Bearer ${token}` } });
 
+export const simulateWeather = token =>
+  callApi('weather/simulate', {
+    headers: { Authorization: `Bearer ${token}` },
+    method: 'POST',
+  });
+
 export const api = {
   createDemo,
   getDemo,
   login,
   getRetailers,
   getAdminData,
+  simulateWeather,
 };
 
 export default api;

@@ -1,5 +1,6 @@
 import React from 'react';
 import GoogleMap from 'google-map-react';
+import RaisedButton from 'material-ui/RaisedButton';
 import MapMarker from '../MapMarker/';
 // map style from https://snazzymaps.com/style/151/ultra-light-with-labels
 // https://googlemaps.github.io/js-samples/styledmaps/wizard/
@@ -67,6 +68,17 @@ export const Map = (props) => (
         >
           <RetailerCard retailer={retailer} />
         </MapMarker>)}
+      {props.storms.map((storm, i) =>
+        <MapMarker
+          type="storm"
+          lat={storm.lat}
+          lng={storm.lon}
+          key={i}
+        />)}
+      <RaisedButton
+        label="Simulate Storm"
+        onClick={props.simulateAction}
+      />
     </GoogleMap>
   </div>
 );
@@ -77,6 +89,7 @@ Map.propTypes = {
   distributionCenters: React.PropTypes.array,
   shipments: React.PropTypes.array,
   retailers: React.PropTypes.array,
+  storms: React.PropTypes.array,
 };
 
 Map.defaultProps = {
@@ -87,6 +100,7 @@ Map.defaultProps = {
   distributionCenters: [],
   shipments: [],
   retailers: [],
+  storms: [],
 };
 
 export default Map;

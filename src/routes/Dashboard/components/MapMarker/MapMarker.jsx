@@ -10,6 +10,9 @@ export const MapMarker = (props) => {
     case 'shipment':
       markerIcon = 'fa fa-truck';
       break;
+    case 'storm':
+      return (<img width="50px" src="../storm.png" />);
+      break;
     default:
   }
 
@@ -22,7 +25,7 @@ export const MapMarker = (props) => {
 };
 
 MapMarker.propTypes = {
-  type: React.PropTypes.oneOf(['distributionCenter', 'retailer', 'shipment']).isRequired,
+  type: React.PropTypes.oneOf(['distributionCenter', 'retailer', 'shipment', 'storm']).isRequired,
   children: React.PropTypes.element,
 };
 
