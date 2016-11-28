@@ -13,7 +13,7 @@ import classes from './Dashboard.scss';
 export default class Dashboard extends React.PureComponent {
   simulateStorm = () => {
     api.simulateWeather(this.props.token).then((json) => {
-      this.props.dbdata.storms = [json];
+      this.props.dbdata.storms = [json.event];
       this.forceUpdate();
     }
     );
