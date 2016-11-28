@@ -93,3 +93,22 @@ div.shipment:hover > div.mapMarkerPopup {
 .retailer:hover i {
   color: rgb(221, 90, 90);
 }
+
+.weatherCircle {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: -100px;
+  top: -100px;
+  background: lightblue;
+  opacity: 0.5;
+  align-items: center;
+}
+
+.weatherIcon {
+  width: 50px;
+  position: absolute;
+  left: -25px;
+  top: -25px;
+}

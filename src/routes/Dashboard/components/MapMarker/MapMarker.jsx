@@ -11,7 +11,7 @@ export const MapMarker = (props) => {
       markerIcon = 'fa fa-truck';
       break;
     case 'storm':
-      return (<img width="50px" src="../storm.png" />);
+      return (<div><img className={classes.weatherIcon} src="../storm.png" /><div className={classes.weatherCircle} /></div>);
       break;
     default:
   }
