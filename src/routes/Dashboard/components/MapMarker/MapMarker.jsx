@@ -3,6 +3,7 @@ import classes from './MapMarker.scss';
 
 export const MapMarker = (props) => {
   let markerIcon;
+  let customMarker;
   switch (props.type) {
     case 'retailer':
       markerIcon = 'fa fa-circle';
@@ -11,13 +12,14 @@ export const MapMarker = (props) => {
       markerIcon = 'fa fa-truck';
       break;
     case 'storm':
-      return (<div><img className={classes.weatherIcon} src="../storm.png" /><div className={classes.weatherCircle} /></div>);
+      customMarker = (<div className={classes[props.type]}><img className={classes.weatherIcon} src="../storm.png" /><div className={classes.weatherCircle} /></div>);
       break;
     default:
   }
 
   return (<div className={classes[props.type]}>
     {markerIcon ? <i className={markerIcon} /> : ''}
+    {customMarker || ''}
     <div className={classes.mapMarkerPopup}>
       {props.children}
     </div>

@@ -13,7 +13,7 @@ import classes from './Dashboard.scss';
 export default class Dashboard extends React.PureComponent {
   simulateStorm = () => {
     api.simulateWeather(this.props.token).then((json) => {
-      this.props.dbdata.storms = [json.event];
+      this.props.dbdata.storms = [json];
       this.forceUpdate();
     }
     );
@@ -29,15 +29,13 @@ export default class Dashboard extends React.PureComponent {
             <ProgressCard />
             <AlertsCard />
           </div>
-        </div>
-        <Map
-          distributionCenters={this.props.dbdata ? this.props.dbdata['distribution-centers'] : []}
-          shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
-          retailers={this.props.dbdata ? this.props.dbdata.retailers : []}
-          storms={this.props.dbdata.storms ? this.props.dbdata.storms : []}
-          simulateAction={this.simulateStorm}
-        />
-        <div className={classes.pageContainer}>
+          <Map
+            distributionCenters={this.props.dbdata ? this.props.dbdata['distribution-centers'] : []}
+            shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
+            retailers={this.props.dbdata ? this.props.dbdata.retailers : []}
+            storms={this.props.dbdata.storms ? this.props.dbdata.storms : []}
+            simulateAction={this.simulateStorm}
+          />
           <ShipmentsTable />
         </div>
       </div>

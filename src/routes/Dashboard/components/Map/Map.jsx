@@ -8,6 +8,7 @@ import mapStyle from './Map.style.json';
 import classes from './Map.scss';
 import ShipmentCard from '../PopUpCard/ShipmentCard';
 import RetailerCard from '../PopUpCard/RetailerCard';
+import StormCard from '../PopUpCard/StormCard';
 import DCCard from '../PopUpCard/DCCard';
 
 function createMapOptions(maps) {
@@ -71,13 +72,16 @@ export const Map = (props) => (
       {props.storms.map((storm, i) =>
         <MapMarker
           type="storm"
-          lat={storm.lat}
-          lng={storm.lon}
+          lat={storm.event.lat}
+          lng={storm.event.lon}
           key={i}
-        />)}
+        >
+          <StormCard storm={storm} />
+        </MapMarker>)}
       <RaisedButton
         label="Simulate Storm"
         onClick={props.simulateAction}
+        className={classes.simulateButton}
       />
     </GoogleMap>
   </div>
