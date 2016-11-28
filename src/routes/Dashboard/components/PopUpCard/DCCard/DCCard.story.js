@@ -3,9 +3,7 @@ import { storiesOf } from '@kadira/storybook';
 import DCCard from './DCCard';
 
 const dc1 = {
-  contact: {
-    name: 'Joseph Smith',
-  },
+  contact: 'Joseph Smith',
   id: 1,
   address: {
     state: 'Utah',
@@ -14,27 +12,23 @@ const dc1 = {
     latitude: 40.71,
     longitude: -111.9,
   },
+  shipments: [
+    {
+      id: '089124',
+      status: 'In Transit',
+    },
+    {
+      id: '089125',
+      status: 'In Transit',
+    },
+    {
+      id: '089126',
+      status: 'In Transit',
+    },
+  ],
 };
-const dc2 = {
-  contact: {
-    name: 'Mary Joe',
-  },
-  id: 3,
-  address: {
-    state: 'New York',
-    city: 'Albany',
-    country: 'US',
-    latitude: 42.65,
-    longitude: -73.75,
-  },
-};
+
 storiesOf('DCCard', module)
   .add('dc1', () => (
-    <DCCard
-      dc={dc1}
-    />
-)).add('dc2', () => (
-  <DCCard
-    dc={dc2}
-  />
+    <DCCard contact={dc1.contact} id={dc1.id} address={dc1.address} shipments={dc1.shipments} />
   ));

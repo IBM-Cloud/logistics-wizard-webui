@@ -20,7 +20,7 @@ export class CreateDemo extends React.Component {
   }
 
   handleClick = () => {
-    this.setState({loading : true});
+    this.setState({ loading: true });
 
     if (this.state.demoGuid !== '') {
       this.props.createDemo({ guid: this.state.demoGuid });

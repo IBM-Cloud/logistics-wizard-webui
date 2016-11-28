@@ -6,6 +6,12 @@ $alternateTextColor: rgba(255, 255, 255, 1);
 $borderColor: rgba(218, 221, 224, 1);
 $textColor: $primary2Color;
 $backgroundColor: rgba(239, 242, 245, 1);
+$map1Primary: #CF781C;
+$map1Accent: #FAF1E8;
+$map2Primary: #AE4A9B;
+$map2Accent: #F6ECF5;
+$map3Primary: #749C68;
+$map3Accent: #F4F9F2;
 
 :export { primary1Color: $primary1Color; }
 :export { primary2Color: $primary2Color; }
