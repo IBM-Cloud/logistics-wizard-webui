@@ -1,8 +1,8 @@
 import { configure, addDecorator } from '@kadira/storybook';
 import React from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import centered from '@kadira/react-storybook-decorator-centered';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from 'styles/muiTheme';
 import '../src/styles/core.scss';
 

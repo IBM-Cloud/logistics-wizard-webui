@@ -13,6 +13,7 @@ import classes from './ShipmentsTable.scss';
 const styles = {
   wrapper: {
     border: `1px solid ${palette.borderColor}`,
+    marginBottom: '2rem',
   },
   header: {
     fontWeight: '700',
