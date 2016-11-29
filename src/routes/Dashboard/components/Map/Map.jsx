@@ -26,8 +26,36 @@ function createMapOptions(maps) {
   };
 }
 
+const dc1 = {
+  contact: 'Joseph Smith',
+  id: 1,
+  address: {
+    state: 'Utah',
+    city: 'Salt Lake City',
+    country: 'US',
+    latitude: 40.71,
+    longitude: -111.9,
+  },
+  shipments: [
+    {
+      id: '089124',
+      status: 'In Transit',
+    },
+    {
+      id: '089125',
+      status: 'In Transit',
+    },
+    {
+      id: '089126',
+      status: 'In Transit',
+    },
+  ],
+};
+
+
 export const Map = (props) => (
   <div className={classes.map}>
+    <DCCard contact={dc1.contact} id={dc1.id} address={dc1.address} shipments={dc1.shipments} />
     <GoogleMap
       bootstrapURLKeys={{
         key: __GOOGLE_MAPS_KEY__,
@@ -43,9 +71,7 @@ export const Map = (props) => (
           lat={dc.address.latitude}
           lng={dc.address.longitude}
           key={i}
-        >
-          <DCCard dc={dc} />
-        </MapMarker>
+        />
       )}
       {props.shipments
         // keep only shipments with a current location

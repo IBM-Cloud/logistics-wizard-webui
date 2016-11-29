@@ -29,15 +29,13 @@ export default class Dashboard extends React.PureComponent {
             <ProgressCard />
             <AlertsCard />
           </div>
-        </div>
-        <Map
-          distributionCenters={this.props.dbdata ? this.props.dbdata['distribution-centers'] : []}
-          shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
-          retailers={this.props.dbdata ? this.props.dbdata.retailers : []}
-          storms={this.props.dbdata.storms ? this.props.dbdata.storms : []}
-          simulateAction={this.simulateStorm}
-        />
-        <div className={classes.pageContainer}>
+          <Map
+            distributionCenters={this.props.dbdata ? this.props.dbdata['distribution-centers'] : []}
+            shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
+            retailers={this.props.dbdata ? this.props.dbdata.retailers : []}
+            storms={this.props.dbdata.storms ? this.props.dbdata.storms : []}
+            simulateAction={this.simulateStorm}
+          />
           <ShipmentsTable />
         </div>
       </div>

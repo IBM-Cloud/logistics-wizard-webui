@@ -5,6 +5,8 @@
   height: 600px;
   border-top: 2px solid $borderColor;
   border-bottom: 2px solid $borderColor;
+  border-left: 1px solid $borderColor;
+  border-right: 1px solid $borderColor;
   margin-bottom: 1.5rem;
   position: relative;
 }

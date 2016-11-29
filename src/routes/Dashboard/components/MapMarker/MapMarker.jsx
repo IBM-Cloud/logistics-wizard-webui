@@ -16,12 +16,13 @@ export const MapMarker = (props) => {
     default:
   }
 
-  return (<div className={classes[props.type]}>
-    {markerIcon ? <i className={markerIcon} /> : ''}
-    <div className={classes.mapMarkerPopup}>
-      {props.children}
-    </div>
-  </div>);
+  return (
+    <div onClick={() => console.log('Clicked it!')} className={classes[props.type]}>
+      {markerIcon ? <i className={markerIcon} /> : ''}
+      <div className={classes.mapMarkerPopup}>
+        {props.children}
+      </div>
+    </div>);
 };
 
 MapMarker.propTypes = {
