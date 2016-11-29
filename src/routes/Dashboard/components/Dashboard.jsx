@@ -11,30 +11,30 @@ import classes from './Dashboard.scss';
 
 
 export default class Dashboard extends React.PureComponent {
-  simulateStorm = () => {
-    api.simulateWeather(this.props.token).then((json) => {
-      this.props.dbdata.storms = [json.event];
-      this.forceUpdate();
-    }
-    );
-  }
-
   render() {
+    const {
+      shipments,
+      retailers,
+      distributionCenters,
+      weather,
+      simulateWeather,
+    } = this.props;
+
     return (
       <div className={classes.wrapper}>
         <div className={classes.pageContainer}>
-          {this.props.dbdata ? <DashboardTitle /> : <i className="fa fa-spinner fa-spin" />}
+          {retailers.length ? <DashboardTitle /> : <i className="fa fa-spinner fa-spin" />}
           <div className={classes.cardSection}>
             <CompletionCard />
             <ProgressCard />
             <AlertsCard />
           </div>
           <Map
-            distributionCenters={this.props.dbdata ? this.props.dbdata['distribution-centers'] : []}
-            shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
-            retailers={this.props.dbdata ? this.props.dbdata.retailers : []}
-            storms={this.props.dbdata.storms ? this.props.dbdata.storms : []}
-            simulateAction={this.simulateStorm}
+            distributionCenters={distributionCenters}
+            shipments={shipments}
+            retailers={retailers}
+            weather={weather}
+            simulateAction={simulateWeather}
           />
           <ShipmentsTable />
         </div>
@@ -45,6 +45,10 @@ export default class Dashboard extends React.PureComponent {
 
 Dashboard.propTypes = {
   demoName: React.PropTypes.string,
-  dbdata: React.PropTypes.object.isRequired,
+  shipments: React.PropTypes.array.isRequired,
+  retailers: React.PropTypes.array.isRequired,
+  distributionCenters: React.PropTypes.array.isRequired,
+  weather: React.PropTypes.array.isRequired,
   token: React.PropTypes.string,
+  simulateWeather: React.PropTypes.func.isRequired,
 };
