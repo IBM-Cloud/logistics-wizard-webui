@@ -48,9 +48,8 @@ export const ShipmentsTable = (props) => (
       </TableRow>
     </TableHeader>
     <TableBody displayRowCheckbox={false}>
-      { console.log(props.shipments)}
       {props.shipments.map((shipment, i) =>
-        <TableRow>
+        <TableRow key={shipment.id}>
           <TableRowColumn>{shipment.id}</TableRowColumn>
           <TableRowColumn>{shipment.status}</TableRowColumn>
           <TableRowColumn>{shipment.toId}</TableRowColumn>
