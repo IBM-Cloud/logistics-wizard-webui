@@ -10,6 +10,10 @@ import {
 } from 'material-ui/Table';
 import classes from './ShipmentsTable.scss';
 
+const moment = require('moment');
+
+const timeFormat = 'MMM Do, h:mm a';
+
 const styles = {
   wrapper: {
     border: `1px solid ${palette.borderColor}`,
@@ -33,7 +37,7 @@ export const ShipmentsTable = (props) => (
   <Table wrapperStyle={styles.wrapper}>
     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
       <TableRow>
-        <TableHeaderColumn style={styles.meta} colSpan="5">Active Shipments (44)</TableHeaderColumn>
+        <TableHeaderColumn style={styles.meta} colSpan="5">Active Shipments ({props.shipments.length})</TableHeaderColumn>
       </TableRow>
       <TableRow>
         <TableHeaderColumn style={styles.header}>Shipment #</TableHeaderColumn>
@@ -44,39 +48,26 @@ export const ShipmentsTable = (props) => (
       </TableRow>
     </TableHeader>
     <TableBody displayRowCheckbox={false}>
-      <TableRow>
-        <TableRowColumn>12345</TableRowColumn>
-        <TableRowColumn>In Transit</TableRowColumn>
-        <TableRowColumn>Retailer 1234</TableRowColumn>
-        <TableRowColumn>Nov 14, 2016</TableRowColumn>
-        <TableRowColumn>Nov 16, 2016</TableRowColumn>
-      </TableRow>
-      <TableRow>
-        <TableRowColumn>12345</TableRowColumn>
-        <TableRowColumn>In Transit</TableRowColumn>
-        <TableRowColumn>Retailer 1234</TableRowColumn>
-        <TableRowColumn>Nov 14, 2016</TableRowColumn>
-        <TableRowColumn>Nov 16, 2016</TableRowColumn>
-      </TableRow>
-      <TableRow>
-        <TableRowColumn>12345</TableRowColumn>
-        <TableRowColumn>In Transit</TableRowColumn>
-        <TableRowColumn>Retailer 1234</TableRowColumn>
-        <TableRowColumn>Nov 14, 2016</TableRowColumn>
-        <TableRowColumn>Nov 16, 2016</TableRowColumn>
-      </TableRow>
-      <TableRow>
-        <TableRowColumn>12345</TableRowColumn>
-        <TableRowColumn>In Transit</TableRowColumn>
-        <TableRowColumn>Retailer 1234</TableRowColumn>
-        <TableRowColumn>Nov 14, 2016</TableRowColumn>
-        <TableRowColumn>Nov 16, 2016</TableRowColumn>
-      </TableRow>
+      { console.log(props.shipments)}
+      {props.shipments.map((shipment, i) =>
+        <TableRow>
+          <TableRowColumn>{shipment.id}</TableRowColumn>
+          <TableRowColumn>{shipment.status}</TableRowColumn>
+          <TableRowColumn>{shipment.toId}</TableRowColumn>
+          <TableRowColumn>{moment(shipment.createdAt).format(timeFormat)}</TableRowColumn>
+          <TableRowColumn>{moment(shipment.estimatedTimeOfArrival).format(timeFormat)}</TableRowColumn>
+        </TableRow>
+      )}
     </TableBody>
   </Table>
 );
 
 ShipmentsTable.propTypes = {
+  shipments: React.PropTypes.array,
+};
+
+ShipmentsTable.defaultProps = {
+  shipments: [],
 };
 
 export default ShipmentsTable;

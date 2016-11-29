@@ -4,7 +4,12 @@ import cardClasses from '../Dashboard.scss';
 export const CompletionCard = (props) => (
   <div className={cardClasses.shipmentsWrapper}>
     <div className={cardClasses.shipmentsHeader}>
-      <div className={cardClasses.shipmentsAmount}>86</div>
+      <div className={cardClasses.shipmentsAmount}>
+        {props.shipments.filter(
+          shipment => (shipment.status == 'DELIVERED')
+        )
+        .length}
+      </div>
       <div className={cardClasses.shipmentsSubtitle}>Shipments Completed</div>
     </div>
     <div className={cardClasses.shipmentsBottom}>
@@ -16,6 +21,11 @@ export const CompletionCard = (props) => (
 );
 
 CompletionCard.propTypes = {
+  shipments: React.PropTypes.array,
+};
+
+CompletionCard.defaultProps = {
+  shipments: [],
 };
 
 export default CompletionCard;
