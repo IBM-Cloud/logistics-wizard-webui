@@ -31,7 +31,9 @@ export default class Dashboard extends React.PureComponent {
             <ProgressCard
               shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
             />
-            <AlertsCard />
+            <AlertsCard
+              storms={this.props.dbdata.storms ? this.props.dbdata.storms : []}
+            />
           </div>
           <Map
             distributionCenters={this.props.dbdata ? this.props.dbdata['distribution-centers'] : []}
