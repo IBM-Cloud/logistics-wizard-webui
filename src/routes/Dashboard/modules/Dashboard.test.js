@@ -41,7 +41,12 @@ test('(Action) getAdminData',
   );
 
 test('(Reducer) initializes with empty state', t => {
-  t.deepEqual(dashboardReducer(undefined, {}), {});
+  t.deepEqual(dashboardReducer(undefined, {}), {
+    shipments: [],
+    retailers: [],
+    'distribution-centers': [],
+    weather: [],
+  });
 });
 
 test('(Reducer) return previous state when no action is matched', reducerTest(

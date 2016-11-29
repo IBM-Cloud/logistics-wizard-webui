@@ -1,14 +1,20 @@
 import test from 'ava';
+import sinon from 'sinon';
 import React from 'react';
 import { shallow } from 'enzyme';
 import Dashboard from './Dashboard';
 
 const setup = () => {
   const spies = {
+    simulateWeather: sinon.spy(),
   };
   const props = {
     demoName: 'Test Demo',
-    dbdata: { fakeData: 'fake stuff' },
+    shipments: [],
+    retailers: [],
+    distributionCenters: [],
+    weather: [],
+    token: '1234',
   };
   const component = shallow(<Dashboard {...props} />);
 
@@ -16,9 +22,3 @@ const setup = () => {
 };
 
 test.todo('write tests for dashboard elements once complete.');
-test('(Component) Renders with expected elements', t => {
-  const { component } = setup();
-
-  t.is(component.find('Map').length, 1,
-    'has map');
-});
