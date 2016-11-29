@@ -1,6 +1,4 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import api from 'services';
 import Map from './Map';
 import ShipmentsTable from './ShipmentsTable';
 import DashboardTitle from './DashboardTitle';
@@ -8,7 +6,6 @@ import CompletionCard from './CompletionCard';
 import ProgressCard from './ProgressCard';
 import AlertsCard from './AlertsCard';
 import classes from './Dashboard.scss';
-
 
 export default class Dashboard extends React.PureComponent {
   render() {
@@ -34,7 +31,7 @@ export default class Dashboard extends React.PureComponent {
             shipments={shipments}
             retailers={retailers}
             weather={weather}
-            simulateAction={simulateWeather}
+            simulateWeather={simulateWeather}
           />
           <ShipmentsTable />
         </div>

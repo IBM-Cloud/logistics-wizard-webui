@@ -50,7 +50,7 @@ const ACTION_HANDLERS = {
   }),
   [WEATHER_DATA_RECEIVED]: (state, action) => ({
     ...state,
-    weather: action.payload,
+    weather: [action.payload.event],
   }),
 };
 

@@ -94,7 +94,7 @@ export const Map = (props) => (
         >
           <RetailerCard retailer={retailer} />
         </MapMarker>)}
-      {props.storms.map((storm, i) =>
+      {props.weather.map((storm, i) =>
         <MapMarker
           type="storm"
           lat={storm.lat}
@@ -103,7 +103,7 @@ export const Map = (props) => (
         />)}
       <RaisedButton
         label="Simulate Storm"
-        onClick={props.simulateAction}
+        onClick={props.simulateWeather}
       />
     </GoogleMap>
   </div>
@@ -115,7 +115,8 @@ Map.propTypes = {
   distributionCenters: React.PropTypes.array,
   shipments: React.PropTypes.array,
   retailers: React.PropTypes.array,
-  storms: React.PropTypes.array,
+  weather: React.PropTypes.array,
+  simulateWeather: React.PropTypes.func.isRequired,
 };
 
 Map.defaultProps = {
@@ -126,7 +127,7 @@ Map.defaultProps = {
   distributionCenters: [],
   shipments: [],
   retailers: [],
-  storms: [],
+  weather: [],
 };
 
 export default Map;
