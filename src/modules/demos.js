@@ -1,6 +1,7 @@
 import { call, take, put, select } from 'redux-saga/effects';
 import api from 'services';
 import { getAdminData } from 'routes/Dashboard/modules/Dashboard';
+import { push } from 'react-router-redux';
 
 // ------------------------------------
 // Constants
@@ -120,6 +121,8 @@ export function *watchGetDemoSession() {
       }
       catch (error) {
         console.log('Get Demo Failure: ', error);
+        window.localStorage.removeItem('savedGuid');
+        yield put(push('/'));
         // yield put(getDemoFailure(error));
       }
     }
