@@ -2,12 +2,12 @@ export const controllerApi = `${__CONTROLLER_API__}/api/v1`;
 
 export const callApi = (endpoint, {
   apiUrl = controllerApi,
-  headers = { 'Content-Type': 'application/json' },
+  headers,
   method = 'GET',
   body,
 } = {}) =>
   fetch(`${apiUrl}/${endpoint}`, {
-    headers,
+    headers: { 'Content-Type': 'application/json', ...headers },
     method,
     body: JSON.stringify(body),
   })
@@ -42,6 +42,13 @@ export const simulateWeather = token =>
     method: 'POST',
   });
 
+export const getWeatherObservations = (token, longitude, latitude) =>
+    callApi('weather/observations', {
+      headers: { Authorization: `Bearer ${token}` },
+      method: 'POST',
+      body: { longitude, latitude },
+    });
+
 export const api = {
   createDemo,
   getDemo,
@@ -49,6 +56,7 @@ export const api = {
   getRetailers,
   getAdminData,
   simulateWeather,
+  getWeatherObservations,
 };
 
 export default api;
