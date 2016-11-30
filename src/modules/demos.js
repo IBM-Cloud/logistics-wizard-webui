@@ -141,7 +141,6 @@ export function *watchCreateDemo() {
 
 export function *watchGetDemoSession() {
   while (true) {
-    console.log('watching getdemo');
     const { guid } = yield take(GET_DEMO_SESSION);
     let demoState = yield select(demoSelector);
 
