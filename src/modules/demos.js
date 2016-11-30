@@ -122,9 +122,7 @@ export default demosReducer;
 // ------------------------------------
 export function *watchCreateDemo() {
   while (true) {
-    console.log('watching createdemo');
     const { payload } = yield take(CREATE_DEMO);
-    console.log(payload);
 
     if (payload) {
       yield put(push(`/dashboard/${payload}`));
