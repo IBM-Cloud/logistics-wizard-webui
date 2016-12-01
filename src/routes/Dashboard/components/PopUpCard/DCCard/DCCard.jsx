@@ -48,7 +48,7 @@ const DCCard = ({ id, address, contact, shipments }) => (
 
 
 DCCard.propTypes = {
-  id: React.PropTypes.string,
+  id: React.PropTypes.number,
   address: React.PropTypes.shape({
     city: React.PropTypes.string.isRequired,
     state: React.PropTypes.string.isRequired,

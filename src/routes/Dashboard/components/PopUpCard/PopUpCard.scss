@@ -1,6 +1,7 @@
 @import '~styles/base/colors';
 
 .wrapper {
+  background-color: white;
   border: 1px solid $borderColor;
   width: 260px;
   height: 100%;
@@ -9,6 +10,7 @@
   top: 0;
   color: $textColor;
   font-size: 13px;
+  z-index: 9999;
 }
 
 .title {

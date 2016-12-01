@@ -1,11 +1,9 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
+import moment from 'moment';
 import classes from '../PopUpCard.scss';
 
-const moment = require('moment');
 const timeFormat = 'MMM Do, h:mm a';
-
 const styles = {
   paper: {
     width: '140',
@@ -31,13 +29,13 @@ const ShipmentCard = (props) => {
       );
     }
     if (shipment.estimatedTimeOfArrival) {
-      const formattedTime = moment(shipment.estimatedTimeOfArrival).format(timeFormat)
+      const formattedTime = moment(shipment.estimatedTimeOfArrival).format(timeFormat);
       estimatedTimeOfArrival = (
         <div><h6>ESTIMATED TOA</h6> {formattedTime}</div>
       );
     }
     if (shipment.updatedAt) {
-      const formattedTime = moment(shipment.updatedAt).format(timeFormat)
+      const formattedTime = moment(shipment.updatedAt).format(timeFormat);
       updatedAt = (
         <div><h6>LAST UPDATED</h6> {formattedTime}</div>
       );

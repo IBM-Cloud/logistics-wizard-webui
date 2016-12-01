@@ -21,10 +21,10 @@ div:hover > div.mapMarkerPopup {
   display: inline-block;
   position: absolute;
   left: -8px;
-}
 
-.distributionCenter:hover {
-  border: 4px solid rgb(221, 90, 90);
+  &:hover {
+    border: 4px solid rgb(221, 90, 90);
+  }
 }
 
 // --------------------------------------------
@@ -39,18 +39,19 @@ div:hover > div.mapMarkerPopup {
   position: absolute;
   left: -12px;
   top: -12px;
-}
 
-.shipment:hover {
-  background-color: rgb(221, 90, 90);
-}
+  &:hover {
+    background-color: rgb(221, 90, 90);
+  }
 
-.shipment i {
-  color: white;
-  font-size: 14px;
-  width: 14px;
-  height: 14px;
-  padding: 5px;
+  i {
+    color: white;
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    padding: 5px;
+
+  }
 }
 
 div.shipment:hover > div.mapMarkerPopup {
@@ -75,23 +76,23 @@ div.shipment:hover > div.mapMarkerPopup {
   position: absolute;
   left: -12px;
   top: -12px;
-}
 
-.retailer:hover {
-  border: 1px solid rgb(221, 90, 90);
-}
+  &:hover {
+    border: 1px solid rgb(221, 90, 90);
 
-.retailer i {
-  color: #d183a9;
-  font-size: 12px;
-  width: 12px;
-  height: 12px;
-  padding-top: 5px;
-  padding-left: 6px;
-}
+    i {
+      color: rgb(221, 90, 90);
+    }
+  }
 
-.retailer:hover i {
-  color: rgb(221, 90, 90);
+  i {
+    color: #d183a9;
+    font-size: 12px;
+    width: 12px;
+    height: 12px;
+    padding-top: 5px;
+    padding-left: 6px;
+  }
 }
 
 .weatherCircle {

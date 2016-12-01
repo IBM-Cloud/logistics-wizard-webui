@@ -27,83 +27,92 @@ function createMapOptions(maps) {
   };
 }
 
-const dc1 = {
-  contact: 'Joseph Smith',
-  id: 1,
-  address: {
-    state: 'Utah',
-    city: 'Salt Lake City',
-    country: 'US',
-    latitude: 40.71,
-    longitude: -111.9,
-  },
-  shipments: [
-    {
-      id: '089124',
-      status: 'In Transit',
-    },
-    {
-      id: '089125',
-      status: 'In Transit',
-    },
-    {
-      id: '089126',
-      status: 'In Transit',
-    },
-  ],
-};
+const showSelectedInfo = ({ type, data }) => { // eslint-disable-line
+  if (type === 'distributionCenter') {
+    return (
+      <DCCard
+        contact={data.contact.name}
+        id={data.id}
+        address={data.address}
+        shipments={data.shipments}
+      />
+    );
+  }
+  else if (type === 'shipment') {
+    return (
+      <ShipmentCard shipment={data} />
+    );
+  }
+  else if (type === 'retailer') {
+    return (
+      <RetailerCard retailer={data} />
+    );
+  }
+  else if (type === 'storm') {
+    return (
+      <StormCard storm={data} />
+    );
+  }
+  else if (type === 'hidden') {
+    return '';
+  }
 
+  console.error('Invalid info type passed to showSelectedInfo in Map.jsx');
+  return '';
+};
 
 export const Map = (props) => (
   <div className={classes.map}>
-    <DCCard contact={dc1.contact} id={dc1.id} address={dc1.address} shipments={dc1.shipments} />
+    {showSelectedInfo(props.infoBox)}
     <GoogleMap
-      bootstrapURLKeys={{
-        key: __GOOGLE_MAPS_KEY__,
-      }}
+      bootstrapURLKeys={{ key: __GOOGLE_MAPS_KEY__ }}
       center={props.center}
       zoom={props.zoom}
       options={createMapOptions}
     >
-      {props.distributionCenters.map((dc, i) =>
+      {props.distributionCenters.map(dc =>
         <MapMarker
           type="distributionCenter"
           text={dc.address.city}
           lat={dc.address.latitude}
           lng={dc.address.longitude}
-          key={i}
+          selectMarker={props.selectMarker}
+          data={dc}
+          key={dc.id}
         />
       )}
       {props.shipments
-        // keep only shipments with a current location
         .filter(shipment => (shipment.currentLocation != null))
-        .map((shipment, i) =>
+        .map(shipment =>
           <MapMarker
             type="shipment"
             lat={shipment.currentLocation.latitude}
             lng={shipment.currentLocation.longitude}
-            key={i}
-          >
-            <ShipmentCard shipment={shipment} />
-          </MapMarker>)}
-      {props.retailers.map((retailer, i) =>
+            key={shipment.id}
+            selectMarker={props.selectMarker}
+            data={shipment}
+          />
+        )}
+      {props.retailers.map(retailer =>
         <MapMarker
           type="retailer"
           lat={retailer.address.latitude}
           lng={retailer.address.longitude}
-          key={i}
-        >
-          <RetailerCard retailer={retailer} />
-        </MapMarker>)}
+          key={retailer.id}
+          selectMarker={props.selectMarker}
+          data={retailer}
+        />
+      )}
       {props.weather.map((storm, i) =>
         <MapMarker
           type="storm"
           lat={storm.event.lat}
           lng={storm.event.lon}
           key={i}
-        >
-          <StormCard storm={storm} />
-        </MapMarker>)}
+          selectMarker={props.selectMarker}
+          data={storm}
+        />
+      )}
       <RaisedButton
         label="Simulate Storm"
         onClick={props.simulateWeather}
@@ -114,6 +123,11 @@ export const Map = (props) => (
 );
 
 Map.propTypes = {
+  selectMarker: React.PropTypes.func.isRequired,
+  infoBox: React.PropTypes.shape({
+    type: React.PropTypes.string.isRequired,
+    data: React.PropTypes.object.isRequired,
+  }),
   center: React.PropTypes.array,
   zoom: React.PropTypes.number,
   distributionCenters: React.PropTypes.array,

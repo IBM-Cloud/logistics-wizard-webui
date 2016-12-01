@@ -13,6 +13,8 @@ export const Dashboard = ({
   distributionCenters,
   weather,
   simulateWeather,
+  selectMarker,
+  infoBox,
 }) => (
   <div className={classes.wrapper}>
     <div className={classes.pageContainer}>
@@ -23,6 +25,8 @@ export const Dashboard = ({
         <AlertsCard storms={weather} />
       </div>
       <Map
+        selectMarker={selectMarker}
+        infoBox={infoBox}
         distributionCenters={distributionCenters}
         shipments={shipments}
         retailers={retailers}
@@ -35,6 +39,11 @@ export const Dashboard = ({
 );
 
 Dashboard.propTypes = {
+  selectMarker: React.PropTypes.func.isRequired,
+  infoBox: React.PropTypes.shape({
+    type: React.PropTypes.string.isRequired,
+    data: React.PropTypes.object.isRequired,
+  }).isRequired,
   demoName: React.PropTypes.string,
   shipments: React.PropTypes.array.isRequired,
   retailers: React.PropTypes.array.isRequired,
