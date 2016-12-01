@@ -1,4 +1,5 @@
 import test from 'ava';
+/*
 import sinon from 'sinon';
 import React from 'react';
 import { shallow } from 'enzyme';
@@ -20,5 +21,6 @@ const setup = () => {
 
   return { spies, props, component };
 };
+*/
 
 test.todo('write tests for dashboard elements once complete.');
