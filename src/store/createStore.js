@@ -2,6 +2,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import makeRootReducer from './reducers';
+import makeRootSaga from './sagas';
 
 export default (initialState = {}, history) => {
   // ======================================================
@@ -37,6 +38,7 @@ export default (initialState = {}, history) => {
   store.runSaga = (saga) => {
     sagaMiddleware.run(saga);
   };
+  store.runSaga(makeRootSaga(store.asyncSagas));
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {

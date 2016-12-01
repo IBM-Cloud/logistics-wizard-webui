@@ -1,6 +1,4 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import api from 'services';
 import Map from './Map';
 import ShipmentsTable from './ShipmentsTable';
 import DashboardTitle from './DashboardTitle';
@@ -9,51 +7,41 @@ import ProgressCard from './ProgressCard';
 import AlertsCard from './AlertsCard';
 import classes from './Dashboard.scss';
 
-
-export default class Dashboard extends React.PureComponent {
-  simulateStorm = () => {
-    api.simulateWeather(this.props.token).then((json) => {
-      this.props.dbdata.storms = [json];
-      this.forceUpdate();
-    }
-    );
-  }
-
-  render() {
-    return (
-      <div className={classes.wrapper}>
-        <div className={classes.pageContainer}>
-          {this.props.dbdata ? <DashboardTitle /> : <i className="fa fa-spinner fa-spin" />}
-          <div className={classes.cardSection}>
-            <CompletionCard
-              shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
-            />
-            <ProgressCard
-              shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
-            />
-            <AlertsCard
-              storms={this.props.dbdata.storms ? this.props.dbdata.storms : []}
-            />
-          </div>
-          <Map
-            distributionCenters={this.props.dbdata ? this.props.dbdata['distribution-centers'] : []}
-            shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
-            retailers={this.props.dbdata ? this.props.dbdata.retailers : []}
-            storms={this.props.dbdata.storms ? this.props.dbdata.storms : []}
-            simulateAction={this.simulateStorm}
-            token={this.props.token}
-          />
-          <ShipmentsTable
-            shipments={this.props.dbdata ? this.props.dbdata.shipments : []}
-          />
-        </div>
+export const Dashboard = ({
+  shipments,
+  retailers,
+  distributionCenters,
+  weather,
+  simulateWeather,
+}) => (
+  <div className={classes.wrapper}>
+    <div className={classes.pageContainer}>
+      {retailers.length ? <DashboardTitle /> : <i className="fa fa-spinner fa-spin" />}
+      <div className={classes.cardSection}>
+        <CompletionCard shipments={shipments} />
+        <ProgressCard shipments={shipments} />
+        <AlertsCard storms={weather} />
       </div>
-    );
-  }
-}
+      <Map
+        distributionCenters={distributionCenters}
+        shipments={shipments}
+        retailers={retailers}
+        weather={weather}
+        simulateWeather={simulateWeather}
+      />
+      <ShipmentsTable shipments={shipments} />
+    </div>
+  </div>
+);
 
 Dashboard.propTypes = {
   demoName: React.PropTypes.string,
-  dbdata: React.PropTypes.object.isRequired,
+  shipments: React.PropTypes.array.isRequired,
+  retailers: React.PropTypes.array.isRequired,
+  distributionCenters: React.PropTypes.array.isRequired,
+  weather: React.PropTypes.array.isRequired,
   token: React.PropTypes.string,
+  simulateWeather: React.PropTypes.func.isRequired,
 };
+
+export default Dashboard;
