@@ -22,30 +22,57 @@
   margin-bottom: 1.5rem;
 }
 
-.dc {
-  background-color: $map1Accent;
-  color: $map1Primary;
-}
-.retail {
-  background-color: $map2Accent;
-  color: $map2Primary;
-}
-.shipment {
-  background-color: $map3Accent;
-  color: $map3Primary;
+.hidden {
+  display: none;
 }
 
-.subtitle {
-  color: $primary1Color;
-  font-weight: bold;
-  font-size: 12px;
-  margin-bottom: 1rem;
+.distributionCenter {
+  .title {
+    background-color: $map1Accent;
+    color: $map1Primary;
+  }
+}
+.retailer {
+  .title {
+    background-color: $map2Accent;
+    color: $map2Primary;
+  }
+}
+.shipment {
+  .title {
+    background-color: $map3Accent;
+    color: $map3Primary;
+  }
+}
+
+.storm {
+  .title {
+    background-color: $map3Accent;
+    color: $map3Primary;
+  }
 }
 
 .closeIcon {
   font-size: 18px;
   line-height: 21px;
   cursor: pointer;
+}
+
+
+// ------------------------------------
+// Contents
+// ------------------------------------
+
+.contentContainer {
+  padding: 0 1rem;
+}
+
+.subtitle {
+  color: $primary1Color;
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 0.05rem;
+  margin-top: 1rem;
 }
 
 .header {

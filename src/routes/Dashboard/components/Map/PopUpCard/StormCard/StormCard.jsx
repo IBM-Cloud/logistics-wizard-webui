@@ -1,13 +1,5 @@
 import React from 'react';
-import Paper from 'material-ui/Paper';
 import classes from '../PopUpCard.scss';
-
-
-const styles = {
-  paper: {
-    width: '140',
-  },
-};
 
 const StormCard = (props) => {
   let eventDesc;
@@ -34,19 +26,12 @@ const StormCard = (props) => {
       );
     }
   }
-  const title = props.storm
-    ? 'Storm'
-    : '...';
   return (
-    <Paper zDepth={2} style={styles.paper}>
-      <div className={classes.mainSection}>
-        <h4>{title}</h4>
-        <hr />
-        { eventDesc }
-        { severity }
-        { shipmentRecommendations }
-      </div>
-    </Paper>
+    <div className={classes.mainSection}>
+      { eventDesc }
+      { severity }
+      { shipmentRecommendations }
+    </div>
   );
 };
 

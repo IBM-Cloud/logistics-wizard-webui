@@ -1,15 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
 import RaisedButton from 'material-ui/RaisedButton';
-import MapMarker from '../MapMarker/';
+import { simulateWeather, selectMarker } from 'routes/Dashboard/modules/Dashboard';
+import MapMarker from './MapMarker/';
 // map style from https://snazzymaps.com/style/151/ultra-light-with-labels
 // https://googlemaps.github.io/js-samples/styledmaps/wizard/
 import mapStyle from './Map.style.json';
 import classes from './Map.scss';
-import ShipmentCard from '../PopUpCard/ShipmentCard';
-import RetailerCard from '../PopUpCard/RetailerCard';
-import StormCard from '../PopUpCard/StormCard';
-import DCCard from '../PopUpCard/DCCard';
+import PopUpCard from './PopUpCard';
 
 function createMapOptions(maps) {
   // Available options can be found in
@@ -27,43 +26,9 @@ function createMapOptions(maps) {
   };
 }
 
-const showSelectedInfo = ({ type, data }) => { // eslint-disable-line
-  if (type === 'distributionCenter') {
-    return (
-      <DCCard
-        contact={data.contact.name}
-        id={data.id}
-        address={data.address}
-        shipments={data.shipments}
-      />
-    );
-  }
-  else if (type === 'shipment') {
-    return (
-      <ShipmentCard shipment={data} />
-    );
-  }
-  else if (type === 'retailer') {
-    return (
-      <RetailerCard retailer={data} />
-    );
-  }
-  else if (type === 'storm') {
-    return (
-      <StormCard storm={data} />
-    );
-  }
-  else if (type === 'hidden') {
-    return '';
-  }
-
-  console.error('Invalid info type passed to showSelectedInfo in Map.jsx');
-  return '';
-};
-
 export const Map = (props) => (
   <div className={classes.map}>
-    {showSelectedInfo(props.infoBox)}
+    <PopUpCard />
     <GoogleMap
       bootstrapURLKeys={{ key: __GOOGLE_MAPS_KEY__ }}
       center={props.center}
@@ -124,10 +89,6 @@ export const Map = (props) => (
 
 Map.propTypes = {
   selectMarker: React.PropTypes.func.isRequired,
-  infoBox: React.PropTypes.shape({
-    type: React.PropTypes.string.isRequired,
-    data: React.PropTypes.object.isRequired,
-  }),
   center: React.PropTypes.array,
   zoom: React.PropTypes.number,
   distributionCenters: React.PropTypes.array,
@@ -148,4 +109,20 @@ Map.defaultProps = {
   weather: [],
 };
 
-export default Map;
+// ------------------------------------
+// Connect Component to Redux
+// ------------------------------------
+
+const mapActionCreators = {
+  simulateWeather,
+  selectMarker,
+};
+
+const mapStateToProps = (state) => ({
+  shipments: state.dashboard.shipments,
+  retailers: state.dashboard.retailers,
+  distributionCenters: state.dashboard['distribution-centers'],
+  weather: state.dashboard.weather,
+});
+
+export default connect(mapStateToProps, mapActionCreators)(Map);

@@ -6,7 +6,7 @@ export default (store) => ({
   path: 'dashboard/:guid',
   getComponent(nextState, cb) {
     require.ensure([], (require) => {
-      const Dashboard = require('./containers/DashboardContainer').default;
+      const Dashboard = require('./components/Dashboard').default;
       const reducer = require('./modules/Dashboard').default;
       const sagas = require('./modules/Dashboard').sagas;
 

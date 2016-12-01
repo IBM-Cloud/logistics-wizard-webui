@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { palette } from 'styles/muiTheme';
 import {
   Table,
@@ -8,7 +9,6 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import classes from './ShipmentsTable.scss';
 
 const moment = require('moment');
 
@@ -37,7 +37,9 @@ export const ShipmentsTable = (props) => (
   <Table wrapperStyle={styles.wrapper}>
     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
       <TableRow>
-        <TableHeaderColumn style={styles.meta} colSpan="5">Active Shipments ({props.shipments.length})</TableHeaderColumn>
+        <TableHeaderColumn style={styles.meta} colSpan="5">
+          Active Shipments ({props.shipments.length})
+        </TableHeaderColumn>
       </TableRow>
       <TableRow>
         <TableHeaderColumn style={styles.header}>Shipment #</TableHeaderColumn>
@@ -48,13 +50,15 @@ export const ShipmentsTable = (props) => (
       </TableRow>
     </TableHeader>
     <TableBody displayRowCheckbox={false}>
-      {props.shipments.map((shipment, i) =>
+      {props.shipments.map(shipment =>
         <TableRow key={shipment.id}>
           <TableRowColumn>{shipment.id}</TableRowColumn>
           <TableRowColumn>{shipment.status}</TableRowColumn>
           <TableRowColumn>{shipment.toId}</TableRowColumn>
           <TableRowColumn>{moment(shipment.createdAt).format(timeFormat)}</TableRowColumn>
-          <TableRowColumn>{moment(shipment.estimatedTimeOfArrival).format(timeFormat)}</TableRowColumn>
+          <TableRowColumn>
+            {moment(shipment.estimatedTimeOfArrival).format(timeFormat)}
+          </TableRowColumn>
         </TableRow>
       )}
     </TableBody>
@@ -65,8 +69,12 @@ ShipmentsTable.propTypes = {
   shipments: React.PropTypes.array,
 };
 
-ShipmentsTable.defaultProps = {
-  shipments: [],
-};
+// ------------------------------------
+// Connect Component to Redux
+// ------------------------------------
 
-export default ShipmentsTable;
+const mapStateToProps = (state) => ({
+  shipments: state.dashboard.shipments,
+});
+
+export default connect(mapStateToProps, {})(ShipmentsTable);
