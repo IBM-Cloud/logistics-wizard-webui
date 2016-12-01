@@ -2,7 +2,6 @@ import { call, take, put, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import api from 'services';
 import { getAdminData } from 'routes/Dashboard/modules/Dashboard';
-import { push } from 'react-router-redux';
 
 // ------------------------------------
 // Constants
