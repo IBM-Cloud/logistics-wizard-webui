@@ -7,41 +7,19 @@ import ProgressCard from './ProgressCard';
 import AlertsCard from './AlertsCard';
 import classes from './Dashboard.scss';
 
-export const Dashboard = ({
-  shipments,
-  retailers,
-  distributionCenters,
-  weather,
-  simulateWeather,
-}) => (
+export const Dashboard = () => (
   <div className={classes.wrapper}>
     <div className={classes.pageContainer}>
-      {retailers.length ? <DashboardTitle /> : <i className="fa fa-spinner fa-spin" />}
+      <DashboardTitle />
       <div className={classes.cardSection}>
-        <CompletionCard shipments={shipments} />
-        <ProgressCard shipments={shipments} />
-        <AlertsCard storms={weather} />
+        <CompletionCard />
+        <ProgressCard />
+        <AlertsCard />
       </div>
-      <Map
-        distributionCenters={distributionCenters}
-        shipments={shipments}
-        retailers={retailers}
-        weather={weather}
-        simulateWeather={simulateWeather}
-      />
-      <ShipmentsTable shipments={shipments} />
+      <Map />
+      <ShipmentsTable />
     </div>
   </div>
 );
-
-Dashboard.propTypes = {
-  demoName: React.PropTypes.string,
-  shipments: React.PropTypes.array.isRequired,
-  retailers: React.PropTypes.array.isRequired,
-  distributionCenters: React.PropTypes.array.isRequired,
-  weather: React.PropTypes.array.isRequired,
-  token: React.PropTypes.string,
-  simulateWeather: React.PropTypes.func.isRequired,
-};
 
 export default Dashboard;

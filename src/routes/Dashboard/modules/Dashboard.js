@@ -9,12 +9,21 @@ export const dashboardSelector = state => state.dashboard;
 // ------------------------------------
 export const GET_ADMIN_DATA = 'Dashboard/GET_ADMIN_DATA';
 export const SIMULATE_WEATHER = 'Dashboard/SIMULATE_WEATHER';
+export const SELECT_MARKER = 'Dashboard/SELECT_MARKER';
 export const ADMIN_DATA_RECEIVED = 'Dashboard/ADMIN_DATA_RECEIVED';
 export const WEATHER_DATA_RECEIVED = 'Dashboard/WEATHER_DATA_RECEIVED';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
+export const selectMarker = (type, data) => ({
+  type: SELECT_MARKER,
+  payload: {
+    type,
+    data,
+  },
+});
+
 export const getAdminData = (guid) => ({
   type: GET_ADMIN_DATA,
   guid,
@@ -35,6 +44,7 @@ export const weatherDataReceived = payload => ({
 });
 
 export const actions = {
+  selectMarker,
   getAdminData,
   adminDataReceived,
   weatherDataReceived,
@@ -44,6 +54,10 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
+  [SELECT_MARKER]: (state, action) => ({
+    ...state,
+    infoBox: action.payload,
+  }),
   [ADMIN_DATA_RECEIVED]: (state, action) => ({
     ...state,
     ...action.payload,
@@ -58,6 +72,10 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
+  infoBox: {
+    type: 'hidden',
+    data: {},
+  },
   shipments: [],
   retailers: [],
   'distribution-centers': [],

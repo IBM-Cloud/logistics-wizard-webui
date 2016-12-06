@@ -1,15 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
 import RaisedButton from 'material-ui/RaisedButton';
-import MapMarker from '../MapMarker/';
+import { simulateWeather, selectMarker } from 'routes/Dashboard/modules/Dashboard';
+import MapMarker from './MapMarker/';
 // map style from https://snazzymaps.com/style/151/ultra-light-with-labels
 // https://googlemaps.github.io/js-samples/styledmaps/wizard/
 import mapStyle from './Map.style.json';
 import classes from './Map.scss';
-import ShipmentCard from '../PopUpCard/ShipmentCard';
-import RetailerCard from '../PopUpCard/RetailerCard';
-import StormCard from '../PopUpCard/StormCard';
-import DCCard from '../PopUpCard/DCCard';
+import PopUpCard from './PopUpCard';
 
 function createMapOptions(maps) {
   // Available options can be found in
@@ -27,83 +26,58 @@ function createMapOptions(maps) {
   };
 }
 
-const dc1 = {
-  contact: 'Joseph Smith',
-  id: 1,
-  address: {
-    state: 'Utah',
-    city: 'Salt Lake City',
-    country: 'US',
-    latitude: 40.71,
-    longitude: -111.9,
-  },
-  shipments: [
-    {
-      id: '089124',
-      status: 'In Transit',
-    },
-    {
-      id: '089125',
-      status: 'In Transit',
-    },
-    {
-      id: '089126',
-      status: 'In Transit',
-    },
-  ],
-};
-
-
 export const Map = (props) => (
   <div className={classes.map}>
-    <DCCard contact={dc1.contact} id={dc1.id} address={dc1.address} shipments={dc1.shipments} />
+    <PopUpCard />
     <GoogleMap
-      bootstrapURLKeys={{
-        key: __GOOGLE_MAPS_KEY__,
-      }}
+      bootstrapURLKeys={{ key: __GOOGLE_MAPS_KEY__ }}
       center={props.center}
       zoom={props.zoom}
       options={createMapOptions}
     >
-      {props.distributionCenters.map((dc, i) =>
+      {props.distributionCenters.map(dc =>
         <MapMarker
           type="distributionCenter"
           text={dc.address.city}
           lat={dc.address.latitude}
           lng={dc.address.longitude}
-          key={i}
+          selectMarker={props.selectMarker}
+          data={dc}
+          key={dc.id}
         />
       )}
       {props.shipments
-        // keep only shipments with a current location
         .filter(shipment => (shipment.currentLocation != null))
-        .map((shipment, i) =>
+        .map(shipment =>
           <MapMarker
             type="shipment"
             lat={shipment.currentLocation.latitude}
             lng={shipment.currentLocation.longitude}
-            key={i}
-          >
-            <ShipmentCard shipment={shipment} />
-          </MapMarker>)}
-      {props.retailers.map((retailer, i) =>
+            key={shipment.id}
+            selectMarker={props.selectMarker}
+            data={shipment}
+          />
+        )}
+      {props.retailers.map(retailer =>
         <MapMarker
           type="retailer"
           lat={retailer.address.latitude}
           lng={retailer.address.longitude}
-          key={i}
-        >
-          <RetailerCard retailer={retailer} />
-        </MapMarker>)}
+          key={retailer.id}
+          selectMarker={props.selectMarker}
+          data={retailer}
+        />
+      )}
       {props.weather.map((storm, i) =>
         <MapMarker
           type="storm"
           lat={storm.event.lat}
           lng={storm.event.lon}
           key={i}
-        >
-          <StormCard storm={storm} />
-        </MapMarker>)}
+          selectMarker={props.selectMarker}
+          data={storm}
+        />
+      )}
       <RaisedButton
         label="Simulate Storm"
         onClick={props.simulateWeather}
@@ -114,6 +88,7 @@ export const Map = (props) => (
 );
 
 Map.propTypes = {
+  selectMarker: React.PropTypes.func.isRequired,
   center: React.PropTypes.array,
   zoom: React.PropTypes.number,
   distributionCenters: React.PropTypes.array,
@@ -134,4 +109,20 @@ Map.defaultProps = {
   weather: [],
 };
 
-export default Map;
+// ------------------------------------
+// Connect Component to Redux
+// ------------------------------------
+
+const mapActionCreators = {
+  simulateWeather,
+  selectMarker,
+};
+
+const mapStateToProps = (state) => ({
+  shipments: state.dashboard.shipments,
+  retailers: state.dashboard.retailers,
+  distributionCenters: state.dashboard['distribution-centers'],
+  weather: state.dashboard.weather,
+});
+
+export default connect(mapStateToProps, mapActionCreators)(Map);

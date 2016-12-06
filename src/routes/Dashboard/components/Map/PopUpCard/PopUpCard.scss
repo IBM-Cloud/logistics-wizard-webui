@@ -1,0 +1,99 @@
+@import '~styles/base/colors';
+
+.wrapper {
+  background-color: white;
+  border: 1px solid $borderColor;
+  width: 260px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: $textColor;
+  font-size: 13px;
+  z-index: 9999;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.distributionCenter {
+  .title {
+    background-color: $map1Accent;
+    color: $map1Primary;
+  }
+}
+.retailer {
+  .title {
+    background-color: $map2Accent;
+    color: $map2Primary;
+  }
+}
+.shipment {
+  .title {
+    background-color: $map3Accent;
+    color: $map3Primary;
+  }
+}
+
+.storm {
+  .title {
+    background-color: $map3Accent;
+    color: $map3Primary;
+  }
+}
+
+.closeIcon {
+  font-size: 18px;
+  line-height: 21px;
+  cursor: pointer;
+}
+
+
+// ------------------------------------
+// Contents
+// ------------------------------------
+
+.contentContainer {
+  padding: 0 1rem;
+}
+
+.subtitle {
+  color: $primary1Color;
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 0.05rem;
+  margin-top: 1rem;
+}
+
+.header {
+  padding: 0 1rem;
+}
+
+.headerLine {
+  margin-bottom: 1rem;
+}
+
+.icon {
+  font-size: 16px;
+  margin-right: 1rem;
+  width: 16px;
+}
+
+.tableHeader {
+  border-bottom: 1px solid $borderColor;
+  margin-top: 2rem;
+}
+
+.padLeft {
+  padding-left: 1rem;
+}

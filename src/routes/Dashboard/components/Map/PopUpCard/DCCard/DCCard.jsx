@@ -5,23 +5,20 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import PopUpCard from '../PopUpCard';
 import classes from '../PopUpCard.scss';
 
-const DCCard = ({ id, address, contact, shipments }) => (
-  <PopUpCard id={id || '...'} type={'dc'}>
-    {id ?
-      <div className={classes.header}>
-        <div className={classes.headerLine}>
-          <i className={`fa fa-star ${classes.icon}`} />
-          { `${address.city}, ${address.state}` }
-        </div>
-        <div className={classes.headerLine}>
-          <i className={`fa fa-user ${classes.icon}`} />
-          { contact }
-        </div>
+const DCCard = ({ address, contact, shipments }) => (
+  <div>
+    <div className={classes.header}>
+      <div className={classes.headerLine}>
+        <i className={`fa fa-star ${classes.icon}`} />
+        { `${address.city}, ${address.state}` }
       </div>
-    : '...'}
+      <div className={classes.headerLine}>
+        <i className={`fa fa-user ${classes.icon}`} />
+        { contact }
+      </div>
+    </div>
     {shipments && shipments.length > 0 ?
       <div>
         <div className={classes.tableHeader}>
@@ -42,13 +39,15 @@ const DCCard = ({ id, address, contact, shipments }) => (
           </Table>
         </div>
       </div>
-    : '...'}
-  </PopUpCard>
-  );
+      :
+      <div className={classes.contentContainer}>No Outgoing Shipments</div>
+    }
+  </div>
+);
 
 
 DCCard.propTypes = {
-  id: React.PropTypes.string,
+  id: React.PropTypes.number,
   address: React.PropTypes.shape({
     city: React.PropTypes.string.isRequired,
     state: React.PropTypes.string.isRequired,
