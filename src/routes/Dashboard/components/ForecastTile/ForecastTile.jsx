@@ -29,7 +29,8 @@ const styles = {
   },
 };
 
-class ForecastTile extends React.PureComponent {
+// Use named export for unconnected component (for tests)
+export class ForecastTile extends React.PureComponent {
 
   constructor(props) {
     super(props);
