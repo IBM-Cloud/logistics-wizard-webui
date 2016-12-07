@@ -5,6 +5,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import ForecastTile from '../../../ForecastTile';
 import classes from '../PopUpCard.scss';
 
 const RetailerCard = ({ managerId, address, shipments }) => (
@@ -40,7 +41,15 @@ const RetailerCard = ({ managerId, address, shipments }) => (
         </div>
       </div>
       :
-      <div className={classes.contentContainer}>No Incoming Shipments</div>
+      <div className={classes.contentContainer}>
+
+        <h4>No Incoming Shipments</h4>
+        <br />
+        <div><ForecastTile
+          address={address}
+        /></div>
+      </div>
+
     }
   </div>
 );

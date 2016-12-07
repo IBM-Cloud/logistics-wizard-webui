@@ -78,12 +78,12 @@ export const Map = (props) => (
           data={storm}
         />
       )}
-      <RaisedButton
-        label="Simulate Storm"
-        onClick={props.simulateWeather}
-        className={classes.simulateButton}
-      />
     </GoogleMap>
+    <RaisedButton
+      label="Simulate Storm"
+      onClick={props.simulateWeather}
+      className={classes.simulateButton}
+    />
   </div>
 );
 
