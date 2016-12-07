@@ -1,7 +1,7 @@
 import React from 'react';
 import test from 'ava';
 import { shallow } from 'enzyme';
-import Map from './Map';
+import { Map } from './Map';
 
 const testDistributionCenters = [
   {
@@ -56,19 +56,17 @@ const setup = (someProps) => {
   return { component, props };
 };
 
-test.todo('write tests for dashboard elements once complete.');
 
-// TODO: Need to create a mock store for connect to work.
-// test('(Component) Has no markers by default.', t => {
-//   const { component } = setup({});
-//   t.is(component.find('MapMarker').length, 0);
-// });
+test('(Component) Has no markers by default.', t => {
+  const { component } = setup({});
+  t.is(component.find('MapMarker').length, 0);
+});
 
-// test('(Component) Has 3 markers.', t => {
-//   const { component } = setup({
-//     distributionCenters: testDistributionCenters,
-//     retailers: testRetailers,
-//     shipments: testShipments,
-//   });
-//   t.is(component.find('MapMarker').length, 3);
-// });
+test('(Component) Has 3 markers.', t => {
+  const { component } = setup({
+    distributionCenters: testDistributionCenters,
+    retailers: testRetailers,
+    shipments: testShipments,
+  });
+  t.is(component.find('MapMarker').length, 3);
+});
