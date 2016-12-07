@@ -19,7 +19,7 @@ const setup = () => {
       },
     },
   };
-  const component = shallow(<RetailerCard {...props} />);
+  const component = shallow(<RetailerCard {...props.retailer} />);
 
   return { spies, props, component };
 };
@@ -28,6 +28,6 @@ test.todo('write tests for RetailerCard once complete.');
 test('(Component) Renders with expected elements', t => {
   const { component } = setup();
 
-  t.true(component.is('Paper'),
-    'is wrapped by a Paper');
+  t.true(component.is('div'),
+    'is wrapped by a div');
 });

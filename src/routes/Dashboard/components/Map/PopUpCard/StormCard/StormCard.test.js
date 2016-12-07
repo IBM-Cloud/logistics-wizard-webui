@@ -86,7 +86,7 @@ const setup = () => {
       ],
     },
   };
-  const component = shallow(<StormCard {...props} />);
+  const component = shallow(<StormCard storm={props.storm} />);
 
   return { spies, props, component };
 };
@@ -95,6 +95,6 @@ test.todo('write tests for StormCard once complete.');
 test('(Component) Renders with expected elements', t => {
   const { component } = setup();
 
-  t.true(component.is('Paper'),
-    'is wrapped by a Paper');
+  t.true(component.is('div'),
+    'is wrapped by a div');
 });

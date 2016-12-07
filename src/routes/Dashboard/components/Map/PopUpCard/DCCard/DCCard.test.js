@@ -21,7 +21,7 @@ const setup = () => {
       },
     },
   };
-  const component = shallow(<DCCard {...props} />);
+  const component = shallow(<DCCard {...props.dc} />);
 
   return { spies, props, component };
 };
@@ -29,7 +29,6 @@ const setup = () => {
 test.todo('write tests for DCCard once complete.');
 test('(Component) Renders with expected elements', t => {
   const { component } = setup();
-
-  t.true(component.is('PopUpCard'),
-    'is wrapped by a PopUpCard');
+  t.true(component.is('div'),
+    'is wrapped by a div');
 });

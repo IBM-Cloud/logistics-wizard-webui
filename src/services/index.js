@@ -13,7 +13,10 @@ export const callApi = (endpoint, {
   })
   .then(response => response.json().then(json => ({ json, response })))
   .then(({ json, response }) => {
-    if (!response.ok) throw json;
+    if (!response.ok) {
+      console.log(`Error calling URL : ${apiUrl}`);
+      throw json;
+    }
 
     return json;
   });
