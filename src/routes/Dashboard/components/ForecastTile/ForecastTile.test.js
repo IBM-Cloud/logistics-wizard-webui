@@ -15,7 +15,7 @@ const setup = () => {
       longitude: -97.74,
     },
   };
-  const component = shallow(<ForecastTile {...props.address} />);
+  const component = shallow(<ForecastTile {...props} />);
 
   return { spies, props, component };
 };
