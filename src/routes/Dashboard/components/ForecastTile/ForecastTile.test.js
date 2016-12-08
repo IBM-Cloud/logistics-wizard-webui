@@ -7,9 +7,15 @@ const setup = () => {
   const spies = {
   };
   const props = {
-
+    address: {
+      city: 'Austin',
+      state: 'Texas',
+      country: 'US',
+      latitude: 30.22,
+      longitude: -97.74,
+    },
   };
-  const component = shallow(<ForecastTile {...props} />);
+  const component = shallow(<ForecastTile {...props.address} />);
 
   return { spies, props, component };
 };
