@@ -32,26 +32,24 @@ const styles = {
 // Use named export for unconnected component (for tests)
 export class ForecastTile extends React.PureComponent {
 
-  constructor(props) {
-    super(props);
-    this.state = { forecasts: [] };
-  }
   componentWillMount = () => {
     this.getWeatherForecast();
   }
-  componentWillReceiveProps = () => {
+  componentDidUpdate = () => {
     this.getWeatherForecast();
   }
   getWeatherForecast = () => {
-    if (this.props.address) {
+    if (this.props.address && !this.props.address.weather) {
       const address = this.props.address;
       api.getWeatherObservations(this.props.token, address.longitude, address.latitude)
       .then((json) => {
-        this.setState({ forecasts: json.forecasts });
+        console.log('Got weather for ', address);
+        console.log('json: ', json);
+        this.props.address.weather = json.forecasts;
+        if (this.props.address.weather) this.forceUpdate();
       }
       );
     }
-    return [];
   }
 
 
@@ -65,10 +63,12 @@ export class ForecastTile extends React.PureComponent {
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false} >
-          {this.state.forecasts.map((forecast, i) =>
-            <TableRow key={forecast.num}>
+          { this.props.address.weather && this.props.address.weather.map((forecast, i) =>
+            <TableRow key={i}>
               <TableRowColumn style={styles.column}>{forecast.dow}</TableRowColumn>
-              <TableRowColumn style={styles.column}>{forecast.day.phrase_22char}</TableRowColumn>
+              <TableRowColumn style={styles.column}>
+                {forecast.day ? forecast.day.phrase_22char : forecast.night.phrase_22char}
+              </TableRowColumn>
             </TableRow>
         )}
         </TableBody>
