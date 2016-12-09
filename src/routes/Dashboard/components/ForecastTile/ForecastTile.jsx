@@ -38,7 +38,11 @@ export class ForecastTile extends React.PureComponent {
   componentDidUpdate = () => {
     this.getWeatherForecast();
   }
+
+  // TOOD: Use redux
   getWeatherForecast = () => {
+    if (!this.props.token) return;
+
     if (this.props.address && !this.props.address.weather) {
       const address = this.props.address;
       api.getWeatherObservations(this.props.token, address.longitude, address.latitude)
