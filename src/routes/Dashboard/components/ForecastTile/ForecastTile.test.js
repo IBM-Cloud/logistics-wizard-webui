@@ -20,7 +20,6 @@ const setup = () => {
   return { spies, props, component };
 };
 
-test.todo('write tests for ForecastTile once complete.');
 test('(Component) Renders with expected elements', t => {
   const { component } = setup();
 
