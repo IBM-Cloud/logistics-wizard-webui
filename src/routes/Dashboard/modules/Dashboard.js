@@ -8,11 +8,22 @@ export const dashboardSelector = state => state.dashboard;
 // Constants
 // ------------------------------------
 export const GET_ADMIN_DATA = 'Dashboard/GET_ADMIN_DATA';
+export const SIMULATE_WEATHER = 'Dashboard/SIMULATE_WEATHER';
+export const SELECT_MARKER = 'Dashboard/SELECT_MARKER';
 export const ADMIN_DATA_RECEIVED = 'Dashboard/ADMIN_DATA_RECEIVED';
+export const WEATHER_DATA_RECEIVED = 'Dashboard/WEATHER_DATA_RECEIVED';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
+export const selectMarker = (type, data) => ({
+  type: SELECT_MARKER,
+  payload: {
+    type,
+    data,
+  },
+});
+
 export const getAdminData = (guid) => ({
   type: GET_ADMIN_DATA,
   guid,
@@ -23,18 +34,37 @@ export const adminDataReceived = (payload) => ({
   payload,
 });
 
+export const simulateWeather = () => ({
+  type: SIMULATE_WEATHER,
+});
+
+export const weatherDataReceived = payload => ({
+  type: WEATHER_DATA_RECEIVED,
+  payload,
+});
+
 export const actions = {
+  selectMarker,
   getAdminData,
   adminDataReceived,
+  weatherDataReceived,
 };
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
+  [SELECT_MARKER]: (state, action) => ({
+    ...state,
+    infoBox: action.payload,
+  }),
   [ADMIN_DATA_RECEIVED]: (state, action) => ({
     ...state,
     ...action.payload,
+  }),
+  [WEATHER_DATA_RECEIVED]: (state, action) => ({
+    ...state,
+    weather: [action.payload],
   }),
 };
 
@@ -42,7 +72,16 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
+  infoBox: {
+    type: 'hidden',
+    data: {},
+  },
+  shipments: [],
+  retailers: [],
+  'distribution-centers': [],
+  weather: [],
 };
+
 export const dashboardReducer = (state = initialState, action) => {
   const handler = ACTION_HANDLERS[action.type];
 
@@ -64,12 +103,30 @@ export function *watchGetAdminData() {
       yield put(adminDataReceived(adminData));
     }
     catch (error) {
-      // console.log(error);
+      console.log('Failed to retrieve dashboard data');
+      console.error(error);
       // yield put(getAdminDataFilure(error));
+    }
+  }
+}
+
+export function *watchSimulateWeather() {
+  while (true) {
+    yield take(SIMULATE_WEATHER);
+    const demoState = yield select(demoSelector);
+
+    try {
+      const weatherData = yield call(api.simulateWeather, demoState.token);
+      yield put(weatherDataReceived(weatherData));
+    }
+    catch (error) {
+      console.log('Failed to retrieve weather data');
+      console.error(error);
     }
   }
 }
 
 export const sagas = [
   watchGetAdminData,
+  watchSimulateWeather,
 ];

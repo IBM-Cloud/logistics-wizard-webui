@@ -1,2 +1,18 @@
+@import '~styles/base/colors';
+
 .map {
+  width: 100%;
+  height: 600px;
+  border-top: 2px solid $borderColor;
+  border-bottom: 2px solid $borderColor;
+  border-left: 1px solid $borderColor;
+  border-right: 1px solid $borderColor;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.simulateButton {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
 }

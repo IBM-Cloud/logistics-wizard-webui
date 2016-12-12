@@ -1,29 +1,39 @@
+@import "~styles/base/colors";
+
 .iconSection {
-  background: rgb(15,148,167);
+  background: $primary1Color;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
 
   padding: 0;
-}
 
-.iconContainer {
-  width: 20%;
-  margin: 0 5%;
-  text-align: center;
+  .iconContainer {
+    margin: 0 5%;
+    text-align: center;
 
-  & h4 {
-    color: rgb(255, 255, 255);
-    text-transform: uppercase;
+    & h4 {
+      color: $alternateTextColor;
+      text-transform: uppercase;
+    }
+
+    & p {
+      color: $alternateTextColor;
+      font-weight: 300;
+    }
   }
 
-  & p {
-    color: rgb(255, 255, 255);
-    font-weight: 300;
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+
+    .iconContainer {
+      width: 20%;
+    }
   }
 }
+
 
 .icon {
   min-height: 151px;

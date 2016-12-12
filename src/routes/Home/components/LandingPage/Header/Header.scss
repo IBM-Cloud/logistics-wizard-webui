@@ -1,3 +1,5 @@
+@import "~styles/base/colors";
+
 .header {
   width: 100%;
   text-align: center;
@@ -7,8 +9,9 @@
   background-color: rgb(43, 51, 61);
 
   & h1 {
+    padding: 0 2rem;
     position: relative;
-    color: rgb(255, 255, 255);
+    color: $alternateTextColor;
     font-size: 2rem;
     font-weight: 300;
     margin-top: 9rem;
@@ -21,7 +24,7 @@
 }
 
 .title {
-  color: rgb(255, 255, 255);
+  color: $alternateTextColor;
   font-weight: 600;
 }
 
@@ -30,31 +33,16 @@
   z-index: 20;
 
   .text {
-    color: rgb(255, 255, 255);
+    color: $alternateTextColor;
     font-size: 0.8rem;
     padding-top: 0.5rem;
   }
 }
 
 .github {
-  color: rgb(184, 222, 228);
+  color: $primary3Color;
 
   &:hover {
-    color: rgb(255, 255, 255);
+    color: $alternateTextColor;
   }
-}
-
-.background {
-  position: absolute;
-  min-height: 500px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-}
-
-.map {
-  max-width: 100%;
-  object-fit: cover;
 }

@@ -1,10 +1,13 @@
 import { call, take, put, select } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import api from 'services';
 import { getAdminData } from 'routes/Dashboard/modules/Dashboard';
 
 // ------------------------------------
 // Constants
 // ------------------------------------
+export const CREATE_DEMO = 'demos/CREATE_DEMO';
+export const CREATE_DEMO_FAILURE = 'demos/CREATE_DEMO_FAILURE';
 export const GET_DEMO_SESSION = 'demos/GET_DEMO_SESSION';
 export const GET_DEMO_SUCCESS = 'demos/GET_DEMO_SUCCESS';
 export const LOGIN = 'demos/LOGIN';
@@ -15,6 +18,16 @@ export const demoSelector = state => state.demoSession;
 // ------------------------------------
 // Actions
 // ------------------------------------
+export const createDemo = (guid) => ({
+  type: CREATE_DEMO,
+  payload: guid,
+});
+
+export const createDemoFailure = (value) => ({
+  type: CREATE_DEMO_FAILURE,
+  payload: value,
+});
+
 export const getDemoSession = (guid) => ({
   type: GET_DEMO_SESSION,
   guid,
@@ -43,6 +56,7 @@ export const loginSuccess = ({ token, userid }) => ({
 });
 
 export const actions = {
+  createDemoFailure,
   getDemoSuccess,
   loginSuccess,
 };
@@ -71,6 +85,10 @@ const mapUserData = (users, retailers) =>
   });
 
 const ACTION_HANDLERS = {
+  [CREATE_DEMO_FAILURE]: (state, action) => ({
+    ...state,
+    error: action.payload.message,
+  }),
   [GET_DEMO_SUCCESS]: (state, { demo, retailers }) => ({
     ...state,
     name: demo.name,
@@ -102,6 +120,25 @@ export default demosReducer;
 // ------------------------------------
 // Sagas
 // ------------------------------------
+export function *watchCreateDemo() {
+  while (true) {
+    const { payload } = yield take(CREATE_DEMO);
+
+    if (payload) {
+      yield put(push(`/dashboard/${payload}`));
+    }
+    else {
+      try {
+        const demoSession = yield call(api.createDemo);
+        yield put(push(`/dashboard/${demoSession.guid}`));
+      }
+      catch (error) {
+        yield put(createDemoFailure(error));
+      }
+    }
+  }
+}
+
 export function *watchGetDemoSession() {
   while (true) {
     const { guid } = yield take(GET_DEMO_SESSION);
@@ -120,6 +157,8 @@ export function *watchGetDemoSession() {
       }
       catch (error) {
         console.log('Get Demo Failure: ', error);
+        window.localStorage.removeItem('savedGuid');
+        yield put(push('/'));
         // yield put(getDemoFailure(error));
       }
     }
@@ -143,6 +182,7 @@ export function *watchLogin() {
 }
 
 export const sagas = [
+  watchCreateDemo,
   watchGetDemoSession,
   watchLogin,
 ];

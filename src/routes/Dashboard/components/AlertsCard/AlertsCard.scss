@@ -1,0 +1,28 @@
+@import '~styles/base/colors';
+
+.wrapper {
+  border: 1px solid $borderColor;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.header {
+  font-size: 1rem;
+  font-weight: 300;
+  padding: 0.5rem 1rem;
+  color: $textColor;
+  border-bottom: 1px solid $borderColor;
+}
+
+.content {
+  color: $textColor;
+  font-size: 0.875rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}

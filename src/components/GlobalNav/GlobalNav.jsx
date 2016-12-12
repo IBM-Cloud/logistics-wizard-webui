@@ -8,7 +8,7 @@ import classes from './GlobalNav.scss';
 
 const styles = {
   separator: {
-    margin: '0px 0.75rem 0px 2rem',
+    margin: '0px 0.75rem 0px 1rem',
   },
 };
 
