@@ -14,7 +14,6 @@
 }
 
 .title {
-  font-weight: bold;
   font-size: 14px;
   padding: 0.5rem 1rem;
   display: flex;
@@ -70,11 +69,19 @@
 .subtitle {
   color: $primary1Color;
   font-weight: bold;
-  font-size: 12px;
-  margin-bottom: 0.05rem;
-  margin-top: 1rem;
+  font-size: 14px;
+  margin-bottom: .5rem;
 }
 
+h2 {
+  color: $primary1Color;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+small {
+  color: $primary1Color;
+}
 .header {
   padding: 0 1rem;
 }
@@ -85,6 +92,7 @@
 
 .icon {
   font-size: 16px;
+  font-weight: normal;
   margin-right: 1rem;
   width: 16px;
 }
@@ -96,4 +104,44 @@
 
 .padLeft {
   padding-left: 1rem;
+}
+
+.iconTitleContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
+
+.shipmentDialog {
+  color: $primary1Color;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.shipmentTitle {
+  border: 1px solid $borderColor;
+  border-bottom: none;
+  padding: .5rem;
+}
+
+.shipmentDialogActionContainer {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.shipmentDialogAction {
+  border: 1px solid $borderColor;
+  width:100%;
+}
+
+.weatherIcon {
+  width: 32px;
+  margin-top:10px;
+  margin-right:10px;
 }
