@@ -67,14 +67,15 @@ export class ForecastTile extends React.PureComponent {
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false} >
-          { this.props.address.weather && this.props.address.weather.map((forecast, i) =>
+          { this.props.address.weather ? this.props.address.weather.slice(0, 5).map((forecast, i) =>
             <TableRow key={i}>
               <TableRowColumn style={styles.column}>{forecast.dow}</TableRowColumn>
               <TableRowColumn style={styles.column}>
                 {forecast.day ? forecast.day.phrase_22char : forecast.night.phrase_22char}
               </TableRowColumn>
             </TableRow>
-        )}
+        ) :
+            <div>Please wait...</div>}
         </TableBody>
       </Table>
 
