@@ -48,7 +48,7 @@ const formatTitle = type => {
     distributionCenter: 'Distribution Center',
     retailer: 'Retail Location',
     shipment: 'Shipment',
-    storm: 'Weather Event',
+    storm: 'Weather Alert',
   };
 
   return titles[type] || '';
