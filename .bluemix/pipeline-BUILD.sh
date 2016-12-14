@@ -23,3 +23,7 @@ case "${REGION_ID}" in
 esac
 export CONTROLLER_SERVICE=https://$CONTROLLER_SERVICE_APP_NAME$domain
 npm run deploy:prod
+
+# copy deploy build script to dist
+mkdir dist/.bluemix
+cp .bluemix/pipeline-DEPLOY.sh dist/.bluemix
