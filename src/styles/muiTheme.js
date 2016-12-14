@@ -2,6 +2,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import colors from './base/_colors.scss';
 
 export const palette = {
+  navColor: colors.navColor,
   primary1Color: colors.primary1Color,
   primary2Color: colors.primary2Color,
   primary3Color: colors.primary3Color,
@@ -28,7 +29,7 @@ const muiTheme = getMuiTheme({
   toolbar: {
     titleFontSize: '1rem',
     separatorColor: palette.primary3Color,
-    backgroundColor: palette.primary1Color,
+    backgroundColor: palette.navColor,
     iconColor: palette.alternateTextColor,
   },
   tableHeader: {

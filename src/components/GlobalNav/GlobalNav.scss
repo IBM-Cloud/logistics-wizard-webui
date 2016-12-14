@@ -3,11 +3,13 @@
 .title {
   padding-left: 2rem;
   color: $alternateTextColor;
+  font-size: 8rem;
 }
 
 .github {
-  font-size: 1.9rem;
+  font-size: 1.98rem;
   color: $primary3Color;
+  margin-top: -2px;
 
   &:hover {
     color: $alternateTextColor;
