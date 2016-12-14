@@ -11,7 +11,7 @@ const StormCard = ({ storm }) => {
   return (
     <div className={classes.contentContainer}>
       <div className={classes.iconTitleContainer}>
-        <div className={classes.subtitle}>
+        <div>
           <img className={classes.weatherIcon} role="presentation" src="../storm.png" />
         </div>
         <div>

@@ -20,14 +20,17 @@ const ShipmentCard = (props) => {
         Status
       </div>
       <div>{status}</div>
-
-      <div className={classes.subtitle}>
-        Current Location
-      </div>
-      <div>{`
-        ${currentLocation.city},
-        ${currentLocation.state}
-      `}</div>
+      {currentLocation &&
+        <div>
+          <div className={classes.subtitle}>
+            Current Location
+          </div>
+          <div>{`
+            ${currentLocation.city},
+            ${currentLocation.state}
+          `}</div>
+        </div>
+        }
 
       <div className={classes.subtitle}>
         Estimated Time of Arrival
