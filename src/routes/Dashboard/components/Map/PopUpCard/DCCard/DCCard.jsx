@@ -40,7 +40,7 @@ const DCCard = ({ address, contact, shipments }) => (
         </div>
       </div>
       :
-      <div className={classes.contentContainer}>No Outgoing Shipments</div>
+      <div className={classes.contentContainer}><h4>No Outgoing Shipments</h4></div>
     }
   </div>
 );

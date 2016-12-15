@@ -10,7 +10,7 @@ import classes from './Dashboard.scss';
 export const Dashboard = () => (
   <div className={classes.wrapper}>
     <div className={classes.pageContainer}>
-      <DashboardTitle />
+      {/* <DashboardTitle /> */}
       <div className={classes.cardSection}>
         <CompletionCard />
         <ProgressCard />

@@ -64,6 +64,7 @@ export class ShipmentsTable extends React.PureComponent {
           {props.shipments.map(shipment =>
             <TableRow
               key={shipment.id}
+              style={{ padding: '40px' }}
             >
               <TableRowColumn>{shipment.id}</TableRowColumn>
               <TableRowColumn>{shipment.status}</TableRowColumn>
