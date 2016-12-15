@@ -41,6 +41,7 @@ export class Header extends React.PureComponent {
         </Toolbar>
 
         <h1>Let your global supply chain do the THINKing,<br /> so you don't have to.</h1>
+        <br />
         <GhostButton
           label="View Logistics Wizard in Action"
           primary={false}

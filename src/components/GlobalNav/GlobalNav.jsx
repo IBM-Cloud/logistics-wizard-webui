@@ -24,14 +24,15 @@ export const GlobalNav = () => (
       <ToolbarGroup>
         <RoleSwitcher />
         <ToolbarSeparator style={styles.separator} />
-        <a href="https://github.com/IBM-Bluemix/logistics-wizard" target="_blank">
-          <IconButton >
+        <IconButton >
+          <a href="https://github.com/IBM-Bluemix/logistics-wizard" target="_blank">
             <Icon
               name="github"
               className={classes.github}
             />
-          </IconButton>
-        </a>
+          </a>
+        </IconButton>
+
       </ToolbarGroup>
     </Toolbar>
   </div>
