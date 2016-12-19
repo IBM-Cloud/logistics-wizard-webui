@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import classes from './AlertsCard.scss';
 
 export const AlertsCard = ({ weather }) => (
-  <div className={classes.wrapper}>
-    <div className={classes.header}>Alerts Log</div>
+  <div className={weather.length > 0 ? classes.wrapper : classes.hidden}>
     <div className={classes.content}>
-      {weather.length > 0 ? `${weather.length} storm(s) detected!` : 'No Alerts Found' }
+      <div>{weather.length} storm(s) detected!</div>
+      <i className={`fa fa-times-circle-o ${classes.closeIcon}`} />
     </div>
   </div>
 );

@@ -10,14 +10,21 @@ const styles = {
   separator: {
     margin: '0px 0.75rem 0px 1rem',
   },
+  toolbarTitle: {
+    fontSize: '.8rem',
+    fontWeight: '600',
+  },
+  toolbar: {
+    height: '42px',
+  },
 };
 
 export const GlobalNav = () => (
   <div className={classes.globalNav}>
-    <Toolbar>
+    <Toolbar style={styles.toolbar}>
       <ToolbarGroup firstChild>
         <Link to="/">
-          <ToolbarTitle text="Logistics Wizard" className={classes.title} />
+          <ToolbarTitle text="Logistics Wizard" className={classes.title} style={styles.toolbarTitle} />
         </Link>
       </ToolbarGroup>
 

@@ -7,8 +7,8 @@ import RoleItem from './RoleItem';
 import LoadingSpinner from 'components/LoadingSpinner';
 
 const iconStyles = {
-  width: '2rem',
-  height: '2rem',
+  width: '1.7rem',
+  height: '1.7rem',
 };
 
 const AccountButton = () => (
@@ -35,7 +35,7 @@ export const RoleSwitcher = ({ users, login, createUser }) => (
     ))}
     <RoleItem roleAction={createUser} />
   </IconMenu>
-  : <div><LoadingSpinner color={palette.primary3Color}/></div>
+  : <div><LoadingSpinner color={palette.primary3Color} /></div>
 );
 
 RoleSwitcher.propTypes = {

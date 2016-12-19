@@ -90,7 +90,6 @@ ShipmentsTable.propTypes = {
 // ------------------------------------
 // Connect Component to Redux
 // ------------------------------------
-
 const mapActionCreators = {
   selectMarker,
 };

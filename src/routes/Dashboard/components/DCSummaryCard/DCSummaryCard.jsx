@@ -2,22 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import cardClasses from '../Dashboard.scss';
 
-export const CompletionCard = (props) => (
+export const DCSummaryCard = (props) => (
   <div className={cardClasses.shipmentsWrapper}>
     <div className={cardClasses.shipmentsHeader}>
-      <div className={cardClasses.shipmentsSubtitle}><i className="fa fa-truck" />&nbsp;&nbsp;Shipments Completed</div>
+      <div className={cardClasses.shipmentsSubtitle}>
+        <i className="fa fa-star" />
+        &nbsp;&nbsp;Distribution Centers
+      </div>
       <div className={cardClasses.shipmentsAmount}>
-        {props.shipments.filter(
-          shipment => (shipment.status === 'DELIVERED')
-        )
-        .length}
+        {props.dcs.length}
       </div>
     </div>
   </div>
 );
 
-CompletionCard.propTypes = {
-  shipments: React.PropTypes.array,
+DCSummaryCard.propTypes = {
+  dcs: React.PropTypes.array,
 };
 
 // ------------------------------------
@@ -25,7 +25,7 @@ CompletionCard.propTypes = {
 // ------------------------------------
 
 const mapStateToProps = (state) => ({
-  shipments: state.dashboard.shipments,
+  dcs: state.dashboard['distribution-centers'],
 });
 
-export default connect(mapStateToProps, {})(CompletionCard);
+export default connect(mapStateToProps, {})(DCSummaryCard);

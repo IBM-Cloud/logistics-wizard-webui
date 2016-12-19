@@ -21,7 +21,7 @@ function createMapOptions(maps) {
     mapTypeControlOptions: {
       position: maps.ControlPosition.TOP_RIGHT,
     },
-    mapTypeControl: true,
+    mapTypeControl: false,
     styles: mapStyle,
   };
 }

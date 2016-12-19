@@ -15,36 +15,36 @@
 .cardSection {
   display: flex;
   justify-content: space-between;
-  padding-top: .4rem;
-  padding-bottom: .4rem;
-  max-height: 140px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  max-height: 120px;
 }
 
 .shipmentsWrapper {
   border: 1px solid $borderColor;
+  border-left: 2px solid $accent1Color;
   background: white;
-  padding: 20px;
+  padding: 8px;
   flex: 1;
-  margin-right: 1.5rem;
+  margin-right: 1rem;
 }
 
 .shipmentsHeader {
-  border-bottom: 1px solid $borderColor;
   padding-bottom: .3rem;
 }
 
 .shipmentsAmount {
-  font-size: 1.5rem;
+  font-size: 2.6rem;
   color: $accent1Color;
-  text-align: center;
   font-weight: 300;
+  padding-left: 1.5rem;
+  margin-top: -.3rem;
 }
 
 .shipmentsSubtitle {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   color: $primary1Color;
-  text-align: center;
 }
 
 .shipmentsBottom {
