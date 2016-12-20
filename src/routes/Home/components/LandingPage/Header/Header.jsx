@@ -45,6 +45,7 @@ export class Header extends React.PureComponent {
         <GhostButton
           label="View Logistics Wizard in Action"
           primary={false}
+          id="viewInActionButton"
           onTouchTap={this.createDemo}
         />
       </div>
