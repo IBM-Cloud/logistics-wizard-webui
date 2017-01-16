@@ -12,6 +12,8 @@ export const SIMULATE_WEATHER = 'Dashboard/SIMULATE_WEATHER';
 export const SELECT_MARKER = 'Dashboard/SELECT_MARKER';
 export const ADMIN_DATA_RECEIVED = 'Dashboard/ADMIN_DATA_RECEIVED';
 export const WEATHER_DATA_RECEIVED = 'Dashboard/WEATHER_DATA_RECEIVED';
+export const WEATHER_OBSERVATIONS = 'Dashboard/WEATHER_OBSERVATIONS';
+export const WEATHER_OBSERVATIONS_RECEIVED = 'Dashboard/WEATHER_OBSERVATIONS_RECEIVED';
 
 // ------------------------------------
 // Actions
@@ -43,6 +45,17 @@ export const weatherDataReceived = payload => ({
   payload,
 });
 
+export const getWeatherObservations = (longitude, latitude) => ({
+  type: WEATHER_OBSERVATIONS,
+  longitude,
+  latitude,
+});
+
+export const weatherObservationsReceived = payload => ({
+  type: WEATHER_OBSERVATIONS_RECEIVED,
+  payload,
+});
+
 export const actions = {
   selectMarker,
   getAdminData,
@@ -66,6 +79,21 @@ const ACTION_HANDLERS = {
     ...state,
     weather: [action.payload],
   }),
+  [WEATHER_OBSERVATIONS_RECEIVED]: (state, action) => {
+    return {
+      ...state,
+      infoBox: {
+        ...state.infoBox,
+        data: {
+          ...state.infoBox.data,
+          currentLocation: {
+            ...state.infoBox.data.currentLocation,
+            weather: action.payload.observations,
+          },
+        },
+      },
+    };
+  },
 };
 
 // ------------------------------------
@@ -126,7 +154,29 @@ export function *watchSimulateWeather() {
   }
 }
 
+export function *watchWeatherObservations() {
+  while (true) {
+    const { longitude, latitude } = yield take(WEATHER_OBSERVATIONS);
+    const demoState = yield select(demoSelector);
+
+    try {
+      const observations = yield call(api.getWeatherObservations, demoState.token,
+        longitude, latitude);
+      yield put(weatherObservationsReceived({
+        longitude,
+        latitude,
+        observations,
+      }));
+    }
+    catch (error) {
+      console.log('Failed to get observations');
+      console.error(error);
+    }
+  }
+}
+
 export const sagas = [
   watchGetAdminData,
   watchSimulateWeather,
+  watchWeatherObservations,
 ];
