@@ -80,19 +80,38 @@ const ACTION_HANDLERS = {
     weather: [action.payload],
   }),
   [WEATHER_OBSERVATIONS_RECEIVED]: (state, action) => {
-    return {
-      ...state,
-      infoBox: {
-        ...state.infoBox,
-        data: {
-          ...state.infoBox.data,
-          currentLocation: {
-            ...state.infoBox.data.currentLocation,
-            weather: action.payload.observations,
+    if (state.infoBox.type === 'shipment') {
+      return {
+        ...state,
+        infoBox: {
+          ...state.infoBox,
+          data: {
+            ...state.infoBox.data,
+            currentLocation: {
+              ...state.infoBox.data.currentLocation,
+              weather: action.payload.observations,
+            },
           },
         },
-      },
-    };
+      };
+    }
+    else if (state.infoBox.type === 'retailer') {
+      return {
+        ...state,
+        infoBox: {
+          ...state.infoBox,
+          data: {
+            ...state.infoBox.data,
+            address: {
+              ...state.infoBox.data.address,
+              weather: action.payload.observations,
+            },
+          },
+        },
+      };
+    }
+
+    return state;
   },
 };
 

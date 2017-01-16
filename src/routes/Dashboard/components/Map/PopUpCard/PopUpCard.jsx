@@ -24,10 +24,7 @@ const showSelectedInfo = ({ type, data }) => { // eslint-disable-line
   }
   else if (type === 'retailer') {
     return (
-      <RetailerCard
-        managerId={data.managerId}
-        address={data.address}
-      />
+      <RetailerCard retailer={data} />
     );
   }
   else if (type === 'storm') {

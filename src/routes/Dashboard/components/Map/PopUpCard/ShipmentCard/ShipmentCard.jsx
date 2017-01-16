@@ -73,7 +73,6 @@ export class ShipmentCard extends React.PureComponent {
 }
 
 ShipmentCard.propTypes = {
-  token: React.PropTypes.string.isRequired,
   shipment: React.PropTypes.object.isRequired,
   retrieveWeatherObservations: React.PropTypes.func.isRequired,
 };
@@ -83,7 +82,6 @@ const mapActionCreators = {
 };
 
 const mapStateToProps = (state) => ({
-  token: state.demoSession.token,
   shipment: state.dashboard.infoBox.data,
 });
 
