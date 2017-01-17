@@ -72,7 +72,7 @@ export class ShipmentCard extends React.PureComponent {
             </div>
             <div>
               {currentLocation.weather ?
-               currentLocation.weather.observation.wx_phrase :
+               `${currentLocation.weather.observation.temp}° | ${currentLocation.weather.observation.wx_phrase}` :
                (<div style={{ textAlign: 'center' }}><LoadingSpinner size={60} /></div>)}
             </div>
           </div>
