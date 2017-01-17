@@ -9,11 +9,15 @@ import DCCard from './DCCard';
 
 const showSelectedInfo = (dashboard) => { // eslint-disable-line
   if (dashboard.infoBox.type === 'distributionCenter') {
+    const selectedDc = dashboard['distribution-centers']
+      .find(dc => dc.id === dashboard.infoBox.data.id);
+    const shipments = dashboard.shipments
+      .filter(shipment => shipment.fromId === selectedDc.id);
     return (
       <DCCard
-        contact={data.contact.name}
-        address={data.address}
-        shipments={data.shipments}
+        contact={selectedDc.contact.name}
+        address={selectedDc.address}
+        shipments={shipments}
       />
     );
   }
