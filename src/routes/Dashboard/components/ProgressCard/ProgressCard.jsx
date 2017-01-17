@@ -5,7 +5,7 @@ import cardClasses from '../Dashboard.scss';
 export const ProgressCard = (props) => (
   <div className={cardClasses.shipmentsWrapper}>
     <div className={cardClasses.shipmentsHeader}>
-      <div className={cardClasses.shipmentsSubtitle}><i className="fa fa-truck" />&nbsp;&nbsp;Shipments Completed</div>
+      <div className={cardClasses.shipmentsSubtitle}><i className="fa fa-truck" />&nbsp;&nbsp;Active Shipments</div>
       <div className={cardClasses.shipmentsAmount}>
         {props.shipments.filter(
           shipment => (shipment.status !== 'DELIVERED' && shipment.status !== 'NEW')
