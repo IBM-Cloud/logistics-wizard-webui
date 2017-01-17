@@ -23,6 +23,8 @@ export class RetailerCard extends React.PureComponent {
   getWeatherForecast = () => {
     if (!this.props.retailer.address.weather) {
       this.props.retrieveWeatherObservations(
+        'retailer',
+        this.props.retailer.id,
         this.props.retailer.address.longitude,
         this.props.retailer.address.latitude);
     }
@@ -73,7 +75,7 @@ export class RetailerCard extends React.PureComponent {
             <h4>No Incoming Shipments</h4>
             <br />
             <div><ForecastTile
-              address={address}
+              weather={address.weather}
             /></div>
           </div>
 
@@ -92,8 +94,4 @@ const mapActionCreators = {
   retrieveWeatherObservations: getWeatherObservations,
 };
 
-const mapStateToProps = (state) => ({
-  shipment: state.dashboard.infoBox.data,
-});
-
-export default connect(mapStateToProps, mapActionCreators)(RetailerCard);
+export default connect(null, mapActionCreators)(RetailerCard);

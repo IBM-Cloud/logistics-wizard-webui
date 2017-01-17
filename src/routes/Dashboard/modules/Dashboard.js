@@ -45,8 +45,10 @@ export const weatherDataReceived = payload => ({
   payload,
 });
 
-export const getWeatherObservations = (longitude, latitude) => ({
+export const getWeatherObservations = (locationType, locationId, longitude, latitude) => ({
   type: WEATHER_OBSERVATIONS,
+  locationType,
+  locationId,
   longitude,
   latitude,
 });
@@ -80,34 +82,44 @@ const ACTION_HANDLERS = {
     weather: [action.payload],
   }),
   [WEATHER_OBSERVATIONS_RECEIVED]: (state, action) => {
-    if (state.infoBox.type === 'shipment') {
+    // payload.locationType
+    // payload.locationId
+    // payload.longitude
+    // payload.latitude
+    // payload.observations
+    console.log('Received weather for', action.payload);
+    if (action.payload.locationType === 'shipment') {
       return {
         ...state,
-        infoBox: {
-          ...state.infoBox,
-          data: {
-            ...state.infoBox.data,
-            currentLocation: {
-              ...state.infoBox.data.currentLocation,
-              weather: action.payload.observations,
-            },
-          },
-        },
+        shipments: state.shipments.map((shipment) => {
+          if (shipment.id === action.payload.locationId) {
+            return {
+              ...shipment,
+              currentLocation: {
+                ...shipment.currentLocation,
+                weather: action.payload.observations,
+              },
+            };
+          }
+          return shipment;
+        }),
       };
     }
-    else if (state.infoBox.type === 'retailer') {
+    else if (action.payload.locationType === 'retailer') {
       return {
         ...state,
-        infoBox: {
-          ...state.infoBox,
-          data: {
-            ...state.infoBox.data,
-            address: {
-              ...state.infoBox.data.address,
-              weather: action.payload.observations,
-            },
-          },
-        },
+        retailers: state.retailers.map((retailer) => {
+          if (retailer.id === action.payload.locationId) {
+            return {
+              ...retailer,
+              address: {
+                ...retailer.address,
+                weather: action.payload.observations,
+              },
+            };
+          }
+          return retailer;
+        }),
       };
     }
 
@@ -175,13 +187,16 @@ export function *watchSimulateWeather() {
 
 export function *watchWeatherObservations() {
   while (true) {
-    const { longitude, latitude } = yield take(WEATHER_OBSERVATIONS);
+    const { locationType, locationId, longitude, latitude } = yield take(WEATHER_OBSERVATIONS);
     const demoState = yield select(demoSelector);
 
     try {
+      console.log('Get weather for', locationType, locationId, longitude, latitude);
       const observations = yield call(api.getWeatherObservations, demoState.token,
         longitude, latitude);
       yield put(weatherObservationsReceived({
+        locationType,
+        locationId,
         longitude,
         latitude,
         observations,

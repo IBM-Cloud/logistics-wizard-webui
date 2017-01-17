@@ -21,6 +21,8 @@ export class ShipmentCard extends React.PureComponent {
   getWeatherForecast = () => {
     if (this.props.shipment.currentLocation && !this.props.shipment.currentLocation.weather) {
       this.props.retrieveWeatherObservations(
+        'shipment',
+        this.props.shipment.id,
         this.props.shipment.currentLocation.longitude,
         this.props.shipment.currentLocation.latitude);
     }
@@ -81,8 +83,4 @@ const mapActionCreators = {
   retrieveWeatherObservations: getWeatherObservations,
 };
 
-const mapStateToProps = (state) => ({
-  shipment: state.dashboard.infoBox.data,
-});
-
-export default connect(mapStateToProps, mapActionCreators)(ShipmentCard);
+export default connect(null, mapActionCreators)(ShipmentCard);
