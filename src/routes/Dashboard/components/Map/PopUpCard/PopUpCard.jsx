@@ -7,6 +7,7 @@ import RetailerCard from './RetailerCard';
 import StormCard from './StormCard';
 import DCCard from './DCCard';
 
+
 const showSelectedInfo = ({ type, data }) => { // eslint-disable-line
   if (type === 'distributionCenter') {
     return (
@@ -54,11 +55,12 @@ const formatTitle = type => {
   return titles[type] || '';
 };
 
-const PopUpCard = ({ infoBox }) => (
+
+const PopUpCard = ({ infoBox, selectMarker }) => (
   <div className={`${classes.wrapper} ${classes[infoBox.type]}`}>
     <div className={classes.title}>
       <h4>{formatTitle(infoBox.type)} {infoBox.data.id}</h4>
-      <i className={`fa fa-times-circle-o ${classes.closeIcon}`} />
+      <i className={`fa fa-times-circle-o ${classes.closeIcon}`} onClick={() => selectMarker('hidden', {})} />
     </div>
     {showSelectedInfo(infoBox)}
   </div>
