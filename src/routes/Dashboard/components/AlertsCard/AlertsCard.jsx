@@ -12,7 +12,7 @@ export const AlertsCard = ({ storms }) => (
 );
 
 AlertsCard.propTypes = {
-  weather: React.PropTypes.array,
+  storms: React.PropTypes.array,
 };
 
 // ------------------------------------

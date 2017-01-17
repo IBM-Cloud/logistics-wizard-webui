@@ -45,12 +45,24 @@ export const simulateStorm = token =>
     method: 'POST',
   });
 
+export const getRecommendations = token =>
+  callApi('weather/recommendations', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
 export const getWeatherObservations = (token, longitude, latitude) =>
     callApi('weather/observations', {
       headers: { Authorization: `Bearer ${token}` },
       method: 'POST',
       body: { longitude, latitude },
     });
+
+export const postAcknowledgeRecommendation = (token, id) =>
+  callApi('weather/acknowledge', {
+    headers: { Authorization: `Bearer ${token}` },
+    method: 'POST',
+    body: { id },
+  });
 
 export const api = {
   createDemo,
@@ -59,7 +71,9 @@ export const api = {
   getRetailers,
   getAdminData,
   simulateStorm,
+  getRecommendations,
   getWeatherObservations,
+  postAcknowledgeRecommendation,
 };
 
 export default api;
