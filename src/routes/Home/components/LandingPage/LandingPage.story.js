@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import LandingPage from './LandingPage';
-import Header from './Header/Header';
+import { Header } from './Header/Header';
 import LogisticsWizard from './LogisticsWizard/LogisticsWizard';
 import IconSection from './IconSection/IconSection';
 import ArchDiagram from './ArchDiagram/ArchDiagram';
