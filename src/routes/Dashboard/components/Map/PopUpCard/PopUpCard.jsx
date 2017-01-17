@@ -31,8 +31,10 @@ const showSelectedInfo = (dashboard) => { // eslint-disable-line
   else if (dashboard.infoBox.type === 'retailer') {
     const selectedRetailer = dashboard.retailers
       .find(retailer => retailer.id === dashboard.infoBox.data.id);
+    const shipments = dashboard.shipments
+      .filter(shipment => shipment.toId === selectedRetailer.id);
     return (
-      <RetailerCard retailer={selectedRetailer} />
+      <RetailerCard retailer={selectedRetailer} shipments={shipments} />
     );
   }
   else if (dashboard.infoBox.type === 'storm') {
@@ -59,15 +61,17 @@ const formatTitle = type => {
   return titles[type] || '';
 };
 
-const PopUpCard = ({ dashboard, selectMarker }) => ( // eslint-disable-line
-  <div className={`${classes.wrapper} ${classes[dashboard.infoBox.type]}`}>
+export const PopUpCard = ({ dashboard, selectMarker }) => { // eslint-disable-line
+  return dashboard.infoBox.type === 'hidden' ?
+  (<div className={`${classes.wrapper} ${classes[dashboard.infoBox.type]}`} />) :
+  (<div className={`${classes.wrapper} ${classes[dashboard.infoBox.type]}`}>
     <div className={classes.title}>
       <h4>{formatTitle(dashboard.infoBox.type)} {dashboard.infoBox.data.id}</h4>
       <i className={`fa fa-times-circle-o ${classes.closeIcon}`} onClick={() => selectMarker('hidden', {})} />
     </div>
     {showSelectedInfo(dashboard)}
-  </div>
-);
+  </div>);
+};
 
 PopUpCard.propTypes = {
   selectMarker: React.PropTypes.func.isRequired,
