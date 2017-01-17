@@ -34,8 +34,8 @@ export class RetailerCard extends React.PureComponent {
     const {
       managerId,
       address,
-      shipments,
     } = this.props.retailer;
+    const shipments = this.props.shipments;
 
     return (
       <div>
@@ -53,7 +53,7 @@ export class RetailerCard extends React.PureComponent {
           <div>
             <div className={classes.tableHeader}>
               <h4 className={`${classes.subtitle} ${classes.padLeft}`}>
-                Outgoing Shipments ({shipments.length})
+                Incoming Shipments ({shipments.length})
               </h4>
             </div>
             <div style={{ padding: '0 1rem' }}>
@@ -70,16 +70,12 @@ export class RetailerCard extends React.PureComponent {
             </div>
           </div>
           :
-          <div className={classes.contentContainer}>
-
-            <h4>No Incoming Shipments</h4>
-            <br />
-            <div><ForecastTile
-              weather={address.weather}
-            /></div>
-          </div>
-
+          <h4>No Incoming Shipments</h4>
         }
+        <div className={classes.contentContainer}>
+          <div className={classes.subtitle}>Weather Forecasts</div>
+          <div><ForecastTile weather={address.weather} /></div>
+        </div>
       </div>
     );
   }
@@ -87,6 +83,7 @@ export class RetailerCard extends React.PureComponent {
 
 RetailerCard.propTypes = {
   retailer: React.PropTypes.object.isRequired,
+  shipments: React.PropTypes.array,
   retrieveWeatherObservations: React.PropTypes.func.isRequired,
 };
 
