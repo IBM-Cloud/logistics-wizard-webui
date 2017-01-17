@@ -39,7 +39,7 @@ export const getRetailers = guid => callApi(`demos/${guid}/retailers`);
 export const getAdminData = token =>
   callApi('admin', { headers: { Authorization: `Bearer ${token}` } });
 
-export const simulateWeather = token =>
+export const simulateStorm = token =>
   callApi('weather/simulate', {
     headers: { Authorization: `Bearer ${token}` },
     method: 'POST',
@@ -58,7 +58,7 @@ export const api = {
   login,
   getRetailers,
   getAdminData,
-  simulateWeather,
+  simulateStorm,
   getWeatherObservations,
 };
 

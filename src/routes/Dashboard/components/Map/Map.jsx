@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
 import RaisedButton from 'material-ui/RaisedButton';
-import { simulateWeather, selectMarker } from 'routes/Dashboard/modules/Dashboard';
+import { simulateStorm, selectMarker } from 'routes/Dashboard/modules/Dashboard';
 import MapMarker from './MapMarker/';
 // map style from https://snazzymaps.com/style/151/ultra-light-with-labels
 // https://googlemaps.github.io/js-samples/styledmaps/wizard/
@@ -68,7 +68,7 @@ export const Map = (props) => (
           data={retailer}
         />
       )}
-      {props.weather.map((storm, i) =>
+      {props.storms.map((storm, i) =>
         <MapMarker
           type="storm"
           lat={storm.event.lat}
@@ -81,7 +81,7 @@ export const Map = (props) => (
     </GoogleMap>
     <RaisedButton
       label="Simulate Storm"
-      onClick={props.simulateWeather}
+      onClick={props.simulateStorm}
       className={classes.simulateButton}
     />
   </div>
@@ -94,8 +94,8 @@ Map.propTypes = {
   distributionCenters: React.PropTypes.array,
   shipments: React.PropTypes.array,
   retailers: React.PropTypes.array,
-  weather: React.PropTypes.array,
-  simulateWeather: React.PropTypes.func.isRequired,
+  storms: React.PropTypes.array,
+  simulateStorm: React.PropTypes.func.isRequired,
 };
 
 Map.defaultProps = {
@@ -106,7 +106,7 @@ Map.defaultProps = {
   distributionCenters: [],
   shipments: [],
   retailers: [],
-  weather: [],
+  storms: [],
 };
 
 // ------------------------------------
@@ -114,7 +114,7 @@ Map.defaultProps = {
 // ------------------------------------
 
 const mapActionCreators = {
-  simulateWeather,
+  simulateStorm,
   selectMarker,
 };
 
@@ -122,7 +122,7 @@ const mapStateToProps = (state) => ({
   shipments: state.dashboard.shipments,
   retailers: state.dashboard.retailers,
   distributionCenters: state.dashboard['distribution-centers'],
-  weather: state.dashboard.weather,
+  storms: state.dashboard.storms,
 });
 
 export default connect(mapStateToProps, mapActionCreators)(Map);

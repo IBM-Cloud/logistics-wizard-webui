@@ -8,10 +8,10 @@ export const dashboardSelector = state => state.dashboard;
 // Constants
 // ------------------------------------
 export const GET_ADMIN_DATA = 'Dashboard/GET_ADMIN_DATA';
-export const SIMULATE_WEATHER = 'Dashboard/SIMULATE_WEATHER';
+export const SIMULATE_STORM = 'Dashboard/SIMULATE_STORM';
 export const SELECT_MARKER = 'Dashboard/SELECT_MARKER';
 export const ADMIN_DATA_RECEIVED = 'Dashboard/ADMIN_DATA_RECEIVED';
-export const WEATHER_DATA_RECEIVED = 'Dashboard/WEATHER_DATA_RECEIVED';
+export const STORM_DATA_RECEIVED = 'Dashboard/STORM_DATA_RECEIVED';
 export const WEATHER_OBSERVATIONS = 'Dashboard/WEATHER_OBSERVATIONS';
 export const WEATHER_OBSERVATIONS_RECEIVED = 'Dashboard/WEATHER_OBSERVATIONS_RECEIVED';
 
@@ -36,12 +36,12 @@ export const adminDataReceived = (payload) => ({
   payload,
 });
 
-export const simulateWeather = () => ({
-  type: SIMULATE_WEATHER,
+export const simulateStorm = () => ({
+  type: SIMULATE_STORM,
 });
 
-export const weatherDataReceived = payload => ({
-  type: WEATHER_DATA_RECEIVED,
+export const stormDataReceived = payload => ({
+  type: STORM_DATA_RECEIVED,
   payload,
 });
 
@@ -62,7 +62,7 @@ export const actions = {
   selectMarker,
   getAdminData,
   adminDataReceived,
-  weatherDataReceived,
+  stormDataReceived,
 };
 
 // ------------------------------------
@@ -77,9 +77,9 @@ const ACTION_HANDLERS = {
     ...state,
     ...action.payload,
   }),
-  [WEATHER_DATA_RECEIVED]: (state, action) => ({
+  [STORM_DATA_RECEIVED]: (state, action) => ({
     ...state,
-    weather: [action.payload],
+    storms: [action.payload],
   }),
   [WEATHER_OBSERVATIONS_RECEIVED]: (state, action) => {
     // payload.locationType
@@ -138,7 +138,7 @@ const initialState = {
   shipments: [],
   retailers: [],
   'distribution-centers': [],
-  weather: [],
+  storms: [],
 };
 
 export const dashboardReducer = (state = initialState, action) => {
@@ -169,17 +169,17 @@ export function *watchGetAdminData() {
   }
 }
 
-export function *watchSimulateWeather() {
+export function *watchSimulateStorm() {
   while (true) {
-    yield take(SIMULATE_WEATHER);
+    yield take(SIMULATE_STORM);
     const demoState = yield select(demoSelector);
 
     try {
-      const weatherData = yield call(api.simulateWeather, demoState.token);
-      yield put(weatherDataReceived(weatherData));
+      const stormData = yield call(api.simulateStorm, demoState.token);
+      yield put(stormDataReceived(stormData));
     }
     catch (error) {
-      console.log('Failed to retrieve weather data');
+      console.log('Failed to retrieve storm data from simulation');
       console.error(error);
     }
   }
@@ -211,6 +211,6 @@ export function *watchWeatherObservations() {
 
 export const sagas = [
   watchGetAdminData,
-  watchSimulateWeather,
+  watchSimulateStorm,
   watchWeatherObservations,
 ];
