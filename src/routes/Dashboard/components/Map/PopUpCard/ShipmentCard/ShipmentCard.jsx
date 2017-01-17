@@ -65,14 +65,18 @@ export class ShipmentCard extends React.PureComponent {
         </div>
         <div>{updatedAt ? formatTime(updatedAt) : 'N/A'}</div>
 
-        <div className={classes.subtitle}>
-          Current Weather
-        </div>
-        <div>
-          {currentLocation.weather ?
-           currentLocation.weather.observation.wx_phrase :
-           (<div style={{ textAlign: 'center' }}><LoadingSpinner size={60} /></div>)}
-        </div>
+        {currentLocation &&
+          <div>
+            <div className={classes.subtitle}>
+              Current Weather
+            </div>
+            <div>
+              {currentLocation.weather ?
+               currentLocation.weather.observation.wx_phrase :
+               (<div style={{ textAlign: 'center' }}><LoadingSpinner size={60} /></div>)}
+            </div>
+          </div>
+        }
       </div>
     );
   }
