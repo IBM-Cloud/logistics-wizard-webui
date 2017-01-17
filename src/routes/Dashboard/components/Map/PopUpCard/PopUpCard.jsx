@@ -59,11 +59,11 @@ const formatTitle = type => {
   return titles[type] || '';
 };
 
-const PopUpCard = ({ dashboard }) => (
+const PopUpCard = ({ dashboard, selectMarker }) => ( // eslint-disable-line
   <div className={`${classes.wrapper} ${classes[dashboard.infoBox.type]}`}>
     <div className={classes.title}>
       <h4>{formatTitle(dashboard.infoBox.type)} {dashboard.infoBox.data.id}</h4>
-      <i className={`fa fa-times-circle-o ${classes.closeIcon}`} />
+      <i className={`fa fa-times-circle-o ${classes.closeIcon}`} onClick={() => selectMarker('hidden', {})} />
     </div>
     {showSelectedInfo(dashboard)}
   </div>
