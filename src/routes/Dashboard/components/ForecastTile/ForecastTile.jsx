@@ -8,6 +8,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import LoadingSpinner from 'components/LoadingSpinner';
 
 const styles = {
   wrapper: {
@@ -28,7 +29,7 @@ const styles = {
 // Use named export for unconnected component (for tests)
 const ForecastTile = ({ weather }) => {
   if (!weather) {
-    return (<div>Please wait...</div>);
+    return (<div style={{ textAlign: 'center' }}><LoadingSpinner size={60} /></div>);
   }
 
   return (<Table wrapperStyle={styles.wrapper}>

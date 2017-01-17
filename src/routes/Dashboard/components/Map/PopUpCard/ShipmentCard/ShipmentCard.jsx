@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { getWeatherObservations } from 'routes/Dashboard/modules/Dashboard';
+import LoadingSpinner from 'components/LoadingSpinner';
 import classes from '../PopUpCard.scss';
 
 const timeFormat = 'MMM Do, h:mm a';
@@ -67,7 +68,10 @@ export class ShipmentCard extends React.PureComponent {
         <div className={classes.subtitle}>
           Current Weather
         </div>
-        <div>{currentLocation.weather ? currentLocation.weather.observation.wx_phrase : 'N/A' }
+        <div>
+          {currentLocation.weather ?
+           currentLocation.weather.observation.wx_phrase :
+           (<div style={{ textAlign: 'center' }}><LoadingSpinner size={60} /></div>)}
         </div>
       </div>
     );
