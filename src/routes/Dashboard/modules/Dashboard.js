@@ -12,6 +12,8 @@ export const SIMULATE_STORM = 'Dashboard/SIMULATE_STORM';
 export const SELECT_MARKER = 'Dashboard/SELECT_MARKER';
 export const ADMIN_DATA_RECEIVED = 'Dashboard/ADMIN_DATA_RECEIVED';
 export const STORM_DATA_RECEIVED = 'Dashboard/STORM_DATA_RECEIVED';
+export const ACKNOWLEDGE_RECOMMENDATAION = 'Dashboard/ACKNOWLEDGE_RECOMMENDATAION';
+export const RECOMMENDATIONS_RECEIVED = 'Dashboard/RECOMMENDATIONS_RECEIVED';
 export const WEATHER_OBSERVATIONS = 'Dashboard/WEATHER_OBSERVATIONS';
 export const WEATHER_OBSERVATIONS_RECEIVED = 'Dashboard/WEATHER_OBSERVATIONS_RECEIVED';
 
@@ -45,6 +47,11 @@ export const stormDataReceived = payload => ({
   payload,
 });
 
+export const recommendationsReceived = payload => ({
+  type: RECOMMENDATIONS_RECEIVED,
+  payload,
+});
+
 export const getWeatherObservations = (locationType, locationId, longitude, latitude) => ({
   type: WEATHER_OBSERVATIONS,
   locationType,
@@ -58,11 +65,20 @@ export const weatherObservationsReceived = payload => ({
   payload,
 });
 
+
+export const acknowledgeRecommendation = (recommendationId) => ({
+  type: ACKNOWLEDGE_RECOMMENDATAION,
+  payload: {
+    recommendationId,
+  },
+});
+
 export const actions = {
   selectMarker,
   getAdminData,
   adminDataReceived,
   stormDataReceived,
+  acknowledgeRecommendation,
 };
 
 // ------------------------------------
@@ -81,6 +97,11 @@ const ACTION_HANDLERS = {
     ...state,
     storms: [action.payload],
   }),
+  [RECOMMENDATIONS_RECEIVED]: (state, action) => {
+    const newState = JSON.parse(JSON.stringify(state)); // Deep clone object
+    newState.storms[0].recommendations = action.payload.recommendations;
+    return newState;
+  },
   [WEATHER_OBSERVATIONS_RECEIVED]: (state, action) => {
     // payload.locationType
     // payload.locationId
@@ -177,9 +198,32 @@ export function *watchSimulateStorm() {
     try {
       const stormData = yield call(api.simulateStorm, demoState.token);
       yield put(stormDataReceived(stormData));
+      yield put(selectMarker('storm', stormData));
     }
     catch (error) {
       console.log('Failed to retrieve storm data from simulation');
+      console.error(error);
+    }
+  }
+}
+
+export function *watchAcknowledgeRecommendation() {
+  while (true) {
+    const { payload } = yield take(ACKNOWLEDGE_RECOMMENDATAION);
+    console.log('recommendationId: ', payload.recommendationId);
+    const demoState = yield select(demoSelector);
+
+    try {
+      console.log('calling api');
+      const acknowledgeResponse =
+        yield call(api.postAcknowledgeRecommendation, demoState.token, payload.recommendationId);
+      console.log('acknowledgeResponse: ', acknowledgeResponse);
+      const recommendations = yield call(api.getRecommendations, demoState.token);
+      console.log('recommendations: ', recommendations);
+      yield put(recommendationsReceived(recommendations));
+    }
+    catch (error) {
+      console.log('Error in acknowledgeRecommendation');
       console.error(error);
     }
   }
@@ -213,4 +257,5 @@ export const sagas = [
   watchGetAdminData,
   watchSimulateStorm,
   watchWeatherObservations,
+  watchAcknowledgeRecommendation,
 ];

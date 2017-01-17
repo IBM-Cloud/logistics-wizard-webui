@@ -152,3 +152,8 @@ small {
   margin-top:10px;
   margin-right:10px;
 }
+
+.shipmentRecommendationList {
+  max-height: 300px;
+  overflow-y: auto;
+}
