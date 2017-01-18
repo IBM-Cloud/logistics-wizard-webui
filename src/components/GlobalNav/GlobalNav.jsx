@@ -17,6 +17,16 @@ const styles = {
   toolbar: {
     height: '42px',
   },
+  toolbarGroup: {
+    display: 'flex',
+  },
+  icon: {
+    width: '1.7rem',
+    height: '1.7rem',
+  },
+  iconButton: {
+    top: '-1.5px',
+  },
 };
 
 export const GlobalNav = () => (
@@ -28,12 +38,12 @@ export const GlobalNav = () => (
         </Link>
       </ToolbarGroup>
 
-      <ToolbarGroup>
+      <ToolbarGroup style={styles.toolbarGroup}>
         <RoleSwitcher />
-        <ToolbarSeparator style={styles.separator} />
-        <IconButton >
+        <IconButton style={styles.iconButton}>
           <a href="https://github.com/IBM-Bluemix/logistics-wizard" target="_blank">
             <Icon
+              style={styles.icon}
               name="github"
               className={classes.github}
             />
