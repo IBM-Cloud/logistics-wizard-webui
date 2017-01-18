@@ -6,7 +6,7 @@ export const RetailSummaryCard = (props) => (
   <div className={retailClasses.shipmentsWrapper}>
     <div className={retailClasses.shipmentsHeader}>
       <div className={retailClasses.shipmentsSubtitle}>
-        <i className="fa fa-circle" />
+        <i className={`${retailClasses.icon} fa fa-circle`} />
         &nbsp;&nbsp;Retail Centers
       </div>
       <div className={retailClasses.shipmentsAmount}>
