@@ -17,6 +17,9 @@ const styles = {
   toolbar: {
     height: '42px',
   },
+  iconButton: {
+    top: '-1.5px',
+  },
 };
 
 export const GlobalNav = () => (
@@ -30,8 +33,7 @@ export const GlobalNav = () => (
 
       <ToolbarGroup>
         <RoleSwitcher />
-        <ToolbarSeparator style={styles.separator} />
-        <IconButton >
+        <IconButton style={styles.iconButton}>
           <a href="https://github.com/IBM-Bluemix/logistics-wizard" target="_blank">
             <Icon
               name="github"

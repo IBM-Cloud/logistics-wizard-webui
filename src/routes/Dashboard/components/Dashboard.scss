@@ -15,14 +15,14 @@
 .cardSection {
   display: flex;
   justify-content: space-between;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  max-height: 120px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 86px;
 }
 
 .shipmentsWrapper {
   border: 1px solid $borderColor;
-  border-left: 2px solid $accent1Color;
+  border-left: 2px solid $map1Primary;
   background: white;
   padding: 8px;
   flex: 1;
