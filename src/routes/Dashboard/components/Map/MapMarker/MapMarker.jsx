@@ -28,7 +28,6 @@ export default class MapMarker extends React.PureComponent {
   }
 
   world2Screen({ x, y }, zoom) {
-    console.log('world2Screen', x, y, zoom);
     const scale = Math.pow(2, zoom);
     return {
       x: x * scale * 256, // 256 is the default TILE_SIZE
