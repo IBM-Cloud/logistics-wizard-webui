@@ -26,66 +26,90 @@ function createMapOptions(maps) {
   };
 }
 
-export const Map = (props) => (
-  <div className={classes.map}>
-    <PopUpCard />
-    <GoogleMap
-      bootstrapURLKeys={{ key: __GOOGLE_MAPS_KEY__ }}
-      center={props.center}
-      zoom={props.zoom}
-      options={createMapOptions}
-    >
-      {props.distributionCenters.map(dc =>
-        <MapMarker
-          type="distributionCenter"
-          text={dc.address.city}
-          lat={dc.address.latitude}
-          lng={dc.address.longitude}
-          selectMarker={props.selectMarker}
-          data={dc}
-          key={dc.id}
-        />
-      )}
-      {props.shipments
-        .filter(shipment => (shipment.currentLocation != null))
-        .map(shipment =>
+export class Map extends React.PureComponent {
+
+  constructor(props) {
+    super(props);
+    // this makes sure "this" in onMapChange is correctly bound to "this component"
+    // https://medium.com/@goatslacker/react-0-13-x-and-autobinding-b4906189425d#.id09n9obh
+    // http://babeljs.io/blog/2015/06/07/react-on-es6-plus
+    this.onMapChange = this.onMapChange.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({ zoom: this.props.zoom });
+  }
+
+  onMapChange(change) {
+    this.setState({ zoom: change.zoom });
+  }
+
+  render() {
+    return (<div className={classes.map}>
+      <PopUpCard />
+      <GoogleMap
+        bootstrapURLKeys={{ key: __GOOGLE_MAPS_KEY__ }}
+        center={this.props.center}
+        zoom={this.props.zoom}
+        options={createMapOptions}
+        onChange={this.onMapChange}
+      >
+        {this.props.distributionCenters.map(dc =>
           <MapMarker
-            type="shipment"
-            lat={shipment.currentLocation.latitude}
-            lng={shipment.currentLocation.longitude}
-            key={shipment.id}
-            selectMarker={props.selectMarker}
-            data={shipment}
+            type="distributionCenter"
+            text={dc.address.city}
+            lat={dc.address.latitude}
+            lng={dc.address.longitude}
+            selectMarker={this.props.selectMarker}
+            data={dc}
+            key={dc.id}
+            zoom={this.state.zoom}
           />
         )}
-      {props.retailers.map(retailer =>
-        <MapMarker
-          type="retailer"
-          lat={retailer.address.latitude}
-          lng={retailer.address.longitude}
-          key={retailer.id}
-          selectMarker={props.selectMarker}
-          data={retailer}
-        />
-      )}
-      {props.storms.map((storm, i) =>
-        <MapMarker
-          type="storm"
-          lat={storm.event.lat}
-          lng={storm.event.lon}
-          key={i}
-          selectMarker={props.selectMarker}
-          data={storm}
-        />
-      )}
-    </GoogleMap>
-    <RaisedButton
-      label="Simulate Storm"
-      onClick={props.simulateStorm}
-      className={classes.simulateButton}
-    />
-  </div>
-);
+        {this.props.shipments
+          .filter(shipment => (shipment.currentLocation != null))
+          .map(shipment =>
+            <MapMarker
+              type="shipment"
+              lat={shipment.currentLocation.latitude}
+              lng={shipment.currentLocation.longitude}
+              key={shipment.id}
+              selectMarker={this.props.selectMarker}
+              data={shipment}
+              zoom={this.state.zoom}
+            />
+          )}
+        {this.props.retailers.map(retailer =>
+          <MapMarker
+            type="retailer"
+            lat={retailer.address.latitude}
+            lng={retailer.address.longitude}
+            key={retailer.id}
+            selectMarker={this.props.selectMarker}
+            data={retailer}
+            zoom={this.state.zoom}
+          />
+        )}
+        {this.props.storms.map((storm, i) =>
+          <MapMarker
+            type="storm"
+            lat={storm.event.lat}
+            lng={storm.event.lon}
+            key={i}
+            selectMarker={this.props.selectMarker}
+            data={storm}
+            zoom={this.state.zoom}
+          />
+        )}
+      </GoogleMap>
+      <RaisedButton
+        label="Simulate Storm"
+        onClick={this.props.simulateStorm}
+        className={classes.simulateButton}
+      />
+    </div>);
+  }
+}
 
 Map.propTypes = {
   selectMarker: React.PropTypes.func.isRequired,

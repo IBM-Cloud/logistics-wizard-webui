@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import Map from './Map';
+import { Map } from './Map';
 
 storiesOf('Map', module)
   .add('empty', () => (
@@ -54,6 +54,17 @@ storiesOf('Map', module)
             country: 'US',
             latitude: 30.22,
             longitude: -97.74,
+          },
+        },
+      ]}
+      storms={[
+        {
+          event: {
+            event_desc: 'Snow Storm',
+            lat: 38.89,
+            lon: -77.03,
+            radiusInKm: 800,
+            severity: 'Moderate',
           },
         },
       ]}
