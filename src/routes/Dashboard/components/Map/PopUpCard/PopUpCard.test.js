@@ -44,7 +44,37 @@ const propsForDc = {
   },
   selectMarker: () => {},
 };
+
+const propsForStorm = {
+  dashboard: {
+    infoBox: {
+      type: 'storm',
+      data: {
+        id: 1,
+      },
+    },
+    shipments: [],
+    retailers: [],
+    storms: [
+      {
+        event: {
+          event_desc: 'Snow Storm',
+          lat: 38.89,
+          lon: -77.03,
+          radiusInKm: 800,
+          severity: 'Moderate',
+        },
+      },
+    ],
+  },
+  selectMarker: () => {},
+};
 test('(Component) Renders a DC card', t => {
   const component = shallow(<PopUpCard {...propsForDc} />);
   t.is(component.find('DCCard').length, 1, 'has a DC Card');
+});
+
+test('(Component) Renders a Storm card', t => {
+  const component = shallow(<PopUpCard {...propsForStorm} />);
+  t.is(component.find('Connect(StormCard)').length, 1, 'has a Storm Card');
 });
