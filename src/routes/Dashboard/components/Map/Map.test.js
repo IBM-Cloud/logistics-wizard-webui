@@ -67,6 +67,7 @@ test('(Component) Has 3 markers.', t => {
     distributionCenters: testDistributionCenters,
     retailers: testRetailers,
     shipments: testShipments,
+    selectMarker() {},
   });
   t.is(component.find('MapMarker').length, 3);
 });

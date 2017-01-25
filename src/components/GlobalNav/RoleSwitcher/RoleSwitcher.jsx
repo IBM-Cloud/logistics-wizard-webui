@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { endDemoSession } from 'modules/demos';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import AccountUser from 'material-ui/svg-icons/action/account-circle';
@@ -37,7 +35,7 @@ export const RoleSwitcher = (props) => (
         roleAction={props.login}
       />
     ))}
-    <button className={classes.item} onClick={props.endDemoSession}>
+    <button className={classes.item} onClick={props.logout}>
       <div className={classes.iconContainer}>
         <i className={`${classes.icon} fa-sign-out fa`} />
       </div>
@@ -62,14 +60,7 @@ RoleSwitcher.propTypes = {
   }).isRequired),
   login: React.PropTypes.func.isRequired,
   createUser: React.PropTypes.func.isRequired,
-  endDemoSession: React.PropTypes.func.isRequired,
+  logout: React.PropTypes.func.isRequired,
 };
 
-const mapActionCreators = {
-  endDemoSession,
-};
-
-const mapStateToProps = () => ({
-});
-
-export default connect(mapStateToProps, mapActionCreators)(RoleSwitcher);
+export default RoleSwitcher;

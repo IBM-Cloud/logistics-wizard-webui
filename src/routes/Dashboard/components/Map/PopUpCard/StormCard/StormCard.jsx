@@ -5,7 +5,6 @@ import classes from '../PopUpCard.scss';
 
 
 export const StormCard = (props) => {
-  console.log(props);
   const {
     event,
     recommendations,

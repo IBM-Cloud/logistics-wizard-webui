@@ -173,7 +173,6 @@ export function *watchGetDemoSession() {
 export function *watchEndDemoSession() {
   while (true) {
     yield take(END_DEMO_SESSION);
-    console.log('End Session');
     window.localStorage.removeItem('savedGuid');
     yield put(push('/'));
   }
