@@ -1,23 +1,22 @@
 @import '~styles/base/colors';
 
-.pageContainer {
-  padding: 0 2rem;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
 .wrapper {
-  width: 100%;
-  height: 100%;
+  padding: 0 2rem;
   background-color: $backgroundColor;
+  flex-direction: column;
+  display: flex;
+  flex-grow: 1;
+  padding-bottom: 2rem;
 }
 
 .cardSection {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   margin-top: 1rem;
   margin-bottom: 1rem;
   height: 86px;
+  max-height: 86px;
 }
 
 .shipmentsWrapper {

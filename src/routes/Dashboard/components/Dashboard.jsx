@@ -11,17 +11,15 @@ import classes from './Dashboard.scss';
 
 export const Dashboard = () => (
   <div className={classes.wrapper}>
-    <div className={classes.pageContainer}>
-      <div className={classes.cardSection}>
-        <CompletionCard />
-        <ProgressCard />
-        <DCSummaryCard />
-        <RetailSummaryCard />
-      </div>
-      <AlertsCard />
-      <Map />
-      <ShipmentsTable />
+    <div className={classes.cardSection}>
+      <CompletionCard />
+      <ProgressCard />
+      <DCSummaryCard />
+      <RetailSummaryCard />
     </div>
+    <AlertsCard />
+    {/* <ShipmentsTable /> */}
+    <Map />
   </div>
 );
 

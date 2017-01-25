@@ -45,7 +45,9 @@ export class Map extends React.PureComponent {
   }
 
   render() {
-    return (<div className={classes.map}>
+    return (
+      <div className={classes.mapContainer}>
+      <div className={classes.map}>
       <PopUpCard />
       <GoogleMap
         bootstrapURLKeys={{ key: __GOOGLE_MAPS_KEY__ }}
@@ -107,6 +109,7 @@ export class Map extends React.PureComponent {
         onClick={this.props.simulateStorm}
         className={classes.simulateButton}
       />
+    </div>
     </div>);
   }
 }
