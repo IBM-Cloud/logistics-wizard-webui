@@ -45,69 +45,72 @@ export class Map extends React.PureComponent {
   }
 
   render() {
-    return (<div className={classes.map}>
-      <PopUpCard />
-      <GoogleMap
-        bootstrapURLKeys={{ key: __GOOGLE_MAPS_KEY__ }}
-        center={this.props.center}
-        zoom={this.props.zoom}
-        options={createMapOptions}
-        onChange={this.onMapChange}
-      >
-        {this.props.distributionCenters.map(dc =>
-          <MapMarker
-            type="distributionCenter"
-            text={dc.address.city}
-            lat={dc.address.latitude}
-            lng={dc.address.longitude}
-            selectMarker={this.props.selectMarker}
-            data={dc}
-            key={dc.id}
-            zoom={this.state.zoom}
+    return (
+      <div className={classes.mapContainer}>
+        <div className={classes.map}>
+          <PopUpCard />
+          <GoogleMap
+            bootstrapURLKeys={{ key: __GOOGLE_MAPS_KEY__ }}
+            center={this.props.center}
+            zoom={this.props.zoom}
+            options={createMapOptions}
+            onChange={this.onMapChange}
+          >
+            {this.props.distributionCenters.map(dc =>
+              <MapMarker
+                type="distributionCenter"
+                text={dc.address.city}
+                lat={dc.address.latitude}
+                lng={dc.address.longitude}
+                selectMarker={this.props.selectMarker}
+                data={dc}
+                key={dc.id}
+                zoom={this.state.zoom}
+              />
+            )}
+            {this.props.shipments
+              .filter(shipment => (shipment.currentLocation != null))
+              .map(shipment =>
+                <MapMarker
+                  type="shipment"
+                  lat={shipment.currentLocation.latitude}
+                  lng={shipment.currentLocation.longitude}
+                  key={shipment.id}
+                  selectMarker={this.props.selectMarker}
+                  data={shipment}
+                  zoom={this.state.zoom}
+                />
+              )}
+            {this.props.retailers.map(retailer =>
+              <MapMarker
+                type="retailer"
+                lat={retailer.address.latitude}
+                lng={retailer.address.longitude}
+                key={retailer.id}
+                selectMarker={this.props.selectMarker}
+                data={retailer}
+                zoom={this.state.zoom}
+              />
+            )}
+            {this.props.storms.map((storm, i) =>
+              <MapMarker
+                type="storm"
+                lat={storm.event.lat}
+                lng={storm.event.lon}
+                key={i}
+                selectMarker={this.props.selectMarker}
+                data={storm}
+                zoom={this.state.zoom}
+              />
+            )}
+          </GoogleMap>
+          <RaisedButton
+            label="Simulate Storm"
+            onClick={this.props.simulateStorm}
+            className={classes.simulateButton}
           />
-        )}
-        {this.props.shipments
-          .filter(shipment => (shipment.currentLocation != null))
-          .map(shipment =>
-            <MapMarker
-              type="shipment"
-              lat={shipment.currentLocation.latitude}
-              lng={shipment.currentLocation.longitude}
-              key={shipment.id}
-              selectMarker={this.props.selectMarker}
-              data={shipment}
-              zoom={this.state.zoom}
-            />
-          )}
-        {this.props.retailers.map(retailer =>
-          <MapMarker
-            type="retailer"
-            lat={retailer.address.latitude}
-            lng={retailer.address.longitude}
-            key={retailer.id}
-            selectMarker={this.props.selectMarker}
-            data={retailer}
-            zoom={this.state.zoom}
-          />
-        )}
-        {this.props.storms.map((storm, i) =>
-          <MapMarker
-            type="storm"
-            lat={storm.event.lat}
-            lng={storm.event.lon}
-            key={i}
-            selectMarker={this.props.selectMarker}
-            data={storm}
-            zoom={this.state.zoom}
-          />
-        )}
-      </GoogleMap>
-      <RaisedButton
-        label="Simulate Storm"
-        onClick={this.props.simulateStorm}
-        className={classes.simulateButton}
-      />
-    </div>);
+        </div>
+      </div>);
   }
 }
 

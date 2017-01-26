@@ -13,11 +13,11 @@ const styles = {
     margin: '0px 0.75rem 0px 1rem',
   },
   toolbarTitle: {
-    fontSize: '.8rem',
+    fontSize: '0.8rem',
     fontWeight: '600',
   },
   toolbar: {
-    height: '42px',
+    height: '56px',
   },
   iconButton: {
     top: '-1.5px',
