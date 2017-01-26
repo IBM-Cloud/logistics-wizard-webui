@@ -49,11 +49,6 @@ export class ShipmentsTable extends React.PureComponent {
       >
         <TableHeader displaySelectAll={false} adjustForrowNumberCheckbox={false}>
           <TableRow>
-            <TableHeaderColumn style={styles.meta} colSpan="5">
-          Active Shipments ({props.shipments.length})
-        </TableHeaderColumn>
-          </TableRow>
-          <TableRow>
             <TableHeaderColumn style={styles.header}>Shipment #</TableHeaderColumn>
             <TableHeaderColumn style={styles.header}>Status</TableHeaderColumn>
             <TableHeaderColumn style={styles.header}>Destination</TableHeaderColumn>
