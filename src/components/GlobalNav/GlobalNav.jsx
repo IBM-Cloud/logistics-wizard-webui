@@ -1,6 +1,6 @@
 import React from 'react';
 import IconButton from 'material-ui/IconButton';
-import { Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator } from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import { Icon } from 'react-fa';
 import { Link } from 'react-router';
 import RoleSwitcher from 'containers/RoleSwitcherContainer';
@@ -11,11 +11,11 @@ const styles = {
     margin: '0px 0.75rem 0px 1rem',
   },
   toolbarTitle: {
-    fontSize: '.8rem',
+    fontSize: '1rem',
     fontWeight: '600',
   },
   toolbar: {
-    height: '42px',
+    height: '64px',
   },
   iconButton: {
     top: '-1.5px',

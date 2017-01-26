@@ -1,63 +1,36 @@
 @import '~styles/base/colors';
 
-.pageContainer {
-  padding: 0 2rem;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
 .wrapper {
-  width: 100%;
-  height: 100%;
-  background-color: $backgroundColor;
+  flex-direction: column;
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 .cardSection {
+  background-color: white;
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  height: 86px;
+  flex-direction: row;
+  padding: .5rem;
+  border-bottom: 1px solid $borderColor;
 }
 
-.shipmentsWrapper {
-  border: 1px solid $borderColor;
-  border-left: 2px solid $map1Primary;
-  background: white;
-  padding: 8px;
+.cardSection > div {
   flex: 1;
-  margin-right: 1rem;
 }
 
-.shipmentsHeader {
-  padding-bottom: .3rem;
-}
-
-.shipmentsAmount {
-  font-size: 2.6rem;
-  color: $accent1Color;
-  font-weight: 300;
-  padding-left: 1.5rem;
-  margin-top: -.3rem;
-}
-
-.shipmentsSubtitle {
-  font-size: 13px;
-  font-weight: 600;
-  color: $primary1Color;
-}
-
-.shipmentsBottom {
+.viewMode {
   display: flex;
-  justify-content: space-between;
-  padding-top: .3rem;
-  color: $textColor;
-  font-weight: 300;
-  font-size: 14px;
+  align-content: center;
+  flex-direction: row;
 }
 
-.selected {
-  color: $primary1Color;
-  text-decoration: underline;
-  font-weight: 500;
+.viewMode > div {
+  text-align: center;
+  align-self: center;
+  flex: 1;
+}
+
+.shipmentsTable {
+  margin: 1rem;
 }

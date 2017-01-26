@@ -1,0 +1,21 @@
+@import '~styles/base/colors';
+
+.card {
+  text-align: center;
+}
+
+.value {
+  font-size: 2.6rem;
+  color: $accent1Color;
+  font-weight: 300;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: $primary1Color;
+
+  i {
+    margin-right: 5px;
+  }
+}

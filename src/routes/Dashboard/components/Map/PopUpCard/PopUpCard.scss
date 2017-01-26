@@ -3,7 +3,7 @@
 .wrapper {
   background-color: white;
   border: 1px solid $borderColor;
-  width: 260px;
+  width: 360px;
   height: 100%;
   position: absolute;
   left: 0;
@@ -11,6 +11,7 @@
   color: $textColor;
   font-size: 13px;
   z-index: 9999;
+  overflow: scroll;
 }
 
 .title {
