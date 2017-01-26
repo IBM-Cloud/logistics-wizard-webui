@@ -60,3 +60,27 @@
   text-decoration: underline;
   font-weight: 500;
 }
+
+.viewMode {
+  text-align: right;
+}
+
+.tabs {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabContainer {
+  overflow: scroll;
+  display: flex;
+  flex-grow: 1;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: white;
+  overflow: hidden;
+}
