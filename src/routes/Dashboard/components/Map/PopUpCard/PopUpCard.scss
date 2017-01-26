@@ -4,14 +4,15 @@
   background-color: white;
   border: 1px solid $borderColor;
   width: 360px;
-  height: 100%;
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 24px;
+  top: 24px;
+  bottom: 24px;
   color: $textColor;
   font-size: 13px;
   z-index: 9999;
   overflow: scroll;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
 }
 
 .title {
