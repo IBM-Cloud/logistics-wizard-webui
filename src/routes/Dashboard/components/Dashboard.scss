@@ -62,25 +62,11 @@
 }
 
 .viewMode {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid $borderColor;
+  border-bottom: none;
+  padding: .5rem;
   text-align: right;
-}
-
-.tabs {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.tabContainer {
-  overflow: scroll;
-  display: flex;
-  flex-grow: 1;
-}
-
-.tab {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
   background-color: white;
-  overflow: hidden;
 }
