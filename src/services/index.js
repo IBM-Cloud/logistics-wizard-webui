@@ -28,6 +28,12 @@ export const createDemo = () =>
 
 export const getDemo = guid => callApi(`demos/${guid}`);
 
+export const endDemo = (guid, token) =>
+  callApi(`demos/${guid}`, {
+    headers: { Authorization: `Bearer ${token}` },
+    method: 'DELETE',
+  });
+
 export const login = (id, guid) =>
   callApi(`demos/${guid}/login`, {
     method: 'POST',
@@ -67,6 +73,7 @@ export const postAcknowledgeRecommendation = (token, id) =>
 export const api = {
   createDemo,
   getDemo,
+  endDemo,
   login,
   getRetailers,
   getAdminData,
