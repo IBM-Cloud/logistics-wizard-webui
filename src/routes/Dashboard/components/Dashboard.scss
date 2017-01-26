@@ -10,7 +10,6 @@
   background-color: white;
   display: flex;
   flex-direction: row;
-  // justify-content: space-between;
   padding: .5rem;
   border-bottom: 1px solid $borderColor;
 }
@@ -26,7 +25,9 @@
 }
 
 .viewMode > div {
+  text-align: center;
   align-self: center;
+  flex: 1;
 }
 
 .shipmentsTable {
