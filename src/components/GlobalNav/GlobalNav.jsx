@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { endDemoSession } from 'modules/demos';
 import IconButton from 'material-ui/IconButton';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import { Icon } from 'react-fa';
@@ -22,7 +24,7 @@ const styles = {
   },
 };
 
-export const GlobalNav = () => (
+export const GlobalNav = (props) => (
   <div className={classes.globalNav}>
     <Toolbar style={styles.toolbar}>
       <ToolbarGroup firstChild>
@@ -32,7 +34,7 @@ export const GlobalNav = () => (
       </ToolbarGroup>
 
       <ToolbarGroup>
-        <RoleSwitcher />
+        <RoleSwitcher logout={props.endDemoSession} />
         <IconButton style={styles.iconButton}>
           <a href="https://github.com/IBM-Bluemix/logistics-wizard" target="_blank">
             <Icon
@@ -48,6 +50,15 @@ export const GlobalNav = () => (
 );
 
 GlobalNav.propTypes = {
+  endDemoSession: React.PropTypes.func.isRequired,
 };
 
-export default GlobalNav;
+const mapActionCreators = {
+  endDemoSession,
+};
+
+const mapStateToProps = () => ({
+});
+
+// export default GlobalNav;
+export default connect(mapStateToProps, mapActionCreators)(GlobalNav);

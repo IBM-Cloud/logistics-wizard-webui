@@ -5,7 +5,6 @@ import classes from '../PopUpCard.scss';
 
 
 export const StormCard = (props) => {
-  console.log(props);
   const {
     event,
     recommendations,
@@ -73,11 +72,8 @@ StormCard.propTypes = {
   storm: React.PropTypes.object.isRequired,
 };
 
-const mapStateToProps = () => ({
-});
-
 const mapActionCreators = {
   acknowledgeRecommendation,
 };
 
-export default connect(mapStateToProps, mapActionCreators)(StormCard);
+export default connect(() => {}, mapActionCreators)(StormCard);
