@@ -4,6 +4,7 @@ import GoogleMap from 'google-map-react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { simulateStorm, selectMarker } from 'routes/Dashboard/modules/Dashboard';
 import MapMarker from './MapMarker/';
+import LoadingSpinner from 'components/LoadingSpinner';
 // map style from https://snazzymaps.com/style/151/ultra-light-with-labels
 // https://googlemaps.github.io/js-samples/styledmaps/wizard/
 import mapStyle from './Map.style.json';
@@ -113,11 +114,15 @@ export class Map extends React.PureComponent {
               />
             )}
           </GoogleMap>
+          {this.props.storms.length === 0 &&
           <RaisedButton
-            label="Simulate Storm"
             onClick={this.props.simulateStorm}
             className={classes.simulateButton}
-          />
+          >
+            {this.props.stormLoading ? <LoadingSpinner /> : <h3>Simualate Storm</h3>}
+          </RaisedButton>
+
+        }
         </div>
       </div>);
   }
@@ -133,6 +138,7 @@ Map.propTypes = {
   storms: React.PropTypes.array,
   simulateStorm: React.PropTypes.func.isRequired,
   selectedMarker: React.PropTypes.object,
+  stormLoading: React.PropTypes.bool,
 };
 
 Map.defaultProps = {
@@ -161,6 +167,7 @@ const mapStateToProps = (state) => ({
   distributionCenters: state.dashboard['distribution-centers'],
   storms: state.dashboard.storms,
   selectedMarker: state.dashboard.infoBox,
+  stormLoading: state.dashboard.stormLoading,
 });
 
 export default connect(mapStateToProps, mapActionCreators)(Map);

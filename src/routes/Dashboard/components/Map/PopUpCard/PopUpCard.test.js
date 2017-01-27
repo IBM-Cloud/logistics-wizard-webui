@@ -45,6 +45,30 @@ const propsForDc = {
   selectMarker: () => {},
 };
 
+const propsForRl = {
+  dashboard: {
+    infoBox: {
+      type: 'retailer',
+      data: {
+        id: 1,
+      },
+    },
+    shipments: [],
+    retailers: [{
+      id: 1261,
+      managerId: null,
+      address: {
+        state: 'North Carolina',
+        city: 'Raleigh',
+        country: 'US',
+        latitude: 35.71,
+        longitude: -78.63,
+      },
+    }],
+    'distribution-centers': [],
+  },
+  selectMarker: () => {},
+};
 const propsForStorm = {
   dashboard: {
     infoBox: {
@@ -77,4 +101,9 @@ test('(Component) Renders a DC card', t => {
 test('(Component) Renders a Storm card', t => {
   const component = shallow(<PopUpCard {...propsForStorm} />);
   t.is(component.find('Connect(StormCard)').length, 1, 'has a Storm Card');
+});
+
+test('(Component) Renders a Retail card', t => {
+  const component = shallow(<PopUpCard {...propsForRl} />);
+  t.is(component.find('Connect(RetailerCard)').length, 1, 'has a Retail Card');
 });
