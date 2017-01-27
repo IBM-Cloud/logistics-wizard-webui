@@ -40,8 +40,6 @@ export default class MapMarker extends React.PureComponent {
   render() {
     const { type, children } = this.props;
 
-    console.log('is selected?', this.props.selected);
-
     let markerIcon;
     let customMarker;
     switch (type) {
