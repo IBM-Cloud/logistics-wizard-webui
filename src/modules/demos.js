@@ -175,10 +175,10 @@ export function *watchEndDemoSession() {
     yield take(END_DEMO_SESSION);
     const demoState = yield select(demoSelector);
     try {
-      yield call(api.endDemo, demoState.guid, demoState.token);
+      yield call(api.endDemo, demoState.guid);
     }
     catch (error) {
-      console.log('ERROR DURING LOGOUT: probably because we are calling logout twice. BUG');
+      console.log('Error during logout', error);
     }
     window.localStorage.removeItem('savedGuid');
     yield put(push('/'));
