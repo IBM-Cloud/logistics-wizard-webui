@@ -10,6 +10,7 @@ export const dashboardSelector = state => state.dashboard;
 export const GET_ADMIN_DATA = 'Dashboard/GET_ADMIN_DATA';
 export const SIMULATE_STORM = 'Dashboard/SIMULATE_STORM';
 export const SELECT_MARKER = 'Dashboard/SELECT_MARKER';
+export const SET_STORM_LOADING = 'Dashboard/SET_STORM_LOADING';
 export const ADMIN_DATA_RECEIVED = 'Dashboard/ADMIN_DATA_RECEIVED';
 export const STORM_DATA_RECEIVED = 'Dashboard/STORM_DATA_RECEIVED';
 export const ACKNOWLEDGE_RECOMMENDATAION = 'Dashboard/ACKNOWLEDGE_RECOMMENDATAION';
@@ -20,6 +21,12 @@ export const WEATHER_OBSERVATIONS_RECEIVED = 'Dashboard/WEATHER_OBSERVATIONS_REC
 // ------------------------------------
 // Actions
 // ------------------------------------
+export const stormLoading = () => ({
+  type: SET_STORM_LOADING,
+  payload: {
+  },
+});
+
 export const selectMarker = (type, data) => ({
   type: SELECT_MARKER,
   payload: {
@@ -65,7 +72,6 @@ export const weatherObservationsReceived = payload => ({
   payload,
 });
 
-
 export const acknowledgeRecommendation = (recommendationId) => ({
   type: ACKNOWLEDGE_RECOMMENDATAION,
   payload: {
@@ -85,6 +91,10 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
+  [SET_STORM_LOADING]: (state) => ({
+    ...state,
+    stormLoading: true,
+  }),
   [SELECT_MARKER]: (state, action) => ({
     ...state,
     infoBox: action.payload,
@@ -96,6 +106,7 @@ const ACTION_HANDLERS = {
   [STORM_DATA_RECEIVED]: (state, action) => ({
     ...state,
     storms: [action.payload],
+    stormLoading: false,
   }),
   [RECOMMENDATIONS_RECEIVED]: (state, action) => {
     const newState = JSON.parse(JSON.stringify(state)); // Deep clone object
@@ -193,8 +204,8 @@ export function *watchGetAdminData() {
 export function *watchSimulateStorm() {
   while (true) {
     yield take(SIMULATE_STORM);
+    yield put(stormLoading());
     const demoState = yield select(demoSelector);
-
     try {
       const stormData = yield call(api.simulateStorm, demoState.token);
       yield put(stormDataReceived(stormData));

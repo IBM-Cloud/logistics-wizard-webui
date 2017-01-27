@@ -76,4 +76,4 @@ const mapActionCreators = {
   acknowledgeRecommendation,
 };
 
-export default connect(() => {}, mapActionCreators)(StormCard);
+export default connect(() => ({}), mapActionCreators)(StormCard);
