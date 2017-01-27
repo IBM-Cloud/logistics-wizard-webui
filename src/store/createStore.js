@@ -1,8 +1,9 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
+import { sagas as demosSagas } from 'modules/demos';
 import makeRootReducer from './reducers';
-import makeRootSaga from './sagas';
+import { makeRootSaga, injectSagas } from './sagas';
 
 export default (initialState = {}, history) => {
   // ======================================================
@@ -39,6 +40,9 @@ export default (initialState = {}, history) => {
     sagaMiddleware.run(saga);
   };
   store.runSaga(makeRootSaga(store.asyncSagas));
+
+  // inject the base sagas to login/logout of a demo session
+  injectSagas(store, { key: 'demos', sagas: demosSagas });
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {

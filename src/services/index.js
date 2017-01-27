@@ -11,7 +11,12 @@ export const callApi = (endpoint, {
     method,
     body: JSON.stringify(body),
   })
-  .then(response => response.json().then(json => ({ json, response })))
+  .then(response => {
+    if (response.status === 204) { // good response but no content
+      return { json: { status: 204, statusText: 'no content' }, response };
+    }
+    return response.json().then(json => ({ json, response }));
+  })
   .then(({ json, response }) => {
     if (!response.ok) {
       console.log(`Error calling URL : ${apiUrl}`);
@@ -28,9 +33,8 @@ export const createDemo = () =>
 
 export const getDemo = guid => callApi(`demos/${guid}`);
 
-export const endDemo = (guid, token) =>
+export const endDemo = (guid) =>
   callApi(`demos/${guid}`, {
-    headers: { Authorization: `Bearer ${token}` },
     method: 'DELETE',
   });
 
