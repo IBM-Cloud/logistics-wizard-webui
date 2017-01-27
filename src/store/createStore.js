@@ -42,6 +42,9 @@ export default (initialState = {}, history) => {
   store.runSaga(makeRootSaga(store.asyncSagas));
 
   // inject the base sagas to login/logout of a demo session
+  // demoSagas are considered "default sagas" registered right from the start
+  // other sagas linked to a route (like the dashboard sagas)
+  // are registered by the route code by calling injectSagas.
   injectSagas(store, { key: 'demos', sagas: demosSagas });
 
   if (module.hot) {
