@@ -41,7 +41,7 @@ export class RetailerCard extends React.PureComponent {
       <div>
         <div className={classes.header}>
           <div className={classes.headerLine}>
-            <i className={`fa fa-star ${classes.icon}`} />
+            <i className={`fa fa-map-marker ${classes.icon}`} />
             { `${address.city}, ${address.state}` }
           </div>
           <div className={classes.headerLine}>

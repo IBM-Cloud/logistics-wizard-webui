@@ -63,7 +63,7 @@ class Dashboard extends React.PureComponent {
           />
           <NumberCard
             label="Retail Centers"
-            icon="circle"
+            icon="map-marker"
             value={this.props.dashboard.retailers.length}
           />
           <div className={classes.viewMode}>

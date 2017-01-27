@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import classes from './MapMarker.scss';
 
 export default class MapMarker extends React.PureComponent {
@@ -10,6 +11,7 @@ export default class MapMarker extends React.PureComponent {
     lat: React.PropTypes.number.isRequired,
     lng: React.PropTypes.number.isRequired,
     zoom: React.PropTypes.number.isRequired,
+    selected: React.PropTypes.bool,
   }
 
   handleClick = () => this.props.selectMarker(this.props.type, this.props.data)
@@ -38,11 +40,16 @@ export default class MapMarker extends React.PureComponent {
   render() {
     const { type, children } = this.props;
 
+    console.log('is selected?', this.props.selected);
+
     let markerIcon;
     let customMarker;
     switch (type) {
+      case 'distributionCenter':
+        markerIcon = 'fa fa-star';
+        break;
       case 'retailer':
-        markerIcon = 'fa fa-circle';
+        markerIcon = 'fa fa-map-marker';
         break;
       case 'shipment':
         markerIcon = 'fa fa-truck';
@@ -79,13 +86,14 @@ export default class MapMarker extends React.PureComponent {
       default:
     }
 
+    const divClasses = { };
+    divClasses[classes.selected] = this.props.selected;
+    divClasses[classes[type]] = true;
+
     return (
-      <div className={classes[type]} onClick={this.handleClick}>
+      <div className={classNames(divClasses)} onClick={this.handleClick}>
         {markerIcon ? <i className={markerIcon} /> : ''}
         {customMarker || ''}
-        <div className={classes.mapMarkerPopup}>
-          {children}
-        </div>
       </div>
     );
   }

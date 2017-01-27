@@ -44,6 +44,11 @@ export class Map extends React.PureComponent {
     this.setState({ zoom: change.zoom });
   }
 
+  isSelected(targetType, targetId) {
+    return this.props.selectedMarker.type === targetType &&
+      this.props.selectedMarker.data.id === targetId;
+  }
+
   render() {
     return (
       <div className={classes.mapContainer}>
@@ -66,6 +71,7 @@ export class Map extends React.PureComponent {
                 data={dc}
                 key={dc.id}
                 zoom={this.state.zoom}
+                selected={this.isSelected('distributionCenter', dc.id)}
               />
             )}
             {this.props.shipments
@@ -79,6 +85,7 @@ export class Map extends React.PureComponent {
                   selectMarker={this.props.selectMarker}
                   data={shipment}
                   zoom={this.state.zoom}
+                  selected={this.isSelected('shipment', shipment.id)}
                 />
               )}
             {this.props.retailers.map(retailer =>
@@ -90,6 +97,7 @@ export class Map extends React.PureComponent {
                 selectMarker={this.props.selectMarker}
                 data={retailer}
                 zoom={this.state.zoom}
+                selected={this.isSelected('retailer', retailer.id)}
               />
             )}
             {this.props.storms.map((storm, i) =>
@@ -123,6 +131,7 @@ Map.propTypes = {
   retailers: React.PropTypes.array,
   storms: React.PropTypes.array,
   simulateStorm: React.PropTypes.func.isRequired,
+  selectedMarker: React.PropTypes.object,
 };
 
 Map.defaultProps = {
@@ -150,6 +159,7 @@ const mapStateToProps = (state) => ({
   retailers: state.dashboard.retailers,
   distributionCenters: state.dashboard['distribution-centers'],
   storms: state.dashboard.storms,
+  selectedMarker: state.dashboard.infoBox,
 });
 
 export default connect(mapStateToProps, mapActionCreators)(Map);
