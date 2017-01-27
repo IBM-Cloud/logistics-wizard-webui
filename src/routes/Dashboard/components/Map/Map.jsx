@@ -45,7 +45,8 @@ export class Map extends React.PureComponent {
   }
 
   isSelected(targetType, targetId) {
-    return this.props.selectedMarker.type === targetType &&
+    return this.props.selectedMarker &&
+      this.props.selectedMarker.type === targetType &&
       this.props.selectedMarker.data.id === targetId;
   }
 

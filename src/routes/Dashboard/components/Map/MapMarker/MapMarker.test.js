@@ -31,14 +31,14 @@ test('(Component) Distribution Center has expected elements.', t => {
   const { component } = setup('distributionCenter');
 
   t.true(component.is('div'), 'is wrapped by a div.');
-  t.is(component.find('i.fa').length, 0, 'has no icon');
+  t.is(component.find('i.fa-star').length, 1, 'has an icon');
 });
 
 test('(Component) Retailer has expected elements.', t => {
   const { component } = setup('retailer');
 
   t.true(component.is('div'), 'is wrapped by a div.');
-  t.is(component.find('i.fa-circle').length, 1, 'has an icon');
+  t.is(component.find('i.fa-map-marker').length, 1, 'has an icon');
 });
 
 test('(Component) Shipment has expected elements.', t => {
