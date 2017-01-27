@@ -8,7 +8,11 @@
   top: -16px;
   border-radius: 16px;
 
-  &:hover, &.selected {
+  &:hover {
+    border: 2px solid rgba(0,0,0,0);
+  }
+
+  &.selected {
     border: 2px solid rgba(255,255,255,0.5);
   }
 }
