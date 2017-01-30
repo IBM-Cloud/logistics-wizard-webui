@@ -57,13 +57,15 @@ export class Map extends React.PureComponent {
     let simulate = '';
     if (this.props.stormLoading) {
       simulate = (<div className={classes.simulateLoading}>
-        <LoadingSpinner size={64}/>
+        <LoadingSpinner size={64} />
       </div>);
-    } else if (this.props.storms.length === 0) {
+    }
+    else if (this.props.storms.length === 0) {
       simulate = (<RaisedButton
         onClick={this.props.simulateStorm}
         className={classes.simulateButton}
-        label="Simulate Storm" />);
+        label="Simulate Storm"
+      />);
     }
 
     return (

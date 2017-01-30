@@ -6,7 +6,6 @@ export default class MapMarker extends React.PureComponent {
   static propTypes = {
     type: React.PropTypes.oneOf(['distributionCenter', 'retailer', 'shipment', 'storm']).isRequired,
     data: React.PropTypes.object.isRequired,
-    children: React.PropTypes.element,
     selectMarker: React.PropTypes.func.isRequired,
     lat: React.PropTypes.number.isRequired,
     lng: React.PropTypes.number.isRequired,
@@ -38,7 +37,7 @@ export default class MapMarker extends React.PureComponent {
   }
 
   render() {
-    const { type, children } = this.props;
+    const { type } = this.props;
 
     let markerIcon;
     let customMarker;
@@ -90,7 +89,7 @@ export default class MapMarker extends React.PureComponent {
 
     return (
       <div className={classNames(divClasses)} onClick={this.handleClick}>
-        {markerIcon ? <i className={markerIcon} /> : ''}
+        {markerIcon ? <div><i className={markerIcon} /></div> : ''}
         {customMarker || ''}
       </div>
     );

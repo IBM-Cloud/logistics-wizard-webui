@@ -8,12 +8,16 @@
   top: -16px;
   border-radius: 16px;
 
-  &:hover {
-    border: 2px solid rgba(0,0,0,0);
+  & div {
+    width: 30px;
+    height: 30px;
+    margin: 1px;
+    border: 1px solid rgba(0,0,0,0);
+    border-radius: 15px;
   }
 
-  &.selected {
-    border: 2px solid rgba(255,255,255,0.5);
+  &.selected div {
+    border-color: white;
   }
 }
 
@@ -23,7 +27,10 @@
 .distributionCenter {
   color: #cc780f;
   font-size: 16px;
-  padding-top: 6px;
+
+  & div i {
+    padding-top: 6px;
+  }
 
   &:hover, &.selected {
     background-color: #cc780f;
@@ -37,7 +44,10 @@
 .shipment {
   color: #749f67;
   font-size: 16px;
-  padding-top: 4px;
+
+  & div i {
+    padding-top: 4px;
+  }
 
   &:hover, &.selected {
     background-color: #749f67;
@@ -51,7 +61,6 @@
 .retailer {
   color: #ad3e9c;
   font-size: 24px;
-  padding-top: 0px;
 
   &:hover, &.selected {
     background-color: #ad3e9c;
