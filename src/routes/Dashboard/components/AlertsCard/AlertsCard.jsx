@@ -6,7 +6,7 @@ export const AlertsCard = ({ storms }) => (
   <div className={storms.length > 0 ? classes.wrapper : classes.hidden}>
     <div className={classes.content}>
       <div>{storms.length} storm(s) detected!</div>
-      <i className={`fa fa-times-circle-o ${classes.closeIcon}`} />
+      {/* <i className={`fa fa-times-circle-o ${classes.closeIcon}`} /> */}
     </div>
   </div>
 );
