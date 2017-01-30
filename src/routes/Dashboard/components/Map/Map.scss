@@ -21,7 +21,16 @@
   position: absolute;
   bottom: 30px;
   right: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
   font-size: .75rem;
+  text-transform: uppercase;
+}
+
+.simulateLoading {
+  background-color: white;
+  opacity: 0.9;
+  padding: 20px;
+  border-radius: 20px;
+  position: absolute;
+  top: calc(50% - 52px);
+  left: calc(50% - 52px);
 }

@@ -52,6 +52,20 @@ export class Map extends React.PureComponent {
   }
 
   render() {
+    // a button to simulate a storm
+    // or a progress or nothing
+    let simulate = '';
+    if (this.props.stormLoading) {
+      simulate = (<div className={classes.simulateLoading}>
+        <LoadingSpinner size={64}/>
+      </div>);
+    } else if (this.props.storms.length === 0) {
+      simulate = (<RaisedButton
+        onClick={this.props.simulateStorm}
+        className={classes.simulateButton}
+        label="Simulate Storm" />);
+    }
+
     return (
       <div className={classes.mapContainer}>
         <div className={classes.map}>
@@ -114,15 +128,7 @@ export class Map extends React.PureComponent {
               />
             )}
           </GoogleMap>
-          {this.props.storms.length === 0 &&
-          <RaisedButton
-            onClick={this.props.simulateStorm}
-            className={classes.simulateButton}
-          >
-            {this.props.stormLoading ? <LoadingSpinner /> : <h3>Simualate Storm</h3>}
-          </RaisedButton>
-
-        }
+          {simulate}
         </div>
       </div>);
   }
