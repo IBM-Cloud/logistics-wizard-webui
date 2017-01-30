@@ -138,6 +138,7 @@ export function *watchCreateDemo() {
         yield put(push(`/dashboard/${demoSession.guid}`));
       }
       catch (error) {
+        console.log('Error during createDemo:', error);
         yield put(createDemoFailure(error));
       }
     }
