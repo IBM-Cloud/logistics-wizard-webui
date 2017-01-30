@@ -55,7 +55,7 @@ export class Map extends React.PureComponent {
     // a button to simulate a storm
     // or a progress or nothing
     let simulate = '';
-    if (this.props.stormLoading) {
+    if (this.props.mapLoading) {
       simulate = (<div className={classes.simulateLoading}>
         <LoadingSpinner size={64} />
       </div>);
@@ -146,7 +146,7 @@ Map.propTypes = {
   storms: React.PropTypes.array,
   simulateStorm: React.PropTypes.func.isRequired,
   selectedMarker: React.PropTypes.object,
-  stormLoading: React.PropTypes.bool,
+  mapLoading: React.PropTypes.bool,
 };
 
 Map.defaultProps = {
@@ -175,7 +175,7 @@ const mapStateToProps = (state) => ({
   distributionCenters: state.dashboard['distribution-centers'],
   storms: state.dashboard.storms,
   selectedMarker: state.dashboard.infoBox,
-  stormLoading: state.dashboard.stormLoading,
+  mapLoading: state.dashboard.mapLoading,
 });
 
 export default connect(mapStateToProps, mapActionCreators)(Map);
