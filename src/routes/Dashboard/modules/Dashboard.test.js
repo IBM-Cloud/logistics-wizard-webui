@@ -45,7 +45,7 @@ test('(Action) getAdminData',
 //     shipments: [],
 //     retailers: [],
 //     'distribution-centers': [],
-//     weather: [],
+//     storms: [],
 //   });
 // });
 

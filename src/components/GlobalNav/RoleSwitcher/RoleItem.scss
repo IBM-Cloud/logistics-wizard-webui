@@ -13,6 +13,7 @@
   margin: 0;
   padding: 0;
   padding-left: 5px;
+  padding-right: 5px;
   outline: none;
 
   &:last-child {
@@ -29,7 +30,6 @@
 .iconContainer {
   border-left: 5px solid transparent;
   align-self: center;
-
 }
 
 .icon {

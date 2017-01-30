@@ -19,7 +19,8 @@ const timeFormat = 'MMM Do, h:mm a';
 const styles = {
   wrapper: {
     border: `1px solid ${palette.borderColor}`,
-    marginBottom: '2rem',
+    flexGrow: 1,
+    backgroundColor: 'white',
   },
   header: {
     fontWeight: '700',
@@ -43,15 +44,10 @@ export class ShipmentsTable extends React.PureComponent {
   render() {
     const props = this.props;
     return (
-      <Table
-        wrapperStyle={styles.wrapper} onCellClick={(rowNumber) => this.handleClick(rowNumber)}
+      <Table wrapperStyle={styles.wrapper}
+        onCellClick={(rowNumber) => this.handleClick(rowNumber)}
       >
         <TableHeader displaySelectAll={false} adjustForrowNumberCheckbox={false}>
-          <TableRow>
-            <TableHeaderColumn style={styles.meta} colSpan="5">
-          Active Shipments ({props.shipments.length})
-        </TableHeaderColumn>
-          </TableRow>
           <TableRow>
             <TableHeaderColumn style={styles.header}>Shipment #</TableHeaderColumn>
             <TableHeaderColumn style={styles.header}>Status</TableHeaderColumn>

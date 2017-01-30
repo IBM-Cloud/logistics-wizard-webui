@@ -7,35 +7,42 @@ import RetailerCard from './RetailerCard';
 import StormCard from './StormCard';
 import DCCard from './DCCard';
 
-const showSelectedInfo = ({ type, data }) => { // eslint-disable-line
-  if (type === 'distributionCenter') {
+const showSelectedInfo = (dashboard) => { // eslint-disable-line
+  if (dashboard.infoBox.type === 'distributionCenter') {
+    const selectedDc = dashboard['distribution-centers']
+      .find(dc => dc.id === dashboard.infoBox.data.id);
+    const shipments = dashboard.shipments
+      .filter(shipment => shipment.fromId === selectedDc.id);
     return (
       <DCCard
-        contact={data.contact.name}
-        address={data.address}
-        shipments={data.shipments}
+        contact={selectedDc.contact.name}
+        address={selectedDc.address}
+        shipments={shipments}
       />
     );
   }
-  else if (type === 'shipment') {
+  else if (dashboard.infoBox.type === 'shipment') {
+    const selectedShipment = dashboard.shipments
+      .find(shipment => shipment.id === dashboard.infoBox.data.id);
     return (
-      <ShipmentCard shipment={data} />
+      <ShipmentCard shipment={selectedShipment} />
     );
   }
-  else if (type === 'retailer') {
+  else if (dashboard.infoBox.type === 'retailer') {
+    const selectedRetailer = dashboard.retailers
+      .find(retailer => retailer.id === dashboard.infoBox.data.id);
+    const shipments = dashboard.shipments
+      .filter(shipment => shipment.toId === selectedRetailer.id);
     return (
-      <RetailerCard
-        managerId={data.managerId}
-        address={data.address}
-      />
+      <RetailerCard retailer={selectedRetailer} shipments={shipments} />
     );
   }
-  else if (type === 'storm') {
+  else if (dashboard.infoBox.type === 'storm') {
     return (
-      <StormCard storm={data} />
+      <StormCard storm={dashboard.storms[0]} />
     );
   }
-  else if (type === 'hidden') {
+  else if (dashboard.infoBox.type === 'hidden') {
     return '';
   }
 
@@ -54,22 +61,21 @@ const formatTitle = type => {
   return titles[type] || '';
 };
 
-const PopUpCard = ({ infoBox }) => (
-  <div className={`${classes.wrapper} ${classes[infoBox.type]}`}>
+export const PopUpCard = ({ dashboard, selectMarker }) => { // eslint-disable-line
+  return dashboard.infoBox.type === 'hidden' ?
+  (<div className={`${classes.wrapper} ${classes[dashboard.infoBox.type]}`} />) :
+  (<div className={`${classes.wrapper} ${classes[dashboard.infoBox.type]}`}>
     <div className={classes.title}>
-      <h4>{formatTitle(infoBox.type)} {infoBox.data.id}</h4>
-      <i className={`fa fa-times-circle-o ${classes.closeIcon}`} />
+      <h4>{formatTitle(dashboard.infoBox.type)} {dashboard.infoBox.data.id}</h4>
+      <i className={`fa fa-times-circle-o ${classes.closeIcon}`} onClick={() => selectMarker('hidden', {})} />
     </div>
-    {showSelectedInfo(infoBox)}
-  </div>
-);
+    {showSelectedInfo(dashboard)}
+  </div>);
+};
 
 PopUpCard.propTypes = {
   selectMarker: React.PropTypes.func.isRequired,
-  infoBox: React.PropTypes.shape({
-    type: React.PropTypes.string.isRequired,
-    data: React.PropTypes.object.isRequired,
-  }),
+  dashboard: React.PropTypes.object.isRequired,
 };
 
 // ------------------------------------
@@ -81,7 +87,7 @@ const mapActionCreators = {
 };
 
 const mapStateToProps = (state) => ({
-  infoBox: state.dashboard.infoBox,
+  dashboard: state.dashboard,
 });
 
 export default connect(mapStateToProps, mapActionCreators)(PopUpCard);

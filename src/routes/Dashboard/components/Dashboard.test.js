@@ -7,14 +7,14 @@ import Dashboard from './Dashboard';
 
 const setup = () => {
   const spies = {
-    simulateWeather: sinon.spy(),
+    simulateStorm: sinon.spy(),
   };
   const props = {
     demoName: 'Test Demo',
     shipments: [],
     retailers: [],
     distributionCenters: [],
-    weather: [],
+    storms: [],
     token: '1234',
   };
   const component = shallow(<Dashboard {...props} />);

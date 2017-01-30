@@ -1,7 +1,7 @@
 import test from 'ava';
 import React from 'react';
 import { shallow } from 'enzyme';
-import StormCard from './StormCard';
+import { StormCard } from './StormCard';
 
 const setup = () => {
   const spies = {

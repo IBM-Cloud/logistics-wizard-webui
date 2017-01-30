@@ -9,6 +9,7 @@ import { getAdminData } from 'routes/Dashboard/modules/Dashboard';
 export const CREATE_DEMO = 'demos/CREATE_DEMO';
 export const CREATE_DEMO_FAILURE = 'demos/CREATE_DEMO_FAILURE';
 export const GET_DEMO_SESSION = 'demos/GET_DEMO_SESSION';
+export const END_DEMO_SESSION = 'demos/END_DEMO_SESSION';
 export const GET_DEMO_SUCCESS = 'demos/GET_DEMO_SUCCESS';
 export const LOGIN = 'demos/LOGIN';
 export const LOGIN_SUCCESS = 'demos/LOGIN_SUCCESS';
@@ -31,6 +32,10 @@ export const createDemoFailure = (value) => ({
 export const getDemoSession = (guid) => ({
   type: GET_DEMO_SESSION,
   guid,
+});
+
+export const endDemoSession = () => ({
+  type: END_DEMO_SESSION,
 });
 
 export const getDemoSuccess = (payload) => ({
@@ -133,6 +138,7 @@ export function *watchCreateDemo() {
         yield put(push(`/dashboard/${demoSession.guid}`));
       }
       catch (error) {
+        console.log('Error during createDemo:', error);
         yield put(createDemoFailure(error));
       }
     }
@@ -165,6 +171,21 @@ export function *watchGetDemoSession() {
   }
 }
 
+export function *watchEndDemoSession() {
+  while (true) {
+    yield take(END_DEMO_SESSION);
+    const demoState = yield select(demoSelector);
+    try {
+      yield call(api.endDemo, demoState.guid);
+    }
+    catch (error) {
+      console.log('Error during logout', error);
+    }
+    window.localStorage.removeItem('savedGuid');
+    yield put(push('/'));
+  }
+}
+
 export function *watchLogin() {
   while (true) {
     const { userid } = yield take(LOGIN);
@@ -183,6 +204,7 @@ export function *watchLogin() {
 
 export const sagas = [
   watchCreateDemo,
+  watchEndDemoSession,
   watchGetDemoSession,
   watchLogin,
 ];

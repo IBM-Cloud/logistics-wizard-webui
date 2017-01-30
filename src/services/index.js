@@ -1,3 +1,6 @@
+// Polyfill for fetch() not yet implemented by all browsers http://caniuse.com/#feat=fetch
+import 'whatwg-fetch';
+
 export const controllerApi = `${__CONTROLLER_API__}/api/v1`;
 
 export const callApi = (endpoint, {
@@ -11,7 +14,12 @@ export const callApi = (endpoint, {
     method,
     body: JSON.stringify(body),
   })
-  .then(response => response.json().then(json => ({ json, response })))
+  .then(response => {
+    if (response.status === 204) { // good response but no content
+      return { json: { status: 204, statusText: 'no content' }, response };
+    }
+    return response.json().then(json => ({ json, response }));
+  })
   .then(({ json, response }) => {
     if (!response.ok) {
       console.log(`Error calling URL : ${apiUrl}`);
@@ -28,6 +36,11 @@ export const createDemo = () =>
 
 export const getDemo = guid => callApi(`demos/${guid}`);
 
+export const endDemo = (guid) =>
+  callApi(`demos/${guid}`, {
+    method: 'DELETE',
+  });
+
 export const login = (id, guid) =>
   callApi(`demos/${guid}/login`, {
     method: 'POST',
@@ -39,10 +52,15 @@ export const getRetailers = guid => callApi(`demos/${guid}/retailers`);
 export const getAdminData = token =>
   callApi('admin', { headers: { Authorization: `Bearer ${token}` } });
 
-export const simulateWeather = token =>
+export const simulateStorm = token =>
   callApi('weather/simulate', {
     headers: { Authorization: `Bearer ${token}` },
     method: 'POST',
+  });
+
+export const getRecommendations = token =>
+  callApi('weather/recommendations', {
+    headers: { Authorization: `Bearer ${token}` },
   });
 
 export const getWeatherObservations = (token, longitude, latitude) =>
@@ -52,14 +70,24 @@ export const getWeatherObservations = (token, longitude, latitude) =>
       body: { longitude, latitude },
     });
 
+export const postAcknowledgeRecommendation = (token, id) =>
+  callApi('weather/acknowledge', {
+    headers: { Authorization: `Bearer ${token}` },
+    method: 'POST',
+    body: { id },
+  });
+
 export const api = {
   createDemo,
   getDemo,
+  endDemo,
   login,
   getRetailers,
   getAdminData,
-  simulateWeather,
+  simulateStorm,
+  getRecommendations,
   getWeatherObservations,
+  postAcknowledgeRecommendation,
 };
 
 export default api;

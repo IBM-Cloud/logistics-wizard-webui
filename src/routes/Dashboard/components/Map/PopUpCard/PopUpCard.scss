@@ -3,14 +3,16 @@
 .wrapper {
   background-color: white;
   border: 1px solid $borderColor;
-  width: 260px;
-  height: 100%;
+  width: 360px;
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 24px;
+  top: 24px;
+  bottom: 24px;
   color: $textColor;
   font-size: 13px;
   z-index: 9999;
+  overflow: auto;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
 }
 
 .title {
@@ -145,10 +147,16 @@ small {
 .shipmentDialogAction {
   border: 1px solid $borderColor;
   width:100%;
+  cursor: pointer;
 }
 
 .weatherIcon {
   width: 32px;
   margin-top:10px;
   margin-right:10px;
+}
+
+.shipmentRecommendationList {
+  max-height: 300px;
+  overflow-y: auto;
 }

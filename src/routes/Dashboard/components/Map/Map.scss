@@ -1,18 +1,36 @@
 @import '~styles/base/colors';
 
+.mapContainer {
+  flex-grow: 1;
+  position: relative;
+}
+
 .map {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 500px;
-  border-top: 2px solid $borderColor;
-  border-bottom: 2px solid $borderColor;
+  height: 100%;
+  border-bottom: 1px solid $borderColor;
   border-left: 1px solid $borderColor;
   border-right: 1px solid $borderColor;
   margin-bottom: 1.5rem;
-  position: relative;
 }
 
 .simulateButton {
   position: absolute;
   bottom: 30px;
   right: 30px;
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+.simulateLoading {
+  background-color: white;
+  opacity: 0.9;
+  padding: 20px;
+  border-radius: 20px;
+  position: absolute;
+  top: calc(50% - 52px);
+  left: calc(50% - 52px);
 }
