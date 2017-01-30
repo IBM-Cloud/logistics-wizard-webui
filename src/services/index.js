@@ -1,3 +1,6 @@
+// Polyfill for fetch() not yet implemented by all browsers http://caniuse.com/#feat=fetch
+import 'whatwg-fetch';
+
 export const controllerApi = `${__CONTROLLER_API__}/api/v1`;
 
 export const callApi = (endpoint, {
