@@ -22,10 +22,11 @@ const DCCard = ({ address, contact, shipments }) => (
     {shipments && shipments.length > 0 ?
       <div>
         <div className={classes.tableHeader}>
-          <h4 className={`${classes.subtitle} ${classes.padLeft}`}>
+          <h4 className={`${classes.subtitle2} ${classes.padLeft}`}>
             Outgoing Shipments ({shipments.length})
           </h4>
         </div>
+        <hr />
         <div style={{ padding: '0 1rem' }}>
           <Table>
             <TableBody displayRowCheckbox={false}>

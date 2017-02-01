@@ -28,20 +28,22 @@ export const StormCard = (props) => {
 
           <span className={classes.subtitle}>
         Severity:&nbsp;
-      </span>
+
           {event.severity}
+          </span>
         </div>
       </div>
 
 
-      <div className={classes.subtitle}>
+      <div className={classes.subtitle2}>
         Suggested Shipments
+        <hr />
       </div>
       <div className={classes.shipmentRecommendationList}>
-        <small>
+
           Potential supply shortages due to weather.
           Consider sending additional supplies to affected locations.
-        </small>
+
         {recommendations.map(recommendation =>
           <div className={classes.shipmentDialog} key={recommendation._id}>
             <div className={classes.shipmentTitle}>
