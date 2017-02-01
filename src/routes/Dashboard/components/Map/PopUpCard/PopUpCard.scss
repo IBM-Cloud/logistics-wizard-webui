@@ -29,27 +29,27 @@
 
 .distributionCenter {
   .title {
-    background-color: $map1Accent;
-    color: $map1Primary;
+    background-color: $map1Primary;
+    color: #FFFFFF;
   }
 }
 .retailer {
   .title {
-    background-color: $map2Accent;
-    color: $map2Primary;
+    background-color: $map2Primary;
+    color: #FFFFFF;
   }
 }
 .shipment {
   .title {
-    background-color: $map3Accent;
-    color: $map3Primary;
+    background-color: $map3Primary;
+    color: #FFFFFF;
   }
 }
 
 .storm {
   .title {
-    background-color: $primary3Color;
-    color: $primary1Color;
+    background-color: $primary1Color;
+    color: #FFFFFF;
   }
 }
 
@@ -93,7 +93,8 @@ hr {
   margin: .5rem 0;
 }
 h4 {
-  font-weight: bold;
+  font-weight: 600;
+  letter-spacing: .5px;
   font-size: 14px;
   font-color: #0C7483;
 }
