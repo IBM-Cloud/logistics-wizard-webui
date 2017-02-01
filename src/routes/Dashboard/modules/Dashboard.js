@@ -10,7 +10,7 @@ export const dashboardSelector = state => state.dashboard;
 export const GET_ADMIN_DATA = 'Dashboard/GET_ADMIN_DATA';
 export const SIMULATE_STORM = 'Dashboard/SIMULATE_STORM';
 export const SELECT_MARKER = 'Dashboard/SELECT_MARKER';
-export const SET_STORM_LOADING = 'Dashboard/SET_STORM_LOADING';
+export const SET_MAP_LOADING = 'Dashboard/SET_MAP_LOADING';
 export const ADMIN_DATA_RECEIVED = 'Dashboard/ADMIN_DATA_RECEIVED';
 export const STORM_DATA_RECEIVED = 'Dashboard/STORM_DATA_RECEIVED';
 export const ACKNOWLEDGE_RECOMMENDATAION = 'Dashboard/ACKNOWLEDGE_RECOMMENDATAION';
@@ -21,8 +21,8 @@ export const WEATHER_OBSERVATIONS_RECEIVED = 'Dashboard/WEATHER_OBSERVATIONS_REC
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const stormLoading = () => ({
-  type: SET_STORM_LOADING,
+export const mapLoading = () => ({
+  type: SET_MAP_LOADING,
   payload: {
   },
 });
@@ -91,9 +91,9 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [SET_STORM_LOADING]: (state) => ({
+  [SET_MAP_LOADING]: (state) => ({
     ...state,
-    stormLoading: true,
+    mapLoading: true,
   }),
   [SELECT_MARKER]: (state, action) => ({
     ...state,
@@ -106,11 +106,12 @@ const ACTION_HANDLERS = {
   [STORM_DATA_RECEIVED]: (state, action) => ({
     ...state,
     storms: [action.payload],
-    stormLoading: false,
+    mapLoading: false,
   }),
   [RECOMMENDATIONS_RECEIVED]: (state, action) => {
     const newState = JSON.parse(JSON.stringify(state)); // Deep clone object
     newState.storms[0].recommendations = action.payload.recommendations;
+    newState.mapLoading = false;
     return newState;
   },
   [WEATHER_OBSERVATIONS_RECEIVED]: (state, action) => {
@@ -204,7 +205,7 @@ export function *watchGetAdminData() {
 export function *watchSimulateStorm() {
   while (true) {
     yield take(SIMULATE_STORM);
-    yield put(stormLoading());
+    yield put(mapLoading());
     const demoState = yield select(demoSelector);
     try {
       const stormData = yield call(api.simulateStorm, demoState.token);
@@ -221,7 +222,7 @@ export function *watchSimulateStorm() {
 export function *watchAcknowledgeRecommendation() {
   while (true) {
     const { payload } = yield take(ACKNOWLEDGE_RECOMMENDATAION);
-    console.log('recommendationId: ', payload.recommendationId);
+    yield put(mapLoading());
     const demoState = yield select(demoSelector);
 
     try {

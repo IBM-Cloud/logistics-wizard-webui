@@ -2,13 +2,15 @@
 
 .wrapper {
   border: 1px solid $map2Primary;
-  margin: 1rem;
   background-color: $map2Accent;
-  padding: 6px;
-  padding-left: 12px;
   color: $map2Primary;
   font-size: 14px;
-  padding: 0.5rem 1rem;
+  width: 300px;
+  position: absolute;
+  top: 25px;
+  padding: 10px;
+  // left: 50px
+  right: 10px;
 }
 
 .title {

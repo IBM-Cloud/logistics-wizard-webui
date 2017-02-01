@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import Map from './Map';
 import ShipmentsTable from './ShipmentsTable';
-import AlertsCard from './AlertsCard';
+
 import classes from './Dashboard.scss';
 import NumberCard from './NumberCard';
 
@@ -73,7 +73,7 @@ class Dashboard extends React.PureComponent {
             </div>
           </div>
         </div>
-        <AlertsCard />
+
         <div style={this.state.viewMode === 'map' ? visibleTab : invisibleTab} >
           <Map />
         </div>

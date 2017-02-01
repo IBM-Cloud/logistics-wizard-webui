@@ -4,6 +4,7 @@ import GoogleMap from 'google-map-react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { simulateStorm, selectMarker } from 'routes/Dashboard/modules/Dashboard';
 import MapMarker from './MapMarker/';
+import AlertsCard from '../AlertsCard';
 import LoadingSpinner from 'components/LoadingSpinner';
 // map style from https://snazzymaps.com/style/151/ultra-light-with-labels
 // https://googlemaps.github.io/js-samples/styledmaps/wizard/
@@ -55,7 +56,7 @@ export class Map extends React.PureComponent {
     // a button to simulate a storm
     // or a progress or nothing
     let simulate = '';
-    if (this.props.stormLoading) {
+    if (this.props.mapLoading) {
       simulate = (<div className={classes.simulateLoading}>
         <LoadingSpinner size={64} />
       </div>);
@@ -130,6 +131,7 @@ export class Map extends React.PureComponent {
               />
             )}
           </GoogleMap>
+          <AlertsCard />
           {simulate}
         </div>
       </div>);
@@ -146,7 +148,7 @@ Map.propTypes = {
   storms: React.PropTypes.array,
   simulateStorm: React.PropTypes.func.isRequired,
   selectedMarker: React.PropTypes.object,
-  stormLoading: React.PropTypes.bool,
+  mapLoading: React.PropTypes.bool,
 };
 
 Map.defaultProps = {
@@ -175,7 +177,7 @@ const mapStateToProps = (state) => ({
   distributionCenters: state.dashboard['distribution-centers'],
   storms: state.dashboard.storms,
   selectedMarker: state.dashboard.infoBox,
-  stormLoading: state.dashboard.stormLoading,
+  mapLoading: state.dashboard.mapLoading,
 });
 
 export default connect(mapStateToProps, mapActionCreators)(Map);

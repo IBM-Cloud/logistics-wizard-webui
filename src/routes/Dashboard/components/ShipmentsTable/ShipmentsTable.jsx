@@ -24,7 +24,7 @@ const styles = {
   },
   header: {
     fontWeight: '700',
-    paddingTop: '1.5rem',
+    paddingTop: '1rem',
     paddingBottom: '0.5rem',
   },
   meta: {
@@ -44,10 +44,11 @@ export class ShipmentsTable extends React.PureComponent {
   render() {
     const props = this.props;
     return (
-      <Table wrapperStyle={styles.wrapper}
+      <Table
+        wrapperStyle={styles.wrapper}
         onCellClick={(rowNumber) => this.handleClick(rowNumber)}
       >
-        <TableHeader displaySelectAll={false} adjustForrowNumberCheckbox={false}>
+        <TableHeader displaySelectAll={false} adjustForrowNumberCheckbox displaySelectAll={false}>
           <TableRow>
             <TableHeaderColumn style={styles.header}>Shipment #</TableHeaderColumn>
             <TableHeaderColumn style={styles.header}>Status</TableHeaderColumn>
