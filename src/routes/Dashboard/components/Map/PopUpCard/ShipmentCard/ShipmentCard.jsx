@@ -39,13 +39,13 @@ export class ShipmentCard extends React.PureComponent {
 
     return (
       <div className={classes.contentContainer}>
-        <div className={classes.subtitle}>
+        <div className={classes.subtitle2}>
           Status
         </div>
         <div>{status}</div>
         {currentLocation &&
           <div>
-            <div className={classes.subtitle}>
+            <div className={classes.subtitle2}>
               Current Location
             </div>
             <div>{`
@@ -55,19 +55,19 @@ export class ShipmentCard extends React.PureComponent {
           </div>
           }
 
-        <div className={classes.subtitle}>
+        <div className={classes.subtitle2}>
           Estimated Time of Arrival
         </div>
         <div>{formatTime(estimatedTimeOfArrival)}</div>
 
-        <div className={classes.subtitle}>
+        <div className={classes.subtitle2}>
           Last Updated
         </div>
         <div>{updatedAt ? formatTime(updatedAt) : 'N/A'}</div>
 
         {currentLocation &&
           <div>
-            <div className={classes.subtitle}>
+            <div className={classes.subtitle2}>
               Current Weather
             </div>
             <div>

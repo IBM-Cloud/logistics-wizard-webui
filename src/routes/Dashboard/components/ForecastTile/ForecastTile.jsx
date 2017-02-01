@@ -33,12 +33,7 @@ const ForecastTile = ({ weather }) => {
   }
 
   return (<Table wrapperStyle={styles.wrapper}>
-    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-      <TableRow>
-        <TableHeaderColumn style={styles.header}>Day</TableHeaderColumn>
-        <TableHeaderColumn style={styles.header}>Summary</TableHeaderColumn>
-      </TableRow>
-    </TableHeader>
+
     <TableBody displayRowCheckbox={false} >
       { weather.forecasts.slice(0, 5).map((forecast, i) =>
         <TableRow key={i}>

@@ -4,6 +4,7 @@ import GoogleMap from 'google-map-react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { simulateStorm, selectMarker } from 'routes/Dashboard/modules/Dashboard';
 import MapMarker from './MapMarker/';
+import AlertsCard from '../AlertsCard';
 import LoadingSpinner from 'components/LoadingSpinner';
 // map style from https://snazzymaps.com/style/151/ultra-light-with-labels
 // https://googlemaps.github.io/js-samples/styledmaps/wizard/
@@ -130,6 +131,7 @@ export class Map extends React.PureComponent {
               />
             )}
           </GoogleMap>
+          <AlertsCard />
           {simulate}
         </div>
       </div>);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { palette } from 'styles/muiTheme';
 import { connect } from 'react-redux';
 import {
   Table,
@@ -9,6 +10,18 @@ import {
 import { getWeatherObservations } from 'routes/Dashboard/modules/Dashboard';
 import ForecastTile from '../../../ForecastTile';
 import classes from '../PopUpCard.scss';
+
+const styles = {
+  column: {
+    padding: '0rem',
+    height: '30px',
+  },
+  column2: {
+    padding: '0rem',
+    height: '30px',
+    fontStyle: 'italic',
+  },
+};
 
 export class RetailerCard extends React.PureComponent {
 
@@ -52,17 +65,18 @@ export class RetailerCard extends React.PureComponent {
         {shipments && shipments.length > 0 ?
           <div>
             <div className={classes.tableHeader}>
-              <h4 className={`${classes.subtitle} ${classes.padLeft}`}>
+              <h4 className={`${classes.subtitle2} ${classes.padLeft}`}>
                 Incoming Shipments ({shipments.length})
               </h4>
             </div>
             <div style={{ padding: '0 1rem' }}>
+              <hr />
               <Table>
                 <TableBody displayRowCheckbox={false}>
                   {shipments.map(shipment => (
                     <TableRow>
-                      <TableRowColumn style={{ paddingLeft: '0' }}>{shipment.id}</TableRowColumn>
-                      <TableRowColumn style={{ fontStyle: 'italic' }}>{shipment.status}</TableRowColumn>
+                      <TableRowColumn style={styles.column}>{shipment.id}</TableRowColumn>
+                      <TableRowColumn style={styles.column2}>{shipment.status}</TableRowColumn>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -73,7 +87,8 @@ export class RetailerCard extends React.PureComponent {
           <h4>No Incoming Shipments</h4>
         }
         <div className={classes.contentContainer}>
-          <div className={classes.subtitle}>Weather Forecasts</div>
+          <div className={classes.subtitle2}>Weather Forecasts</div>
+          <hr />
           <div><ForecastTile weather={address.weather} /></div>
         </div>
       </div>
