@@ -7,7 +7,19 @@ import {
 } from 'material-ui/Table';
 import classes from '../PopUpCard.scss';
 
-const DCCard = ({ address, contact, shipments }) => (
+const styles = {
+  column: {
+    padding: '0rem',
+    height: '30px',
+  },
+  column2: {
+    padding: '0rem',
+    height: '30px',
+    fontStyle: 'italic',
+  },
+};
+
+const DCCard = ({ address, contact, shipments, idToNameResolver }) => (
   <div>
     <div className={classes.header}>
       <div className={classes.headerLine}>
@@ -26,14 +38,14 @@ const DCCard = ({ address, contact, shipments }) => (
             Outgoing Shipments ({shipments.length})
           </h4>
         </div>
-        <hr />
         <div style={{ padding: '0 1rem' }}>
+          <hr />
           <Table>
             <TableBody displayRowCheckbox={false}>
               {shipments.map(shipment => (
                 <TableRow>
-                  <TableRowColumn style={{ paddingLeft: '0' }}>{shipment.id}</TableRowColumn>
-                  <TableRowColumn style={{ fontStyle: 'italic' }}>{shipment.status}</TableRowColumn>
+                  <TableRowColumn style={styles.column}>{idToNameResolver.resolve('retailer', shipment.toId)}</TableRowColumn>
+                  <TableRowColumn style={styles.column2}>{shipment.status}</TableRowColumn>
                 </TableRow>
               ))}
             </TableBody>
@@ -58,6 +70,7 @@ DCCard.propTypes = {
     id: React.PropTypes.string.isRequired,
     status: React.PropTypes.string.isRequired,
   })),
+  idToNameResolver: React.PropTypes.object,
 };
 
 export default DCCard;
