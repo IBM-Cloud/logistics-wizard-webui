@@ -89,7 +89,7 @@ const setup = () => {
       ],
     },
   };
-  const component = shallow(<StormCard storm={props.storm} />);
+  const component = shallow(<StormCard {...props} />);
 
   return { spies, props, component };
 };
