@@ -5,6 +5,9 @@ import { ShipmentCard } from './ShipmentCard';
 
 test('(Component) ShipmentCard shows a progress when no weather data.', t => {
   const props = {
+    idToNameResolver: {
+      resolve: (type, id) => `${type} ${id}`,
+    },
     shipment: {
       toId: 462,
       estimatedTimeOfArrival: '2016-10-22T00:00:00.000Z',
@@ -30,6 +33,9 @@ test('(Component) ShipmentCard shows a progress when no weather data.', t => {
 
 test('(Component) ShipmentCard shows current weather when it exists.', t => {
   const props = {
+    idToNameResolver: {
+      resolve: (type, id) => `${type} ${id}`,
+    },
     shipment: {
       toId: 462,
       estimatedTimeOfArrival: '2016-10-22T00:00:00.000Z',
