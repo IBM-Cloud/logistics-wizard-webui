@@ -47,7 +47,7 @@ export const StormCard = (props) => {
         {recommendations.map(recommendation =>
           <div className={classes.shipmentDialog} key={recommendation._id}>
             <div className={classes.shipmentTitle}>
-              Shipment from {recommendation.fromId} to {recommendation.toId}
+              Shipment from {props.idToNameResolver.resolve('distributionCenter', recommendation.fromId)} to {props.idToNameResolver.resolve('retailer', recommendation.toId)}
             </div>
             <div className={classes.shipmentDialogActionContainer}>
               <div
@@ -72,6 +72,7 @@ export const StormCard = (props) => {
 
 StormCard.propTypes = {
   storm: React.PropTypes.object.isRequired,
+  idToNameResolver: React.PropTypes.object,
 };
 
 const mapActionCreators = {

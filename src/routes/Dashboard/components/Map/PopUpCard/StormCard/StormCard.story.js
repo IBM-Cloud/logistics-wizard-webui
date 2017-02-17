@@ -1,6 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import StormCard from './StormCard';
+import { StormCard } from './StormCard';
+
+const resolver = {
+  resolve: (type, id) => `${type} ${id}`,
+};
 
 const storm1 = {
   event: {
@@ -85,5 +89,6 @@ storiesOf('StormCard', module)
   .add('storm1', () => (
     <StormCard
       storm={storm1}
+      idToNameResolver={resolver}
     />
 ));

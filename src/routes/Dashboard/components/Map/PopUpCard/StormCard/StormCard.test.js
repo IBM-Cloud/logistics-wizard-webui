@@ -7,6 +7,9 @@ const setup = () => {
   const spies = {
   };
   const props = {
+    idToNameResolver: {
+      resolve: (type, id) => `${type} ${id}`,
+    },
     storm: {
       event: {
         area_id: 'CAZ048',

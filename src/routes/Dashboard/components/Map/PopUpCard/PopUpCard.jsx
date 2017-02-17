@@ -48,7 +48,10 @@ const showSelectedInfo = (dashboard) => { // eslint-disable-line
   }
   else if (dashboard.infoBox.type === 'storm') {
     return (
-      <StormCard storm={dashboard.storms[0]} />
+      <StormCard
+        storm={dashboard.storms[0]}
+        idToNameResolver={NameResolver(dashboard)}
+      />
     );
   }
   else if (dashboard.infoBox.type === 'hidden') {
