@@ -75,7 +75,7 @@ export class RetailerCard extends React.PureComponent {
                 <TableBody displayRowCheckbox={false}>
                   {shipments.map(shipment => (
                     <TableRow>
-                      <TableRowColumn style={styles.column}>{shipment.id}</TableRowColumn>
+                      <TableRowColumn style={styles.column}>{this.props.idToNameResolver.resolve('distributionCenter', shipment.fromId)}</TableRowColumn>
                       <TableRowColumn style={styles.column2}>{shipment.status}</TableRowColumn>
                     </TableRow>
                   ))}
@@ -99,6 +99,7 @@ export class RetailerCard extends React.PureComponent {
 RetailerCard.propTypes = {
   retailer: React.PropTypes.object.isRequired,
   shipments: React.PropTypes.array,
+  idToNameResolver: React.PropTypes.object,
   retrieveWeatherObservations: React.PropTypes.func.isRequired,
 };
 

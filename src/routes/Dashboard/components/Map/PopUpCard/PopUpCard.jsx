@@ -6,6 +6,7 @@ import ShipmentCard from './ShipmentCard';
 import RetailerCard from './RetailerCard';
 import StormCard from './StormCard';
 import DCCard from './DCCard';
+import NameResolver from '../../NameResolver';
 
 const showSelectedInfo = (dashboard) => { // eslint-disable-line
   if (dashboard.infoBox.type === 'distributionCenter') {
@@ -18,6 +19,7 @@ const showSelectedInfo = (dashboard) => { // eslint-disable-line
         contact={selectedDc.contact.name}
         address={selectedDc.address}
         shipments={shipments}
+        idToNameResolver={NameResolver(dashboard)}
       />
     );
   }
@@ -25,7 +27,10 @@ const showSelectedInfo = (dashboard) => { // eslint-disable-line
     const selectedShipment = dashboard.shipments
       .find(shipment => shipment.id === dashboard.infoBox.data.id);
     return (
-      <ShipmentCard shipment={selectedShipment} />
+      <ShipmentCard
+        shipment={selectedShipment}
+        idToNameResolver={NameResolver(dashboard)}
+      />
     );
   }
   else if (dashboard.infoBox.type === 'retailer') {
@@ -34,12 +39,19 @@ const showSelectedInfo = (dashboard) => { // eslint-disable-line
     const shipments = dashboard.shipments
       .filter(shipment => shipment.toId === selectedRetailer.id);
     return (
-      <RetailerCard retailer={selectedRetailer} shipments={shipments} />
+      <RetailerCard
+        retailer={selectedRetailer}
+        shipments={shipments}
+        idToNameResolver={NameResolver(dashboard)}
+      />
     );
   }
   else if (dashboard.infoBox.type === 'storm') {
     return (
-      <StormCard storm={dashboard.storms[0]} />
+      <StormCard
+        storm={dashboard.storms[0]}
+        idToNameResolver={NameResolver(dashboard)}
+      />
     );
   }
   else if (dashboard.infoBox.type === 'hidden') {

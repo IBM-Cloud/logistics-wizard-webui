@@ -2,6 +2,10 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import { ShipmentCard } from './ShipmentCard';
 
+const resolver = {
+  resolve: (type, id) => `${type} ${id}`,
+};
+
 const props1 = {
   shipment: {
     toId: 462,
@@ -35,9 +39,13 @@ const shipment2 = {
 };
 storiesOf('ShipmentCard', module)
   .add('shipment1', () => (
-    <ShipmentCard {...props1} />
+    <ShipmentCard
+      {...props1}
+      idToNameResolver={resolver}
+    />
 )).add('shipment2', () => (
   <ShipmentCard
     shipment={shipment2}
+    idToNameResolver={resolver}
   />
   ));
