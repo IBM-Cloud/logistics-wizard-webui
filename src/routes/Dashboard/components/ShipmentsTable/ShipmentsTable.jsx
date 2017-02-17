@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { palette } from 'styles/muiTheme';
 import { selectMarker } from 'routes/Dashboard/modules/Dashboard';
+import NameResolver from '../NameResolver';
 
 import {
   Table,
@@ -39,10 +40,11 @@ const styles = {
 
 export class ShipmentsTable extends React.PureComponent {
 
-  handleClick = (rowNumber) => this.props.selectMarker('shipment', this.props.shipments[rowNumber]);
+  handleClick = (rowNumber) => this.props.selectMarker('shipment', this.props.dashboard.shipments[rowNumber]);
 
   render() {
     const props = this.props;
+    const idToNameResolver = NameResolver(this.props.dashboard);
     return (
       <Table
         wrapperStyle={styles.wrapper}
@@ -52,20 +54,22 @@ export class ShipmentsTable extends React.PureComponent {
           <TableRow>
             <TableHeaderColumn style={styles.header}>Shipment #</TableHeaderColumn>
             <TableHeaderColumn style={styles.header}>Status</TableHeaderColumn>
+            <TableHeaderColumn style={styles.header}>Origin</TableHeaderColumn>
             <TableHeaderColumn style={styles.header}>Destination</TableHeaderColumn>
             <TableHeaderColumn style={styles.header}>Date Placed</TableHeaderColumn>
             <TableHeaderColumn style={styles.header}>Estimated Time of Arrival</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
-          {props.shipments.map(shipment =>
+          {props.dashboard.shipments.map(shipment =>
             <TableRow
               key={shipment.id}
               style={{ padding: '40px' }}
             >
               <TableRowColumn>{shipment.id}</TableRowColumn>
               <TableRowColumn>{shipment.status}</TableRowColumn>
-              <TableRowColumn>{shipment.toId}</TableRowColumn>
+              <TableRowColumn>{idToNameResolver.resolve('distributionCenter', shipment.fromId)}</TableRowColumn>
+              <TableRowColumn>{idToNameResolver.resolve('retailer', shipment.toId)}</TableRowColumn>
               <TableRowColumn>{moment(shipment.createdAt).format(timeFormat)}</TableRowColumn>
               <TableRowColumn>
                 {moment(shipment.estimatedTimeOfArrival).format(timeFormat)}
@@ -81,7 +85,7 @@ export class ShipmentsTable extends React.PureComponent {
 
 ShipmentsTable.propTypes = {
   selectMarker: React.PropTypes.func.isRequired,
-  shipments: React.PropTypes.array,
+  dashboard: React.PropTypes.object,
 };
 
 // ------------------------------------
@@ -92,7 +96,7 @@ const mapActionCreators = {
 };
 
 const mapStateToProps = (state) => ({
-  shipments: state.dashboard.shipments,
+  dashboard: state.dashboard,
 });
 
 
