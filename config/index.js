@@ -87,6 +87,7 @@ config.globals = {
   '__DEBUG__'    : config.env === 'development' && !argv.no_debug,
   '__COVERAGE__' : !argv.watch && config.env === 'test',
   '__BASENAME__' : JSON.stringify(process.env.BASENAME || ''),
+  '__TRACKING_ID__' : JSON.stringify(process.env.TRACKING_ID || ''),
   '__CONTROLLER_API__' : JSON.stringify(process.env.CONTROLLER_SERVICE || localEnv.controller_service || ''),
   '__GOOGLE_MAPS_KEY__' : JSON.stringify(process.env.GOOGLE_MAPS_KEY || localEnv.google_maps_key || ''),
 };
