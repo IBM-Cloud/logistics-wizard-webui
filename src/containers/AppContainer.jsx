@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from 'styles/muiTheme';
 
-console.log(ReactGA.initialize(__TRACKING_ID__)); // Unique Google Analytics tracking number
+ReactGA.initialize(__TRACKING_ID__); // Unique Google Analytics tracking number
 
 const AppContainer = (props) => {
   const { history, routes, store } = props;
