@@ -35,6 +35,8 @@ export class ShipmentCard extends React.PureComponent {
       currentLocation,
       estimatedTimeOfArrival,
       updatedAt,
+      fromId,
+      toId,
     } = this.props.shipment;
 
     return (
@@ -55,15 +57,29 @@ export class ShipmentCard extends React.PureComponent {
           </div>
           }
 
-        <div className={classes.subtitle2}>
-          Estimated Time of Arrival
-        </div>
-        <div>{formatTime(estimatedTimeOfArrival)}</div>
+        { status !== 'DELIVERED' &&
+          <div>
+            <div className={classes.subtitle2}>
+              Estimated Time of Arrival
+            </div>
+            <div>{formatTime(estimatedTimeOfArrival)}</div>
+          </div>
+        }
 
         <div className={classes.subtitle2}>
           Last Updated
         </div>
         <div>{updatedAt ? formatTime(updatedAt) : 'N/A'}</div>
+
+        <div className={classes.subtitle2}>
+          Origin
+        </div>
+        <div>{this.props.idToNameResolver.resolve('distributionCenter', fromId)}</div>
+
+        <div className={classes.subtitle2}>
+          Destination
+        </div>
+        <div>{this.props.idToNameResolver.resolve('retailer', toId)}</div>
 
         {currentLocation &&
           <div>
@@ -85,6 +101,7 @@ export class ShipmentCard extends React.PureComponent {
 ShipmentCard.propTypes = {
   shipment: React.PropTypes.object.isRequired,
   retrieveWeatherObservations: React.PropTypes.func.isRequired,
+  idToNameResolver: React.PropTypes.object,
 };
 
 const mapActionCreators = {

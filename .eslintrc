@@ -18,7 +18,8 @@
     "__COVERAGE__" : false,
     "__BASENAME__" : false,
     "__GOOGLE_MAPS_KEY__" : false,
-    "__CONTROLLER_API__" : false
+    "__CONTROLLER_API__" : false,
+    "__TRACKING_ID__" : false,
   },
   "rules": {
     "global-require": [0],

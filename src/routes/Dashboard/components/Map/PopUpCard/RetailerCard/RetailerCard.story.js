@@ -2,6 +2,10 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import { RetailerCard } from './RetailerCard';
 
+const resolver = {
+  resolve: (type, id) => `${type} ${id}`,
+};
+
 const props1 = {
   retailer: {
     id: 1261,
@@ -32,7 +36,7 @@ const props2 = {
 };
 storiesOf('RetailerCard', module)
   .add('retailer1', () => (
-    <RetailerCard {...props1} />
+    <RetailerCard {...props1} idToNameResolver={resolver} />
 )).add('retailer2', () => (
-  <RetailerCard {...props2} />
+  <RetailerCard {...props2} idToNameResolver={resolver} />
 ));

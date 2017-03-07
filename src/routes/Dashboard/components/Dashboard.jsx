@@ -68,8 +68,8 @@ class Dashboard extends React.PureComponent {
           />
           <div className={classes.viewMode}>
             <div>
-              <RaisedButton disabled={this.state.viewMode === 'map'} label="Map" onClick={this.setMapMode} />
-              <RaisedButton disabled={this.state.viewMode === 'list'} label="List" onClick={this.setListMode} />
+              <RaisedButton disabled={this.state.viewMode === 'map'} label="Map" id="viewAsMap" onClick={this.setMapMode} />
+              <RaisedButton disabled={this.state.viewMode === 'list'} label="List" id="viewAsList" onClick={this.setListMode} />
             </div>
           </div>
         </div>

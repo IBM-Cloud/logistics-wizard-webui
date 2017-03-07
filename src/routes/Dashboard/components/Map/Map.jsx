@@ -66,6 +66,7 @@ export class Map extends React.PureComponent {
         onClick={this.props.simulateStorm}
         className={classes.simulateButton}
         label="Simulate Storm"
+        id="simulateStorm"
       />);
     }
 
@@ -80,7 +81,7 @@ export class Map extends React.PureComponent {
             options={createMapOptions}
             onChange={this.onMapChange}
           >
-            {this.props.distributionCenters.map(dc =>
+            {this.props.distributionCenters.map((dc, index) =>
               <MapMarker
                 type="distributionCenter"
                 text={dc.address.city}
@@ -89,42 +90,46 @@ export class Map extends React.PureComponent {
                 selectMarker={this.props.selectMarker}
                 data={dc}
                 key={dc.id}
+                id={`distributionCenter-${index}`}
                 zoom={this.state.zoom}
                 selected={this.isSelected('distributionCenter', dc.id)}
               />
             )}
             {this.props.shipments
               .filter(shipment => (shipment.currentLocation != null))
-              .map(shipment =>
+              .map((shipment, index) =>
                 <MapMarker
                   type="shipment"
                   lat={shipment.currentLocation.latitude}
                   lng={shipment.currentLocation.longitude}
                   key={shipment.id}
+                  id={`shipment-${index}`}
                   selectMarker={this.props.selectMarker}
                   data={shipment}
                   zoom={this.state.zoom}
                   selected={this.isSelected('shipment', shipment.id)}
                 />
               )}
-            {this.props.retailers.map(retailer =>
+            {this.props.retailers.map((retailer, index) =>
               <MapMarker
                 type="retailer"
                 lat={retailer.address.latitude}
                 lng={retailer.address.longitude}
                 key={retailer.id}
+                id={`retailer-${index}`}
                 selectMarker={this.props.selectMarker}
                 data={retailer}
                 zoom={this.state.zoom}
                 selected={this.isSelected('retailer', retailer.id)}
               />
             )}
-            {this.props.storms.map((storm, i) =>
+            {this.props.storms.map((storm, index) =>
               <MapMarker
                 type="storm"
                 lat={storm.event.lat}
                 lng={storm.event.lon}
-                key={i}
+                key={index}
+                id={`storm-${index}`}
                 selectMarker={this.props.selectMarker}
                 data={storm}
                 zoom={this.state.zoom}

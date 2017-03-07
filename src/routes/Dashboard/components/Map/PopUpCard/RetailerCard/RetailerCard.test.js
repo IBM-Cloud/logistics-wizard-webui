@@ -7,6 +7,9 @@ const setup = () => {
   const spies = {
   };
   const props = {
+    idToNameResolver: {
+      resolve: (type, id) => `${type} ${id}`,
+    },
     retailer: {
       id: 1261,
       managerId: null,
@@ -33,6 +36,9 @@ test('(Component) Renders with expected elements', t => {
 });
 
 const propsWithShipments = {
+  idToNameResolver: {
+    resolve: (type, id) => `${type} ${id}`,
+  },
   retailer: {
     id: 1261,
     managerId: null,
