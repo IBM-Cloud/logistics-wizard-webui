@@ -44,19 +44,21 @@ export const StormCard = (props) => {
           Potential supply shortages due to weather.
           Consider sending additional supplies to affected locations.
 
-        {recommendations.map(recommendation =>
+        {recommendations.map((recommendation, index) =>
           <div className={classes.shipmentDialog} key={recommendation._id}>
             <div className={classes.shipmentTitle}>
               Shipment from {props.idToNameResolver.resolve('distributionCenter', recommendation.fromId)} to {props.idToNameResolver.resolve('retailer', recommendation.toId)}
             </div>
             <div className={classes.shipmentDialogActionContainer}>
               <div
+                id={`reject-${index}`}
                 className={classes.shipmentDialogAction}
                 onClick={() => handleRecommendation(recommendation._id, false)}
               >
                 Reject
               </div>
               <div
+                id={`approve-${index}`}
                 className={classes.shipmentDialogAction}
                 onClick={() => handleRecommendation(recommendation._id, true)}
               >

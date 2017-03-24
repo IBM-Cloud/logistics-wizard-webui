@@ -11,6 +11,7 @@ export default class MapMarker extends React.PureComponent {
     lng: React.PropTypes.number.isRequired,
     zoom: React.PropTypes.number.isRequired,
     selected: React.PropTypes.bool,
+    id: React.PropTypes.string.isRequired,
   }
 
   handleClick = () => this.props.selectMarker(this.props.type, this.props.data)
@@ -37,7 +38,7 @@ export default class MapMarker extends React.PureComponent {
   }
 
   render() {
-    const { type } = this.props;
+    const { type, id } = this.props;
 
     let markerIcon;
     let customMarker;
@@ -88,7 +89,7 @@ export default class MapMarker extends React.PureComponent {
     divClasses[classes[type]] = true;
 
     return (
-      <div className={classNames(divClasses)} onClick={this.handleClick}>
+      <div id={id} className={classNames(divClasses)} onClick={this.handleClick}>
         {markerIcon ? <div><i className={markerIcon} /></div> : ''}
         {customMarker || ''}
       </div>

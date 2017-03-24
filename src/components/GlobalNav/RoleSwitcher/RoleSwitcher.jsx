@@ -14,7 +14,7 @@ const iconStyles = {
 };
 
 const AccountButton = () => (
-  <IconButton iconStyle={iconStyles}>
+  <IconButton id="accountMenu" iconStyle={iconStyles}>
     <AccountUser
       color={palette.primary3Color}
       hoverColor={palette.alternateTextColor}
@@ -35,7 +35,7 @@ export const RoleSwitcher = (props) => (
         roleAction={props.login}
       />
     ))}
-    <button className={classes.item} onClick={props.logout}>
+    <button id="endSession" className={classes.item} onClick={props.logout}>
       <div className={classes.iconContainer}>
         <i className={`${classes.icon} fa-sign-out fa`} />
       </div>
