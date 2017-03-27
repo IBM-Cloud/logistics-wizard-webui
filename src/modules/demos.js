@@ -13,6 +13,7 @@ export const END_DEMO_SESSION = 'demos/END_DEMO_SESSION';
 export const GET_DEMO_SUCCESS = 'demos/GET_DEMO_SUCCESS';
 export const LOGIN = 'demos/LOGIN';
 export const LOGIN_SUCCESS = 'demos/LOGIN_SUCCESS';
+export const LOGOUT_SUCCESS = 'demos/LOGOUT_SUCCESS';
 
 export const demoSelector = state => state.demoSession;
 
@@ -60,10 +61,15 @@ export const loginSuccess = ({ token, userid }) => ({
   userid,
 });
 
+export const logoutSuccess = () => ({
+  type: LOGOUT_SUCCESS,
+});
+
 export const actions = {
   createDemoFailure,
   getDemoSuccess,
   loginSuccess,
+  logoutSuccess,
 };
 
 // ------------------------------------
@@ -107,6 +113,8 @@ const ACTION_HANDLERS = {
       ...user,
       loggedIn: user.id === userid,
     })),
+  }),
+  [LOGOUT_SUCCESS]: () => ({
   }),
 };
 
@@ -176,6 +184,7 @@ export function *watchEndDemoSession() {
     yield take(END_DEMO_SESSION);
     const demoState = yield select(demoSelector);
     try {
+      yield put(logoutSuccess());
       yield call(api.endDemo, demoState.guid);
     }
     catch (error) {

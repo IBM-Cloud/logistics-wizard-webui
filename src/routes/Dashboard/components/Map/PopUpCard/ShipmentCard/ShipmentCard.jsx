@@ -34,9 +34,11 @@ export class ShipmentCard extends React.PureComponent {
       status,
       currentLocation,
       estimatedTimeOfArrival,
-      updatedAt,
       fromId,
       toId,
+      averageSpeed,
+      shipmentHumidity,
+      shipmentTemp,
     } = this.props.shipment;
 
     return (
@@ -67,9 +69,20 @@ export class ShipmentCard extends React.PureComponent {
         }
 
         <div className={classes.subtitle2}>
-          Last Updated
+          Shipment Data
         </div>
-        <div>{updatedAt ? formatTime(updatedAt) : 'N/A'}</div>
+        <div>
+          <i className={`fa fa-car ${classes.icon}`} aria-hidden="true" />
+          {`Average Speed: ${averageSpeed || '-'} mph`}
+        </div>
+        <div>
+          <i className={`fa fa-snowflake-o ${classes.icon}`} aria-hidden="true" />
+          {`Humidity: ${shipmentHumidity || '-'} %`}
+        </div>
+        <div>
+          <i className={`fa fa-thermometer ${classes.icon}`} aria-hidden="true" />
+          {`Temperature: ${shipmentTemp || '-'}°F`}
+        </div>
 
         <div className={classes.subtitle2}>
           Origin

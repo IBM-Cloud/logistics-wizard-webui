@@ -9,6 +9,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import LoadingSpinner from 'components/LoadingSpinner';
+import classes from './ForecastTile.scss';
 
 const styles = {
   wrapper: {
@@ -39,7 +40,14 @@ const ForecastTile = ({ weather }) => {
         <TableRow key={i}>
           <TableRowColumn style={styles.column}>{forecast.dow}</TableRowColumn>
           <TableRowColumn style={styles.column}>
+            <img
+              alt={forecast.day ? forecast.day.phrase_22char : forecast.night.phrase_22char}
+              className={classes.weatherIcon}
+              src={`/images/weather/${forecast.day ?
+                forecast.day.icon_code : forecast.night.icon_code}.png`}
+            />
             {forecast.day ? forecast.day.phrase_22char : forecast.night.phrase_22char}
+
           </TableRowColumn>
         </TableRow>
       )}

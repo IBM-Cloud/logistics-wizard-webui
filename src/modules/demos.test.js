@@ -9,6 +9,7 @@ import {
   GET_DEMO_SUCCESS,
   LOGIN_SUCCESS,
   LOGIN,
+  LOGOUT_SUCCESS,
   getDemoSession,
   getDemoSuccess,
   login,
@@ -17,6 +18,7 @@ import {
   demoSelector,
   watchGetDemoSession,
   watchLogin,
+  logoutSuccess,
 } from './demos';
 
 
@@ -38,6 +40,10 @@ test('(Constant) LOGIN === "demos/LOGIN"', t => {
 
 test('(Constant) LOGIN_SUCCESS === "demos/LOGIN_SUCCESS"', t => {
   t.is(LOGIN_SUCCESS, 'demos/LOGIN_SUCCESS');
+});
+
+test('(Constant) LOGOUT_SUCCESS === "demos/LOGOUT_SUCCESS"', t => {
+  t.is(LOGOUT_SUCCESS, 'demos/LOGOUT_SUCCESS');
 });
 
 test('(Action) getDemoSession',
@@ -66,6 +72,13 @@ test('(Action) loginSuccess',
     loginSuccess,
     { token: { token: 'token' }, userid: 'userid' },
     { type: LOGIN_SUCCESS, token: { token: 'token' }, userid: 'userid' })
+  );
+
+test('(Action) logoutSuccess',
+  actionTest(
+    logoutSuccess,
+    { token: { token: 'token' }, userid: 'userid' },
+    { type: LOGOUT_SUCCESS })
   );
 
 test('(Reducer) initializes with empty state', t => {
