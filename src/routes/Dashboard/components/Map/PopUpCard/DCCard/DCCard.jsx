@@ -43,8 +43,11 @@ const DCCard = ({ address, contact, shipments, idToNameResolver }) => (
           <Table>
             <TableBody displayRowCheckbox={false}>
               {shipments.map(shipment => (
-                <TableRow>
-                  <TableRowColumn style={styles.column}>{idToNameResolver.resolve('retailer', shipment.toId)}</TableRowColumn>
+                <TableRow key={shipment.id}>
+                  <TableRowColumn style={styles.column}>
+                    <i className={`fa fa-truck ${classes.icon}`} />&nbsp;
+                    {idToNameResolver.resolve('retailer', shipment.toId)}
+                  </TableRowColumn>
                   <TableRowColumn style={styles.column2}>{shipment.status}</TableRowColumn>
                 </TableRow>
               ))}

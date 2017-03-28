@@ -34,9 +34,11 @@ export class ShipmentCard extends React.PureComponent {
       status,
       currentLocation,
       estimatedTimeOfArrival,
-      updatedAt,
       fromId,
       toId,
+      averageSpeed,
+      shipmentHumidity,
+      shipmentTemp,
     } = this.props.shipment;
 
     return (
@@ -67,9 +69,20 @@ export class ShipmentCard extends React.PureComponent {
         }
 
         <div className={classes.subtitle2}>
-          Last Updated
+          Shipment Data
         </div>
-        <div>{updatedAt ? formatTime(updatedAt) : 'N/A'}</div>
+        <div>
+          <i className={`fa fa-car ${classes.icon}`} aria-hidden="true" />
+          {`Average Speed: ${averageSpeed || '-'} mph`}
+        </div>
+        <div>
+          <i className={`fa fa-snowflake-o ${classes.icon}`} aria-hidden="true" />
+          {`Humidity: ${shipmentHumidity || '-'} %`}
+        </div>
+        <div>
+          <i className={`fa fa-thermometer ${classes.icon}`} aria-hidden="true" />
+          {`Temperature: ${shipmentTemp || '-'}°F`}
+        </div>
 
         <div className={classes.subtitle2}>
           Origin
@@ -87,8 +100,17 @@ export class ShipmentCard extends React.PureComponent {
               Current Weather
             </div>
             <div>
-              {currentLocation.weather ?
-               `${currentLocation.weather.observation.temp}° | ${currentLocation.weather.observation.wx_phrase}` :
+
+              {currentLocation.weather ? <div>
+                <img
+                  alt={currentLocation.weather.observation.wx_phrase}
+                  className={classes.weatherIcon}
+                  src={`/images/weather/${currentLocation.weather.observation.wx_icon}.png`}
+                />
+                {`${currentLocation.weather.observation.temp}
+                ° | ${currentLocation.weather.observation.wx_phrase}`}
+              </div>
+               :
                (<div style={{ textAlign: 'center' }}><LoadingSpinner size={60} /></div>)}
             </div>
           </div>
