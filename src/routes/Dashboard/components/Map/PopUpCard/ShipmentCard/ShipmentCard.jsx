@@ -100,8 +100,17 @@ export class ShipmentCard extends React.PureComponent {
               Current Weather
             </div>
             <div>
-              {currentLocation.weather ?
-               `${currentLocation.weather.observation.temp}° | ${currentLocation.weather.observation.wx_phrase}` :
+
+              {currentLocation.weather ? <div>
+                <img
+                  alt={currentLocation.weather.observation.wx_phrase}
+                  className={classes.weatherIcon}
+                  src={`/images/weather/${currentLocation.weather.observation.wx_icon}.png`}
+                />
+                {`${currentLocation.weather.observation.temp}
+                ° | ${currentLocation.weather.observation.wx_phrase}`}
+              </div>
+               :
                (<div style={{ textAlign: 'center' }}><LoadingSpinner size={60} /></div>)}
             </div>
           </div>
