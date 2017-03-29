@@ -56,8 +56,11 @@ export class RoleItem extends React.PureComponent {
           [classes.selected]: (user ? user.loggedIn : false),
         })}
       >
-        {this.iconContainer(user)}
-        {this.textContainer(user)}
+        <div className={classes.flexContainer}>
+          {this.iconContainer(user)}
+          {this.textContainer(user)}
+        </div>
+
       </button>
     );
   }
