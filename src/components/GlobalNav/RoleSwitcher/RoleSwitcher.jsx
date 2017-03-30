@@ -36,12 +36,14 @@ export const RoleSwitcher = (props) => (
       />
     ))}
     <button id="endSession" className={classes.item} onClick={props.logout}>
-      <div className={classes.iconContainer}>
-        <i className={`${classes.icon} fa-sign-out fa`} />
-      </div>
-      <div className={classes.textContainer}>
-        <div className={classes.label}>
-          End Session
+      <div className={classes.flexContainer}>
+        <div className={classes.iconContainer}>
+          <i className={`${classes.icon} fa-sign-out fa`} />
+        </div>
+        <div className={classes.textContainer}>
+          <div className={classes.label}>
+            End Session
+          </div>
         </div>
       </div>
     </button>
