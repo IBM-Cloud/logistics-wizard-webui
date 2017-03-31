@@ -46,7 +46,7 @@ export class Header extends React.PureComponent {
           label="View Logistics Wizard in Action"
           primary={false}
           id="viewInActionButton"
-          onTouchTap={this.createDemo}
+          onClick={this.createDemo}
         />
       </div>
     );

@@ -1,3 +1,5 @@
+@import '~styles/base/colors';
+
 .distributionCenter, .retailer, .shipment {
   text-align: center;
   display: inline-block;
@@ -12,8 +14,6 @@
     width: 30px;
     height: 30px;
     margin: 1px;
-    border: 1px solid rgba(0,0,0,0);
-    border-radius: 15px;
   }
 
   &.selected div {
@@ -26,7 +26,7 @@
 // --------------------------------------------
 .distributionCenter {
   color: #cc780f;
-  font-size: 16px;
+  font-size: 18px;
 
   & div i {
     padding-top: 6px;
@@ -41,29 +41,34 @@
 // --------------------------------------------
 // Shipment
 // --------------------------------------------
+
 .shipment {
-  color: #749f67;
-  font-size: 16px;
+  color: $map3Primary;
+  font-size: 25px;
+
 
   & div i {
     padding-top: 4px;
   }
 
   &:hover, &.selected {
-    background-color: #749f67;
+    background-color: $map3Primary;
     color: white;
+    width: 36px;
+    height: 35px;
   }
 }
+
 
 // --------------------------------------------
 // Retailer
 // --------------------------------------------
 .retailer {
-  color: #ad3e9c;
+  color: $map2Primary;
   font-size: 24px;
 
   &:hover, &.selected {
-    background-color: #ad3e9c;
+    background-color: $map2Primary;
     color: white;
   }
 }

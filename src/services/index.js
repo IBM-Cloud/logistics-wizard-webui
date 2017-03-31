@@ -1,7 +1,8 @@
 // Polyfill for fetch() not yet implemented by all browsers http://caniuse.com/#feat=fetch
 import 'whatwg-fetch';
 
-export const controllerApi = `${__CONTROLLER_API__}/api/v1`;
+// remove trailing / from url and add /api/v1
+export const controllerApi = `${__CONTROLLER_API__.replace(/\/$/, '')}/api/v1`;
 
 export const callApi = (endpoint, {
   apiUrl = controllerApi,
