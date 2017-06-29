@@ -1,11 +1,4 @@
 #!/bin/bash
-npm config delete prefix
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
-. ~/.nvm/nvm.sh
-nvm install 4.4
-npm install
-npm run test
-npm run check-coverage
 if [ -z ${COVERALLS_REPO_TOKEN} ]; then
   echo No Coveralls token specified, skipping coveralls.io upload
 else
@@ -21,14 +14,21 @@ case "${REGION_ID}" in
   domain=".au-syd.mybluemix.net"
   ;;
 esac
-if [ ! -z "$CONTROLLER_SERVICE_APP_NAME"]; then
+if [ ! -z "$CONTROLLER_SERVICE_APP_NAME" ]; then
   export CONTROLLER_SERVICE=https://$CONTROLLER_SERVICE_APP_NAME$domain
 fi
-if [ -z "$CONTROLLER_SERVICE"]; then
+if [ -z "$CONTROLLER_SERVICE" ]; then
   echo "CONTROLLER_SERVICE url not defined."
   exit 1;
 fi
 
+npm config delete prefix
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+. ~/.nvm/nvm.sh
+nvm install 4.4
+npm install
+npm run test
+npm run check-coverage
 npm run deploy:prod
 
 # copy deploy build script to dist
