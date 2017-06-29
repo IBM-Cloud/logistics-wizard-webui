@@ -21,7 +21,14 @@ case "${REGION_ID}" in
   domain=".au-syd.mybluemix.net"
   ;;
 esac
-export CONTROLLER_SERVICE=https://$CONTROLLER_SERVICE_APP_NAME$domain
+if [ ! -z "$CONTROLLER_SERVICE_APP_NAME"]; then
+  export CONTROLLER_SERVICE=https://$CONTROLLER_SERVICE_APP_NAME$domain
+fi
+if [ -z "$CONTROLLER_SERVICE"]; then
+  echo "CONTROLLER_SERVICE url not defined."
+  exit 1;
+fi
+
 npm run deploy:prod
 
 # copy deploy build script to dist
