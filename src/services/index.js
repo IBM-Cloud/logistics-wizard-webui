@@ -1,6 +1,9 @@
 // Polyfill for fetch() not yet implemented by all browsers http://caniuse.com/#feat=fetch
 import 'whatwg-fetch';
 
+if (!__CONTROLLER_API__) {
+  alert('ERROR! controller_service url not set. (Set in config/.env when running locally)'); // eslint-disable-line
+}
 // remove trailing / from url and add /api/v1
 export const controllerApi = `${__CONTROLLER_API__.replace(/\/$/, '')}/api/v1`;
 
@@ -15,7 +18,7 @@ export const callApi = (endpoint, {
     method,
     body: JSON.stringify(body),
   })
-  .then(response => {
+  .then((response) => {
     if (response.status === 204) { // good response but no content
       return { json: { status: 204, statusText: 'no content' }, response };
     }
@@ -37,7 +40,7 @@ export const createDemo = () =>
 
 export const getDemo = guid => callApi(`demos/${guid}`);
 
-export const endDemo = (guid) =>
+export const endDemo = guid =>
   callApi(`demos/${guid}`, {
     method: 'DELETE',
   });
