@@ -1,11 +1,11 @@
 # Logistics Wizard Web User Interface
 
-| **master** | [![Build Status](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui) [![Coverage Status](https://coveralls.io/repos/github/IBM-Bluemix/logistics-wizard-webui/badge.svg?branch=master)](https://coveralls.io/github/IBM-Bluemix/logistics-wizard-webui?branch=master) |
+| **master** | [![Build Status](https://travis-ci.org/IBM-Cloud/logistics-wizard-webui.svg?branch=master)](https://travis-ci.org/IBM-Cloud/logistics-wizard-webui) [![Coverage Status](https://coveralls.io/repos/github/IBM-Cloud/logistics-wizard-webui/badge.svg?branch=master)](https://coveralls.io/github/IBM-Cloud/logistics-wizard-webui?branch=master) |
 | ----- | ----- |
-| **dev** | [![Build Status](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui.svg?branch=dev)](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui) [![Coverage Status](https://coveralls.io/repos/github/IBM-Bluemix/logistics-wizard-webui/badge.svg?branch=dev)](https://coveralls.io/github/IBM-Bluemix/logistics-wizard-webui?branch=dev)|
+| **dev** | [![Build Status](https://travis-ci.org/IBM-Cloud/logistics-wizard-webui.svg?branch=dev)](https://travis-ci.org/IBM-Cloud/logistics-wizard-webui) [![Coverage Status](https://coveralls.io/repos/github/IBM-Cloud/logistics-wizard-webui/badge.svg?branch=dev)](https://coveralls.io/github/IBM-Cloud/logistics-wizard-webui?branch=dev)|
 <a href="https://www.zenhub.com/"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
-This project is part of the larger [Logistics Wizard](https://github.com/IBM-Bluemix/logistics-wizard) project.
+This project is part of the larger [Logistics Wizard](https://github.com/IBM-Cloud/logistics-wizard) project.
 
 ## Overview
 
@@ -20,7 +20,7 @@ When the application runs locally, it uses a Node.js server to bring you develop
 
 #### Get the code
 ```
-git clone https://github.com/IBM-Bluemix/logistics-wizard-webui
+git clone https://github.com/IBM-Cloud/logistics-wizard-webui
 cd logistics-wizard-webui
 npm install
 ```
@@ -36,7 +36,7 @@ module.exports = {
 
 ## Deploy the WEBUI to IBM Cloud - Cloud Foundry
 
-To use a continous integration pipeline to handle build and deployment, go here: https://github.com/IBM-Bluemix/logistics-wizard-toolchain. To manually push to Cloud, continue:
+To use a continous integration pipeline to handle build and deployment, go here: https://github.com/IBM-Cloud/logistics-wizard-toolchain. To manually push to Cloud, continue:
 
 We need to compile/build the application to generate static web files. Then push only those static files to Cloud and use the nginx buildpack to host the files
 

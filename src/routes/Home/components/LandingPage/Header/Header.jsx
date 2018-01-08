@@ -34,7 +34,7 @@ export class Header extends React.PureComponent {
         <Toolbar style={styles.toolbar}>
           <ToolbarTitle text="Logistics Wizard" style={styles.title} className={classes.title} />
           <div className={classes.topLink}>
-            <a href="https://github.com/IBM-Bluemix/logistics-wizard" rel="noopener noreferrer" target="_blank">
+            <a href="https://github.com/IBM-Cloud/logistics-wizard" rel="noopener noreferrer" target="_blank">
               <p className={classes.text}>Github Source Code</p>
             </a>
           </div>

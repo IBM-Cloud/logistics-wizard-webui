@@ -76,7 +76,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IBM-Bluemix/logistics-wizard-webui.git"
+    "url": "git+https://github.com/IBM-Cloud/logistics-wizard-webui.git"
   },
   "author": "Colby Williams <colbycheeze@us.ibm.com> (http://colbycheeze.com)",
   "license": "Apache-2.0",

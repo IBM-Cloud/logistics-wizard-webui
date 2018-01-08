@@ -36,7 +36,7 @@ export const GlobalNav = (props) => (
       <ToolbarGroup>
         <RoleSwitcher logout={props.endDemoSession} />
         <IconButton style={styles.iconButton}>
-          <a href="https://github.com/IBM-Bluemix/logistics-wizard" target="_blank">
+          <a href="https://github.com/IBM-Cloud/logistics-wizard" target="_blank">
             <Icon
               name="github"
               className={classes.github}
