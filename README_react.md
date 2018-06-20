@@ -180,8 +180,8 @@ Out of the box, this project is deployable by serving the `~/dist` folder genera
 ### Static Deployments
 Whether you are serving the application via node or a web server such as nginx, make sure to direct incoming routes to the root `~/dist/index.html` file and let react-router take care of the rest. The Koa server that is being used as the dev server can be extended to host the app and serve as an API or whatever else you need, but that's entirely up to you.
 
-### Bluemix
-We use the staticfile_buildpack to deploy the client to Bluemix with an nginx web server. In order to override the default nginx.conf provided by the buildpack, we simply copied the provided config from the buildpack repo and added the try_files directive:
+### IBM Cloud
+We use the staticfile_buildpack to deploy the client to IBM Cloud with an nginx web server. In order to override the default nginx.conf provided by the buildpack, we simply copied the provided config from the buildpack repo and added the try_files directive:
 ```
 ...
 location / {
