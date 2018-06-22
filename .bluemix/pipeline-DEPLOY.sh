@@ -1,4 +1,6 @@
 #!/bin/bash
+bx api $CF_TARGET_URL
+
 # Push the app
 if ! bx app show $CF_APP; then
   bx app push $CF_APP -n $CF_APP
