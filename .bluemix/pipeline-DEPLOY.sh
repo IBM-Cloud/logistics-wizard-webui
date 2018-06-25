@@ -1,5 +1,5 @@
 #!/bin/bash
-echo 'Login IBM Cloud api=$CF_TARGET_URL org=$CF_ORG space=$CF_SPACE'
+echo Login IBM Cloud api=$CF_TARGET_URL org=$CF_ORG space=$CF_SPACE
 bx login -a "$CF_TARGET_URL" --apikey "$IAM_API_KEY" -o "$CF_ORG" -s "$CF_SPACE"
 
 # Push the app
