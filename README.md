@@ -1,4 +1,4 @@
-Logistics Wizard](https://github.com/IBM-Cloud/logistics-wizard/tree/master#logistics-wizard-overview) / [Architecture](https://github.com/IBM-Cloud/logistics-wizard/tree/master#architecture) / logistics-wizard-webui
+[Logistics Wizard](https://github.com/IBM-Cloud/logistics-wizard/tree/master#logistics-wizard-overview) / [Architecture](https://github.com/IBM-Cloud/logistics-wizard/tree/master#architecture) / logistics-wizard-webui
 
 # Logistics Wizard Web User Interface
 
