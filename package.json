@@ -81,7 +81,7 @@
   "author": "Colby Williams <colbycheeze@us.ibm.com> (http://colbycheeze.com)",
   "license": "Apache-2.0",
   "dependencies": {
-    " rimraf": "^2.5.1",
+    "rimraf": "^2.5.1",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.3.17",
     "babel-loader": "^6.2.0",
