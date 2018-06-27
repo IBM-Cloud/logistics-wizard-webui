@@ -25,7 +25,7 @@ fi
 npm config delete prefix
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
 . ~/.nvm/nvm.sh
-nvm install 4.4
+nvm install 5.12
 npm install
 npm run test
 npm run check-coverage
