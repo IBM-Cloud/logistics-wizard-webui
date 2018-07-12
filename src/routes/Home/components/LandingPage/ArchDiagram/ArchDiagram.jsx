@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardMedia } from 'material-ui/Card';
-import Diagram from '../assets/img/Architecture_Diagram.png';
+import Diagram from '../assets/img/architecture.png';
 import Graph from '../assets/img/graph.svg';
 import classes from './ArchDiagram.scss';
 
