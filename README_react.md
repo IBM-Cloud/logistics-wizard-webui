@@ -190,7 +190,7 @@ location / {
   ...
 ```
 **Deploy Instructions**
-  1. Manually Install [Cloud Foundry](https://github.com/cloudfoundry/cli/releases) and [Bluemix CLI](http://clis.ng.bluemix.net/ui/home.html) *or use homebrew on Mac*:
+  1. Manually Install [Cloud Foundry](https://github.com/cloudfoundry/cli/releases) and [IBM Cloud CLI](http://clis.ng.bluemix.net/ui/home.html) *or use homebrew on Mac*:
 
     ```bash
     brew tap cloudfoundry/tap
@@ -201,8 +201,8 @@ location / {
   1. Connect and Login to Bluemix
 
   ```bash
-  bluemix api https://api.ng.bluemix.net
-  bluemix login -u <your username> -o <your org> -s <your space>
+  ibmcloud api https://api.ng.bluemix.net
+  ibmcloud login -u <your username> -o <your org> -s <your space>
 
   ```
   1. Update the `host` key in `manifest.yml` to whatever you like

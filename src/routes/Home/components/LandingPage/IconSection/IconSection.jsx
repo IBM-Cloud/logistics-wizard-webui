@@ -26,7 +26,7 @@ export const IconSection = () => (
       <h4>Hands-Off</h4>
       <p>
         Monitoring, alerts, automatic updates, and more come standard with Cloud Foundry
-         on IBM Bluemix and the IBM Open Toolchain.
+         on IBM Cloud and the IBM DevOps Toolchain.
       </p>
     </div>
   </div>
