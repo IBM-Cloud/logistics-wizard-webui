@@ -10,6 +10,7 @@ ENV CONTROLLER_SERVICE="${CONTROLLER_SERVICE}"
 RUN cd /app \
   && apk add --no-cache --virtual .build-deps alpine-sdk python \
   && npm install \
+  && npm run deploy:prod \
   && apk del .build-deps
 
 # run
