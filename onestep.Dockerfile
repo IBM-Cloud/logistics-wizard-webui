@@ -14,3 +14,5 @@ RUN apk add --no-cache --virtual .build-deps nodejs alpine-sdk python \
 
 RUN cp /app/dist/docker-nginx.conf /etc/nginx/conf.d/default.conf
 RUN mv /app/dist/ /var/www/
+
+CMD ["nginx", "-g", "daemon off;"]
