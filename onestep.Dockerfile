@@ -16,6 +16,6 @@ RUN apt-get update \
   && npm install \
   && npm run deploy:prod \
   && rm -rf node_modules \
-  && apt-get remove -y python build-essential nodejs curl gnupg
+  && apt-get remove -y python build-essential nodejs curl
 
 RUN mv /app/dist/ /usr/local/apache2/htdocs/
