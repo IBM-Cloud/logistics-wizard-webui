@@ -1,4 +1,4 @@
-# build
+# similar to Dockerfile, but uses Apache HTTPd and does not use multi-stage build
 FROM httpd:2.4
 
 ARG CONTROLLER_SERVICE=http://lw-controller:8080
@@ -16,6 +16,9 @@ RUN apt-get update \
   && npm install \
   && npm run deploy:prod \
   && rm -rf node_modules \
+  && mv -f /app/dist/* /usr/local/apache2/htdocs/ \
   && apt-get remove -y python build-essential nodejs curl
 
-RUN mv /app/dist/ /usr/local/apache2/htdocs/
+# Listen on 8080
+RUN sed -i "s/Listen 80/Listen 8080/g" /usr/local/apache2/conf/httpd.conf
+EXPOSE 8080
