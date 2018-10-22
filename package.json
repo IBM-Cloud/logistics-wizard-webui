@@ -116,7 +116,7 @@
     "koa-static": "3.0.0",
     "material-ui": "0.16.7",
     "moment": "2.20.1",
-    "node-sass": "3.13.1",
+    "node-sass": "4.9.3",
     "nodemon": "1.14.9",
     "normalize.css": "4.2.0",
     "postcss-loader": "0.9.1",
