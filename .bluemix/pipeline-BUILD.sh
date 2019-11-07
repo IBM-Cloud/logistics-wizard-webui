@@ -32,4 +32,3 @@ npm run deploy:prod
 # copy deploy build script to dist
 mkdir dist/.bluemix
 cp .bluemix/pipeline-DEPLOY.sh dist/.bluemix
-cp .bluemix/pipeline-DRA.sh dist/.bluemix
