@@ -23,9 +23,7 @@ if [ -z "$CONTROLLER_SERVICE" ]; then
 fi
 
 npm config delete prefix
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
-. ~/.nvm/nvm.sh
-nvm install 5.12
+nvm install 6.9.1
 npm install
 npm run test
 npm run check-coverage
@@ -34,4 +32,3 @@ npm run deploy:prod
 # copy deploy build script to dist
 mkdir dist/.bluemix
 cp .bluemix/pipeline-DEPLOY.sh dist/.bluemix
-cp .bluemix/pipeline-DRA.sh dist/.bluemix

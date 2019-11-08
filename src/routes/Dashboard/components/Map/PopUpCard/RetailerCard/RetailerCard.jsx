@@ -7,8 +7,6 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import { getWeatherObservations } from 'routes/Dashboard/modules/Dashboard';
-import ForecastTile from '../../../ForecastTile';
 import classes from '../PopUpCard.scss';
 
 const styles = {
@@ -24,24 +22,6 @@ const styles = {
 };
 
 export class RetailerCard extends React.PureComponent {
-
-  componentWillMount = () => {
-    this.getWeatherForecast();
-  }
-
-  componentDidUpdate = () => {
-    this.getWeatherForecast();
-  }
-
-  getWeatherForecast = () => {
-    if (!this.props.retailer.address.weather) {
-      this.props.retrieveWeatherObservations(
-        'retailer',
-        this.props.retailer.id,
-        this.props.retailer.address.longitude,
-        this.props.retailer.address.latitude);
-    }
-  }
 
   render() {
     const {
@@ -89,11 +69,6 @@ export class RetailerCard extends React.PureComponent {
           :
           <h4>No Incoming Shipments</h4>
         }
-        <div className={classes.contentContainer}>
-          <div className={classes.subtitle2}>Weather Forecasts</div>
-          <hr />
-          <div><ForecastTile weather={address.weather} /></div>
-        </div>
       </div>
     );
   }
@@ -103,11 +78,9 @@ RetailerCard.propTypes = {
   retailer: React.PropTypes.object.isRequired,
   shipments: React.PropTypes.array,
   idToNameResolver: React.PropTypes.object,
-  retrieveWeatherObservations: React.PropTypes.func.isRequired,
 };
 
 const mapActionCreators = {
-  retrieveWeatherObservations: getWeatherObservations,
 };
 
 export default connect(null, mapActionCreators)(RetailerCard);
