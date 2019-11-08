@@ -21,7 +21,6 @@ const setup = () => {
         longitude: -78.63,
       },
     },
-    retrieveWeatherObservations: () => {},
   };
   const component = shallow(<RetailerCard {...props} />);
 
@@ -56,7 +55,6 @@ const propsWithShipments = {
       status: 'NEW',
     },
   ],
-  retrieveWeatherObservations: () => {},
 };
 test('(Component) Renders with expected elements', t => {
   const component = shallow(<RetailerCard {...propsWithShipments} />);

@@ -24,7 +24,6 @@ const props1 = {
     createdAt: '2016-09-08T16:26:16.933Z',
     id: 810,
   },
-  retrieveWeatherObservations: () => {},
 };
 const shipment2 = {
   toId: 473,

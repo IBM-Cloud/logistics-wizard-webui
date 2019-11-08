@@ -18,7 +18,6 @@ const props1 = {
       longitude: -78.63,
     },
   },
-  retrieveWeatherObservations: () => { },
 };
 const props2 = {
   retailer: {
@@ -32,7 +31,6 @@ const props2 = {
       longitude: -97.74,
     },
   },
-  retrieveWeatherObservations: () => { },
 };
 storiesOf('RetailerCard', module)
   .add('retailer1', () => (
